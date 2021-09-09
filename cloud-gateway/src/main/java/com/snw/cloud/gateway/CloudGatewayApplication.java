@@ -10,8 +10,8 @@ import org.springframework.cloud.netflix.hystrix.EnableHystrix;
 @EnableHystrix
 public class CloudGatewayApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(CloudGatewayApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(CloudGatewayApplication.class, args);
+    }
 
 }

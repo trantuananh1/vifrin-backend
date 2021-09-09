@@ -9,6 +9,8 @@
       <module fileurl="file://$PROJECT_DIR$/service-registry/service-registry.iml" filepath="$PROJECT_DIR$/service-registry/service-registry.iml" />
       <module fileurl="file://$PROJECT_DIR$/user-service/user-service.iml" filepath="$PROJECT_DIR$/user-service/user-service.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/vifrin-backend.iml" filepath="$PROJECT_DIR$/.idea/vifrin-backend.iml" />
+      <module fileurl="file://$PROJECT_DIR$/vifrin-common/vifrin-common.iml" filepath="$PROJECT_DIR$/vifrin-common/vifrin-common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/vifrin-feign/vifrin-feign.iml" filepath="$PROJECT_DIR$/vifrin-feign/vifrin-feign.iml" />
     </modules>
   </component>
 </project>

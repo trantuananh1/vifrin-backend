@@ -6,3 +6,17 @@ spring:
     name: USER-SERVICE
   zipkin:
     base-url: http://127.0.0.1:9411/
+
+---
+
+spring:
+  datasource:
+    hikari:
+      connection-timeout: 200000
+      maximum-pool-size: 5
+    url: jdbc:postgresql://localhost:5432/postgres
+    username: anhtrt
+    password: 123456
+  jpa:
+    hibernate:
+      ddl-auto: create
