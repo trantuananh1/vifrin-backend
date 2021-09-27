@@ -48,4 +48,9 @@ public class Profile {
     @MapsId
     @JoinColumn(name = "user_id")
     private User user;
+
+    public Profile(String email, String fullName){
+        this.email = email;
+        this.fullName = fullName;
+    }
 }

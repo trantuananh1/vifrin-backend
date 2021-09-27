@@ -17,4 +17,10 @@ public class FallBackMethodController {
         return "Department Service is taking longer than Expected." +
                 " Please try again later";
     }
+
+    @GetMapping("/authServiceFallBack")
+    public String authServiceFallBackMethod() {
+        return "Auth Service is taking longer than Expected." +
+                " Please try again later";
+    }
 }

@@ -1,6 +1,7 @@
 package com.snw.user.entity;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.apache.tomcat.jni.Address;
@@ -12,9 +13,9 @@ import java.time.Instant;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 @Table(name = "users")
 public class User {
-
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "user_id")
@@ -44,4 +45,12 @@ public class User {
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
     @PrimaryKeyJoinColumn
     private Profile profile;
+
+    public User(String username, String password) {
+        this.username = username;
+        this.password = password;
+        this.isEnabled = true;
+        this.createdAt = Instant.now();
+        this.updatedAt = Instant.now();
+    }
 }

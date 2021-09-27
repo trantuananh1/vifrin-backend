@@ -25,53 +25,58 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2223b2b6-d04b-4cb4-81d1-8890c581dd1b" name="Default Changelist" comment="add docker compose">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_checkerframework_checker_qual_3_5_0.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_postgresql_postgresql_42_2_16.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user-service/src/main/java/com/snw/user/entity/Gender.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user-service/src/main/java/com/snw/user/entity/Profile.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vifrin-common/src/main/java/com/vifrin/common/response/ResponseTemplate.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vifrin-common/src/main/java/com/vifrin/common/type/EntityType.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vifrin-common/src/main/java/com/vifrin/common/type/ResponseType.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vifrin-feign/src/main/java/com/vifrin/feign/client/AuthFeignClient.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vifrin-feign/src/main/java/com/vifrin/feign/client/PostFeignClient.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vifrin-feign/src/main/java/com/vifrin/feign/client/UserFeignClient.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/auth-service/src/main/java/com/snw/auth/AuthServiceApplication.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/auth-service/src/main/java/com/snw/auth/config/AuthServiceConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/auth-service/src/main/java/com/snw/auth/config/SecurityConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/auth-service/src/main/java/com/snw/auth/controller/AuthController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/auth-service/src/main/java/com/snw/auth/payload/AuthenticationResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/auth-service/src/main/java/com/snw/auth/payload/LoginRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/auth-service/src/main/java/com/snw/auth/payload/RegisterRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/auth-service/src/main/java/com/snw/auth/service/AuthService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/auth-service/src/main/java/com/snw/auth/service/UserDetailServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/auth-service/src/main/java/com/snw/auth/util/JwtAuthenticationFilter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/auth-service/src/main/java/com/snw/auth/util/JwtProvider.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/auth-service/src/main/resources/application.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/auth-service/src/main/resources/boostrap.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user-service/src/main/java/com/snw/user/payload/UpdateProfileRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vifrin-common/src/main/java/com/vifrin/common/config/WebConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vifrin-common/src/main/java/com/vifrin/common/entity/Gender.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vifrin-common/src/main/java/com/vifrin/common/entity/Profile.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vifrin-common/src/main/java/com/vifrin/common/entity/User.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vifrin-feign/src/main/java/com/vifrin/feign/config/FeignConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vifrin-feign/src/main/java/com/vifrin/feign/payload/CreateUserResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vifrin-feign/src/main/java/com/vifrin/feign/payload/GetUserResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vifrin-feign/src/main/java/com/vifrin/feign/payload/RegisterRequest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vifrin-backend.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vifrin-backend.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cloud-config-server/.mvn/wrapper/MavenWrapperDownloader.java" beforeDir="false" afterPath="$PROJECT_DIR$/cloud-config-server/.mvn/wrapper/MavenWrapperDownloader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloud-config-server/cloud-config-server.iml" beforeDir="false" afterPath="$PROJECT_DIR$/cloud-config-server/cloud-config-server.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cloud-config-server/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/cloud-config-server/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cloud-config-server/src/main/java/com/snw/cloud/CloudConfigServerApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/cloud-config-server/src/main/java/com/snw/cloud/CloudConfigServerApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cloud-config-server/src/test/java/com/snw/cloud/CloudConfigServerApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/cloud-config-server/src/test/java/com/snw/cloud/CloudConfigServerApplicationTests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cloud-gateway/.mvn/wrapper/MavenWrapperDownloader.java" beforeDir="false" afterPath="$PROJECT_DIR$/cloud-gateway/.mvn/wrapper/MavenWrapperDownloader.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cloud-gateway/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/cloud-gateway/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cloud-gateway/src/main/java/com/snw/cloud/gateway/CloudGatewayApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/cloud-gateway/src/main/java/com/snw/cloud/gateway/CloudGatewayApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cloud-gateway/src/test/java/com/snw/cloud/gateway/CloudGatewayApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/cloud-gateway/src/test/java/com/snw/cloud/gateway/CloudGatewayApplicationTests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/department-service/.mvn/wrapper/MavenWrapperDownloader.java" beforeDir="false" afterPath="$PROJECT_DIR$/department-service/.mvn/wrapper/MavenWrapperDownloader.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/department-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/department-service/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/department-service/src/main/java/com/snw/department/DepartmentServiceApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/department-service/src/main/java/com/snw/department/DepartmentServiceApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/department-service/src/main/java/com/snw/department/controller/DepartmentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/department-service/src/main/java/com/snw/department/controller/DepartmentController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/department-service/src/test/java/com/snw/department/DepartmentServiceApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/department-service/src/test/java/com/snw/department/DepartmentServiceApplicationTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloud-config-server/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/cloud-config-server/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloud-config-server/target/classes/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/cloud-config-server/target/classes/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloud-gateway/src/main/java/com/snw/cloud/gateway/FallBackMethodController.java" beforeDir="false" afterPath="$PROJECT_DIR$/cloud-gateway/src/main/java/com/snw/cloud/gateway/FallBackMethodController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloud-gateway/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/cloud-gateway/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloud-gateway/target/classes/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/cloud-gateway/target/classes/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloud-gateway/target/classes/com/snw/cloud/gateway/FallBackMethodController.class" beforeDir="false" afterPath="$PROJECT_DIR$/cloud-gateway/target/classes/com/snw/cloud/gateway/FallBackMethodController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hystrix-dashboard/.mvn/wrapper/MavenWrapperDownloader.java" beforeDir="false" afterPath="$PROJECT_DIR$/hystrix-dashboard/.mvn/wrapper/MavenWrapperDownloader.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hystrix-dashboard/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/hystrix-dashboard/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hystrix-dashboard/src/main/java/com/snw/hystrix/dashboard/HystrixDashboardApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/hystrix-dashboard/src/main/java/com/snw/hystrix/dashboard/HystrixDashboardApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hystrix-dashboard/src/test/java/com/snw/hystrix/dashboard/HystrixDashboardApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/hystrix-dashboard/src/test/java/com/snw/hystrix/dashboard/HystrixDashboardApplicationTests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service-registry/.mvn/wrapper/MavenWrapperDownloader.java" beforeDir="false" afterPath="$PROJECT_DIR$/service-registry/.mvn/wrapper/MavenWrapperDownloader.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service-registry/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/service-registry/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service-registry/src/main/java/com/snw/service/registry/ServiceRegistryApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/service-registry/src/main/java/com/snw/service/registry/ServiceRegistryApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service-registry/src/test/java/com/snw/service/registry/ServiceRegistryApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/service-registry/src/test/java/com/snw/service/registry/ServiceRegistryApplicationTests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-service/.mvn/wrapper/MavenWrapperDownloader.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/.mvn/wrapper/MavenWrapperDownloader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/vifrin_common_jar/vifrin-common.jar" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/user-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-service/src/main/java/com/snw/user/UserServiceApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/main/java/com/snw/user/UserServiceApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user-service/src/main/java/com/snw/user/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/main/java/com/snw/user/controller/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user-service/src/main/java/com/snw/user/entity/Profile.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/main/java/com/snw/user/entity/Profile.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/user-service/src/main/java/com/snw/user/entity/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/main/java/com/snw/user/entity/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-service/src/main/java/com/snw/user/repository/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/main/java/com/snw/user/repository/UserRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/user-service/src/main/java/com/snw/user/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/main/java/com/snw/user/service/UserService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/user-service/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-service/src/test/java/com/snw/user/UserServiceApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/test/java/com/snw/user/UserServiceApplicationTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user-service/target/classes/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/target/classes/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user-service/target/classes/com/snw/user/controller/UserController.class" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/target/classes/com/snw/user/controller/UserController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user-service/target/classes/com/snw/user/entity/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/target/classes/com/snw/user/entity/User.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user-service/target/classes/com/snw/user/repository/UserRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/target/classes/com/snw/user/repository/UserRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user-service/target/classes/com/snw/user/service/UserService.class" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/target/classes/com/snw/user/service/UserService.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/user-service/user-service.iml" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/user-service.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vifrin-common/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/vifrin-common/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vifrin-feign/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/vifrin-feign/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vifrin-feign/src/main/java/com/vifrin/feign/client/UserFeignClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/vifrin-feign/src/main/java/com/vifrin/feign/client/UserFeignClient.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -82,12 +87,17 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Enum" />
-        <option value="Class" />
         <option value="Interface" />
+        <option value="Class" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="1wkeMcs5Ay1sdYhGfMCF9dtYTYw" />
@@ -96,6 +106,7 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="DatabaseDriversLRU" value="postgresql&#10;mysql" />
     <property name="ExpandSpringBootJavaOptionsPanel" value="true" />
     <property name="RequestMappingsPanelOrder0" value="0" />
     <property name="RequestMappingsPanelOrder1" value="1" />
@@ -106,10 +117,21 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/vifrin-feign/src/main/java/com/vifrin/feign/model" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="com.vifrin.common" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.vifrin.feign.payload" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\ADMIN\Desktop\vifrin\vifrin-backend\vifrin-feign\src\main\java\com\vifrin\feign\model" />
+    </key>
   </component>
   <component name="RunDashboard">
     <option name="configurationTypes">
@@ -118,7 +140,14 @@
       </set>
     </option>
   </component>
-  <component name="RunManager" selected="Spring Boot.UserServiceApplication">
+  <component name="RunManager" selected="Docker.docker-compose.yml.networks: Compose Deployment">
+    <configuration name="AuthServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="auth-service" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.snw.auth.AuthServiceApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="CloudConfigServerApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <module name="cloud-config-server" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.snw.cloud.CloudConfigServerApplication" />
@@ -258,30 +287,64 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="VifrinCommonApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
-      <module name="vifrin-common" />
-      <option name="SPRING_BOOT_MAIN_CLASS" value="com.vifrin.common.VifrinCommonApplication" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
+    <configuration name="docker-compose.yml.db: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true">
+      <deployment type="docker-compose.yml">
+        <settings>
+          <option name="services">
+            <list>
+              <option value="db" />
+            </list>
+          </option>
+          <option name="sourceFilePath" value="docker-compose.yml" />
+        </settings>
+      </deployment>
+      <method v="2" />
     </configuration>
-    <configuration name="VifrinFeignApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
-      <module name="vifrin-feign" />
-      <option name="SPRING_BOOT_MAIN_CLASS" value="com.vifrin.feign.VifrinFeignApplication" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
+    <configuration name="docker-compose.yml.networks: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true">
+      <deployment type="docker-compose.yml">
+        <settings>
+          <option name="services">
+            <list>
+              <option value="networks" />
+            </list>
+          </option>
+          <option name="sourceFilePath" value="docker-compose.yml" />
+        </settings>
+      </deployment>
+      <method v="2" />
+    </configuration>
+    <configuration name="docker-compose.yml.postgres: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true">
+      <deployment type="docker-compose.yml">
+        <settings>
+          <option name="services">
+            <list>
+              <option value="postgres" />
+            </list>
+          </option>
+          <option name="sourceFilePath" value="docker-compose.yml" />
+        </settings>
+      </deployment>
+      <method v="2" />
     </configuration>
     <list>
+      <item itemvalue="Docker.docker-compose.yml.postgres: Compose Deployment" />
+      <item itemvalue="Docker.docker-compose.yml.db: Compose Deployment" />
+      <item itemvalue="Docker.docker-compose.yml.networks: Compose Deployment" />
       <item itemvalue="Spring Boot.CloudConfigServerApplication" />
       <item itemvalue="Spring Boot.DepartmentServiceApplication" />
       <item itemvalue="Spring Boot.CloudGatewayApplication" />
       <item itemvalue="Spring Boot.HystrixDashboardApplication" />
       <item itemvalue="Spring Boot.UserServiceApplication" />
       <item itemvalue="Spring Boot.ServiceRegistryApplication" />
-      <item itemvalue="Spring Boot.VifrinCommonApplication" />
-      <item itemvalue="Spring Boot.VifrinFeignApplication" />
+      <item itemvalue="Spring Boot.AuthServiceApplication" />
     </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Docker.docker-compose.yml.networks: Compose Deployment" />
+        <item itemvalue="Docker.docker-compose.yml.db: Compose Deployment" />
+        <item itemvalue="Docker.docker-compose.yml.postgres: Compose Deployment" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -299,6 +362,12 @@
       <workItem from="1630300900292" duration="861000" />
       <workItem from="1630337569825" duration="3596000" />
       <workItem from="1630564874658" duration="10568000" />
+      <workItem from="1631163824683" duration="937000" />
+      <workItem from="1631437272733" duration="12015000" />
+      <workItem from="1632170362349" duration="5878000" />
+      <workItem from="1632621611694" duration="10415000" />
+      <workItem from="1632713625074" duration="676000" />
+      <workItem from="1632715078932" duration="2226000" />
     </task>
     <task id="LOCAL-00001" summary="add docker compose">
       <created>1630339284430</created>
@@ -330,50 +399,79 @@
     <option name="LAST_COMMIT_MESSAGE" value="add docker compose" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="223" y="67" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1630338201471">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state x="210" y="43" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1632649568037">
+      <screen x="0" y="0" width="1024" height="728" />
     </state>
-    <state x="223" y="67" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.824@0.0.1536.824" timestamp="1630338201471" />
+    <state x="210" y="43" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1024.728@0.0.1024.728" timestamp="1632649568037" />
+    <state x="223" y="67" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.824@0.0.1536.824" timestamp="1632628136312" />
     <state x="498" y="202" key="#com.intellij.ide.util.TreeClassChooserDialog" timestamp="1630337961405">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="498" y="202" key="#com.intellij.ide.util.TreeClassChooserDialog/0.0.1536.824@0.0.1536.824" timestamp="1630337961405" />
+    <state x="729" y="336" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog" timestamp="1632196769785">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="729" y="336" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog/0.0.1536.824@0.0.1536.824" timestamp="1632196769785" />
+    <state x="931" y="293" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.packages" timestamp="1632196783351">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="931" y="293" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.packages/0.0.1536.824@0.0.1536.824" timestamp="1632196783351" />
+    <state x="101" y="134" key="#docker-compose.yml.db:_Compose_Deployment" timestamp="1632648293694">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="101" y="134" key="#docker-compose.yml.db:_Compose_Deployment/0.0.1536.824@0.0.1536.824" timestamp="1632648293694" />
+    <state x="484" y="122" key="#docker-compose.yml.postgres:_Compose_Deployment" timestamp="1632645844234">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="484" y="122" key="#docker-compose.yml.postgres:_Compose_Deployment/0.0.1536.824@0.0.1536.824" timestamp="1632645844234" />
     <state x="147" y="65" key="DiffContextDialog" timestamp="1630339311491">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="147" y="65" key="DiffContextDialog/0.0.1536.824@0.0.1536.824" timestamp="1630339311491" />
-    <state width="542" height="281" key="GridCell.Tab.0.bottom" timestamp="1630342169323">
+    <state x="955" y="170" key="FileChooserDialogImpl" timestamp="1631449525435">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="542" height="281" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1630342169323" />
-    <state width="542" height="281" key="GridCell.Tab.0.center" timestamp="1630342169323">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state x="955" y="170" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1631449525435" />
+    <state width="744" height="178" key="GridCell.Tab.0.bottom" timestamp="1632649571828">
+      <screen x="0" y="0" width="1024" height="728" />
     </state>
-    <state width="542" height="281" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1630342169323" />
-    <state width="542" height="281" key="GridCell.Tab.0.left" timestamp="1630342169323">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state width="744" height="178" key="GridCell.Tab.0.bottom/0.0.1024.728@0.0.1024.728" timestamp="1632649571828" />
+    <state width="1144" height="237" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1632646836723" />
+    <state width="744" height="178" key="GridCell.Tab.0.center" timestamp="1632649571828">
+      <screen x="0" y="0" width="1024" height="728" />
     </state>
-    <state width="542" height="281" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1630342169323" />
-    <state width="542" height="281" key="GridCell.Tab.0.right" timestamp="1630342169323">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state width="744" height="178" key="GridCell.Tab.0.center/0.0.1024.728@0.0.1024.728" timestamp="1632649571828" />
+    <state width="1144" height="237" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1632646836723" />
+    <state width="744" height="178" key="GridCell.Tab.0.left" timestamp="1632649571827">
+      <screen x="0" y="0" width="1024" height="728" />
     </state>
-    <state width="542" height="281" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1630342169323" />
-    <state width="542" height="281" key="GridCell.Tab.1.bottom" timestamp="1630342169324">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state width="744" height="178" key="GridCell.Tab.0.left/0.0.1024.728@0.0.1024.728" timestamp="1632649571827" />
+    <state width="1144" height="237" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1632646836723" />
+    <state width="744" height="178" key="GridCell.Tab.0.right" timestamp="1632649571828">
+      <screen x="0" y="0" width="1024" height="728" />
     </state>
-    <state width="542" height="281" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1630342169324" />
-    <state width="542" height="281" key="GridCell.Tab.1.center" timestamp="1630342169324">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state width="744" height="178" key="GridCell.Tab.0.right/0.0.1024.728@0.0.1024.728" timestamp="1632649571828" />
+    <state width="1144" height="237" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1632646836723" />
+    <state width="744" height="178" key="GridCell.Tab.1.bottom" timestamp="1632649571829">
+      <screen x="0" y="0" width="1024" height="728" />
     </state>
-    <state width="542" height="281" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1630342169324" />
-    <state width="542" height="281" key="GridCell.Tab.1.left" timestamp="1630342169324">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state width="744" height="178" key="GridCell.Tab.1.bottom/0.0.1024.728@0.0.1024.728" timestamp="1632649571829" />
+    <state width="1144" height="237" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1632646836724" />
+    <state width="744" height="178" key="GridCell.Tab.1.center" timestamp="1632649571829">
+      <screen x="0" y="0" width="1024" height="728" />
     </state>
-    <state width="542" height="281" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1630342169324" />
-    <state width="542" height="281" key="GridCell.Tab.1.right" timestamp="1630342169324">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state width="744" height="178" key="GridCell.Tab.1.center/0.0.1024.728@0.0.1024.728" timestamp="1632649571829" />
+    <state width="1144" height="237" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1632646836724" />
+    <state width="744" height="178" key="GridCell.Tab.1.left" timestamp="1632649571829">
+      <screen x="0" y="0" width="1024" height="728" />
     </state>
-    <state width="542" height="281" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1630342169324" />
+    <state width="744" height="178" key="GridCell.Tab.1.left/0.0.1024.728@0.0.1024.728" timestamp="1632649571829" />
+    <state width="1144" height="237" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1632646836724" />
+    <state width="744" height="178" key="GridCell.Tab.1.right" timestamp="1632649571829">
+      <screen x="0" y="0" width="1024" height="728" />
+    </state>
+    <state width="744" height="178" key="GridCell.Tab.1.right/0.0.1024.728@0.0.1024.728" timestamp="1632649571829" />
+    <state width="1144" height="237" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1632646836724" />
     <state x="275" y="0" key="SettingsEditor" timestamp="1630575552456">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -382,13 +480,32 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="361" y="145" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1630339529102" />
-    <state x="392" y="126" key="new project wizard" timestamp="1630572621546">
+    <state x="478" y="147" width="579" height="530" key="find.popup" timestamp="1632622121761">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="392" y="126" key="new project wizard/0.0.1536.824@0.0.1536.824" timestamp="1630572621546" />
+    <state x="478" y="147" width="579" height="530" key="find.popup/0.0.1536.824@0.0.1536.824" timestamp="1632622121761" />
+    <state x="392" y="126" key="new project wizard" timestamp="1631164499731">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="392" y="126" key="new project wizard/0.0.1536.824@0.0.1536.824" timestamp="1631164499731" />
     <state x="425" y="187" key="run.anything.popup" timestamp="1630338134390">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="425" y="187" key="run.anything.popup/0.0.1536.824@0.0.1536.824" timestamp="1630338134390" />
+    <state x="794" y="145" width="672" height="678" key="search.everywhere.popup" timestamp="1631164685771">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="794" y="145" width="672" height="678" key="search.everywhere.popup/0.0.1536.824@0.0.1536.824" timestamp="1631164685771" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/auth-service/src/main/java/com/snw/auth/controller/AuthController.java</url>
+          <line>26</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
