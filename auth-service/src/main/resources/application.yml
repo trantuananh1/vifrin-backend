@@ -6,18 +6,13 @@ spring:
     name: AUTH-SERVICE
   zipkin:
     base-url: http://127.0.0.1:9411/
-
   datasource:
     url: jdbc:postgresql://localhost:5432/vifrin
-    username: anhtrt
-    password: 09071999
+    username: postgres
+    password: '09071999'
     driver-class-name: org.postgresql.Driver
   jpa:
     hibernate:
-      ddl-auto: create
+      ddl-auto: update
     show-sql: true
     database-platform: org.hibernate.dialect.PostgreSQLDialect
-
-jwt:
-  experation:
-    time: 120000

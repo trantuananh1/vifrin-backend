@@ -1,12 +1,11 @@
 package com.vifrin.common.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.time.Instant;
+import java.util.ArrayList;
+import java.util.Collection;
 
 @Entity
 @Data
@@ -41,8 +40,12 @@ public class User {
     @Column(name = "updated_at")
     private Instant updatedAt;
 
+    @ManyToMany(fetch = FetchType.EAGER)
+    private Collection<Role> roles;
+
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
     @PrimaryKeyJoinColumn
+    @ToString.Exclude
     private Profile profile;
 
     public User(String username, String password) {

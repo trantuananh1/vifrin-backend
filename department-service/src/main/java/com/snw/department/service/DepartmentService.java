@@ -14,8 +14,9 @@ public class DepartmentService {
     private DepartmentRepository departmentRepository;
 
     public Department saveDepartment(Department department) {
+        Department department1 = new Department(department.getDepartmentName());
         log.info("Inside saveDepartment of DepartmentService");
-        return departmentRepository.save(department);
+        return departmentRepository.save(department1);
     }
 
     public Department findDepartmentById(Long departmentId) {

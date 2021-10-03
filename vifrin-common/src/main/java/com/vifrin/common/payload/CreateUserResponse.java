@@ -1,4 +1,4 @@
-package com.vifrin.feign.payload;
+package com.vifrin.common.payload;
 
 import lombok.Builder;
 import lombok.Data;

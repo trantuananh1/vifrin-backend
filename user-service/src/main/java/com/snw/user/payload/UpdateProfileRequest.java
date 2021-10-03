@@ -1,6 +1,6 @@
 package com.snw.user.payload;
 
-import com.snw.user.entity.Gender;
+import com.vifrin.common.entity.Gender;
 import lombok.Data;
 
 /**

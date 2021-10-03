@@ -3,6 +3,7 @@ package com.vifrin.common.entity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -47,6 +48,7 @@ public class Profile {
     @OneToOne
     @MapsId
     @JoinColumn(name = "user_id")
+    @ToString.Exclude
     private User user;
 
     public Profile(String email, String fullName){

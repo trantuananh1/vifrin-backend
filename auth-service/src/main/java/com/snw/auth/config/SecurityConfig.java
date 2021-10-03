@@ -1,5 +1,7 @@
 package com.snw.auth.config;
 
+import com.snw.auth.util.CustomAuthenticationFilter;
+import com.snw.auth.util.CustomAuthorizationFilter;
 import com.snw.auth.util.JwtAuthenticationFilter;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,10 +12,13 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+
+import static org.springframework.http.HttpMethod.GET;
 
 /**
  * @Author: trantuananh1
@@ -33,20 +38,23 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     }
     @Override
     public void configure(HttpSecurity httpSecurity) throws Exception {
-        httpSecurity.cors().and()
+        CustomAuthenticationFilter customAuthenticationFilter = new CustomAuthenticationFilter(authenticationManagerBean());
+        customAuthenticationFilter.setFilterProcessesUrl("/auth/login");
+        httpSecurity
                 .csrf().disable()
                 .cors().disable()
-                .authorizeRequests()
-                .antMatchers("/auth/*")
-                .permitAll()
-                .anyRequest()
-                .authenticated();
-        httpSecurity.addFilterBefore(jwtAuthenticationFilter,
-                UsernamePasswordAuthenticationFilter.class);
-//        httpSecurity.logout().logoutSuccessUrl("/api/auth/login").logoutUrl("/api/auth/logout").permitAll();
+                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                .and()
+                .authorizeRequests().antMatchers("auth/**", "/auth/token/refresh/**").permitAll()
+                .and()
+                .authorizeRequests().antMatchers(GET, "users/**").hasAnyAuthority("USER")
+                .and()
+                .authorizeRequests().anyRequest().authenticated();
+        httpSecurity.addFilter(customAuthenticationFilter);
+        httpSecurity.addFilterBefore(new CustomAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class);
     }
-    @Autowired
-    public void configureGlobal(AuthenticationManagerBuilder authenticationManagerBuilder) throws Exception {
+    @Override
+    public void configure(AuthenticationManagerBuilder authenticationManagerBuilder) throws Exception {
         authenticationManagerBuilder.userDetailsService(userDetailsService)
                 .passwordEncoder(passwordEncoder());
     }

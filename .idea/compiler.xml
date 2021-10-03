@@ -1,21 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="CompilerConfiguration">
+    <option name="BUILD_PROCESS_ADDITIONAL_VM_OPTIONS" value="-Djps.track.ap.dependencies=false" />
     <annotationProcessing>
       <profile default="true" name="Default" enabled="true" />
       <profile name="Maven default annotation processors profile" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="service-registry" />
-        <module name="cloud-gateway" />
+        <module name="auth-service" />
         <module name="vifrin-feign" />
         <module name="cloud-config-server" />
+        <module name="department-service" />
         <module name="hystrix-dashboard" />
-        <module name="auth-service" />
         <module name="user-service" />
         <module name="vifrin-common" />
-        <module name="department-service" />
+        <module name="service-registry" />
+        <module name="cloud-gateway" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>

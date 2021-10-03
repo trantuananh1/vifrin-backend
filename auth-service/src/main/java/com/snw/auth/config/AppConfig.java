@@ -12,7 +12,7 @@ import org.springframework.web.client.RestTemplate;
  **/
 
 @Configuration
-public class AuthServiceConfig {
+public class AppConfig {
     @Bean
     Logger.Level feignLoggerLevel() {
         return Logger.Level.FULL;

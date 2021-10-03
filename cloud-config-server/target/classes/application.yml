@@ -8,13 +8,15 @@ spring:
     config:
       server:
         git:
-          uri: https://github.com/shabbirdwd53/config-server
+          uri: https://github.com/trantuananh1/config-server
           clone-on-start: true
   datasource:
     url: jdbc:postgresql://localhost:5432/vifrin
-    username: anhtrt
-    password: 09071999
+    username: postgres
+    password: '09071999'
+    driver-class-name: org.postgresql.Driver
   jpa:
     hibernate:
-      ddl-auto: update
+      ddl-auto: create
     show-sql: true
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
