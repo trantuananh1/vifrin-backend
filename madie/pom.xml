@@ -72,6 +72,12 @@
             <artifactId>jsoup</artifactId>
             <version>1.12.1</version>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/org.apache.tika/tika-core -->
+        <dependency>
+            <groupId>org.apache.tika</groupId>
+            <artifactId>tika-core</artifactId>
+            <version>1.24.1</version>
+        </dependency>
 
     </dependencies>
 

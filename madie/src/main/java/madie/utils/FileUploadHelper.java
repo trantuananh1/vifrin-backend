@@ -1,10 +1,9 @@
 package madie.utils;
 
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import madie.dto.VideoInfo;
 import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.io.IOUtils;
+import org.apache.tika.Tika;
+import org.apache.tika.mime.MimeTypes;
 import org.jsoup.Connection;
 import org.jsoup.Jsoup;
 import org.slf4j.Logger;
@@ -14,7 +13,6 @@ import org.springframework.util.StringUtils;
 import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.net.URLConnection;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
@@ -36,19 +34,19 @@ public class FileUploadHelper {
 
     /**
      * This init function is called in MediaServiceImpl Contructor - where we can use Spring
-     * managed property $prism.root
+     * managed property $vifrin.root
      *
      * @param rootDir
      */
     public static void init(String rootDir) {
         try {
-            ROOT_TMP_DIRECTORY = new File(rootDir.trim(), "breedr_upload_tmp").getAbsolutePath() + File.separator;
+            ROOT_TMP_DIRECTORY = new File(rootDir.trim(), "vifrin_upload_tmp").getAbsolutePath() + File.separator;
             File tempDir = new File(ROOT_TMP_DIRECTORY);
             if (!tempDir.exists()) {
                 tempDir.mkdirs();
             }
 
-            ROOT_EXPORT_DIRECTORY = new File(rootDir.trim(), "breedr_export").getAbsolutePath() + File.separator;
+            ROOT_EXPORT_DIRECTORY = new File(rootDir.trim(), "vifrin_export").getAbsolutePath() + File.separator;
             File exportDir = new File(ROOT_EXPORT_DIRECTORY);
             if (!exportDir.exists()) {
                 exportDir.mkdirs();
@@ -273,6 +271,27 @@ public class FileUploadHelper {
         File f = new File(filePath);
 
         return f.exists();
+    }
+
+    public static String guessContentType(String fileName) {
+        String contentType = null;
+        String filePath = FileUploadHelper.getFullFilePath(fileName);
+
+        if (FileUploadHelper.isFileExists(filePath)) {
+            try {
+                Tika tika = new Tika();
+
+                // detect by filename first
+                contentType = tika.detect(fileName);
+
+                if (StringUtils.isEmpty(contentType) || contentType.equalsIgnoreCase(MimeTypes.OCTET_STREAM))
+                    contentType = tika.detect(new FileInputStream(new File(filePath)));
+
+            } catch (Exception e) {
+                logger.error("Unable to detect mime type");
+            }
+        }
+        return contentType;
     }
 
     public static InputStream getInputStreamFromUrl(String url) throws Exception {
