@@ -8,8 +8,8 @@ spring:
     base-url: http://127.0.0.1:9411/
   datasource:
     url: jdbc:postgresql://localhost:5432/vifrin
-    username: postgres
-    password: '09071999'
+    username: '${DB_USER}'
+    password: '${DB_PASSWORD}'
     driver-class-name: org.postgresql.Driver
   jpa:
     hibernate:
