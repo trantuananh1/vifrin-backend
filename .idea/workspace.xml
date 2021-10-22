@@ -29,22 +29,20 @@
   <component name="ChangeListManager">
     <list default="true" id="2223b2b6-d04b-4cb4-81d1-8890c581dd1b" name="Default Changelist" comment="add docker compose">
       <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/vifrin-backend.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vifrin-backend.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cloud-config-server/cloud-config-server.iml" beforeDir="false" afterPath="$PROJECT_DIR$/cloud-config-server/cloud-config-server.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cloud-gateway/cloud-gateway.iml" beforeDir="false" afterPath="$PROJECT_DIR$/cloud-gateway/cloud-gateway.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/department-service/department-service.iml" beforeDir="false" afterPath="$PROJECT_DIR$/department-service/department-service.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/department-service/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/department-service/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/department-service/src/test/java/com/snw/department/DepartmentServiceApplicationTests.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/department-service/target/classes/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/department-service/target/classes/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/department-service/target/test-classes/com/snw/department/DepartmentServiceApplicationTests.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hystrix-dashboard/hystrix-dashboard.iml" beforeDir="false" afterPath="$PROJECT_DIR$/hystrix-dashboard/hystrix-dashboard.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service-registry/service-registry.iml" beforeDir="false" afterPath="$PROJECT_DIR$/service-registry/service-registry.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service-registry/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/service-registry/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service-registry/target/classes/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/service-registry/target/classes/application.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/user-service/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user-service/src/test/java/com/snw/user/UserServiceApplicationTests.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/user-service/target/classes/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/target/classes/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-service/user-service.iml" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/user-service.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user-service/target/test-classes/com/snw/user/UserServiceApplicationTests.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vifrin-common/src/test/java/com/vifrin/common/VifrinCommonApplicationTests.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vifrin-feign/src/test/java/com/vifrin/feign/VifrinFeignApplicationTests.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -114,7 +112,8 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/vifrin-feign" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/user-service" />
+    <property name="nodejs_package_manager_path" value="npm" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -122,6 +121,7 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/user-service" />
       <recent name="$PROJECT_DIR$/auth-service/src/main/resources" />
       <recent name="C:\Users\ADMIN\Desktop\vifrin\vifrin-backend\vifrin-feign\src\main\java\com\vifrin\feign\model" />
     </key>
@@ -301,6 +301,7 @@
       <workItem from="1632713625074" duration="676000" />
       <workItem from="1632715078932" duration="2226000" />
       <workItem from="1634577908315" duration="57000" />
+      <workItem from="1634860983146" duration="11976000" />
     </task>
     <task id="LOCAL-00001" summary="add docker compose">
       <created>1630339284430</created>
@@ -338,11 +339,6 @@
           <url>file://$PROJECT_DIR$/auth-service/src/main/java/com/snw/auth/controller/AuthController.java</url>
           <line>32</line>
           <option name="timeStamp" value="1" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/user-service/src/main/java/com/snw/user/service/UserService.java</url>
-          <line>28</line>
-          <option name="timeStamp" value="3" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/auth-service/src/main/java/com/snw/auth/service/AuthService.java</url>
