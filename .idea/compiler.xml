@@ -1,38 +1,47 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="CompilerConfiguration">
+    <option name="BUILD_PROCESS_ADDITIONAL_VM_OPTIONS" value="-Djps.track.ap.dependencies=false" />
     <annotationProcessing>
       <profile default="true" name="Default" enabled="true" />
       <profile name="Maven default annotation processors profile" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="service-registry" />
-        <module name="cloud-gateway" />
-        <module name="vifrin-feign" />
+        <module name="auth-service" />
         <module name="cloud-config-server" />
+        <module name="common" />
+        <module name="department-service" />
         <module name="hystrix-dashboard" />
         <module name="user-service" />
-        <module name="vifrin-common" />
-        <module name="department-service" />
+        <module name="feign" />
+        <module name="service-registry" />
+        <module name="cloud-gateway" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
+    <bytecodeTargetLevel target="11">
+      <module name="auth-service" target="11" />
       <module name="cloud-config-server" target="11" />
       <module name="cloud-gateway" target="11" />
+      <module name="common" target="11" />
       <module name="department-service" target="11" />
+      <module name="feign" target="11" />
       <module name="hystrix-dashboard" target="11" />
       <module name="service-registry" target="11" />
       <module name="user-service" target="11" />
+      <module name="vifrin-backend" target="11" />
       <module name="vifrin-common" target="11" />
       <module name="vifrin-feign" target="11" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="auth-service" options="-parameters" />
       <module name="cloud-config-server" options="-parameters" />
       <module name="cloud-gateway" options="-parameters" />
+      <module name="common" options="-parameters" />
       <module name="department-service" options="-parameters" />
+      <module name="feign" options="-parameters" />
       <module name="hystrix-dashboard" options="-parameters" />
       <module name="service-registry" options="-parameters" />
       <module name="user-service" options="-parameters" />

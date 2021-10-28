@@ -1,35 +1,86 @@
-version: '3.6'
+version: '3.1'
 services:
-  kafka:
-    image: wurstmeister/kafka
-    container_name: "kafka"
-    ports:
-      - "9092:9092"
-    environment:
-      - KAFKA_ADVERTISED_HOST_NAME=127.0.0.1
-      - KAFKA_ADVERTISED_PORT=9092
-      - KAFKA_ZOOKEEPER_CONNECT=zookeeper:2181
-    depends_on:
-      - zookeeper
-  zookeeper:
-    image: wurstmeister/zookeeper
-    ports:
-      - "2181:2181"
-    environment:
-      - KAFKA_ADVERTISED_HOST_NAME=zookeeper
-  cassandra:
-    image: cassandra:latest
-    ports:
-      - "7000:7000"
-      - "9042:9042"
-    volumes:
-      - /home/amr/instaCassandra:/var/lib/cassandra
-  db:
+  postgresql:
     image: postgres
-    restart: always
-    environment:
-      POSTGRES_PASSWORD: postgres
-      POSTGRES_USER: postgres
-      POSTGRES_DB: vifrin
+    container_name: pg-docker
+    hostname: pg-database
     ports:
       - "5432:5432"
+    environment:
+      - POSTGRES_USER=root
+      - POSTGRES_PASSWORD=root
+      - POSTGRES_DB=vifrin
+    restart: always
+    networks:
+      - be-common-network
+
+  pgadmin:
+    container_name: pgadmin4
+    image: dpage/pgadmin4
+    restart: always
+    environment:
+      PGADMIN_DEFAULT_EMAIL: root@root.com
+      PGADMIN_DEFAULT_PASSWORD: root
+      # PGADMIN_LISTEN_PORT = 80
+    ports:
+      - "5050:80"
+    networks:
+      - be-common-network
+
+
+  service-registry:
+    build:
+      context: ./service-registry
+      args:
+        JAR_FILE: service-registry-0.0.1-SNAPSHOT.jar
+      dockerfile: Dockerfile
+    image: service-registry
+    container_name: service-registry
+    hostname: service-registry
+    ports:
+      - "8761:8761"
+    networks:
+      - be-common-network
+    environment:
+      - SERVER_PORT=8761
+      - SPRING_PROFILES_ACTIVE=docker
+
+  user-service:
+    build:
+      context: ./user-service
+      args:
+        JAR_FILE: user-service-0.0.1-SNAPSHOT.jar
+      dockerfile: Dockerfile
+    image: user-service
+    container_name: user-service
+    hostname: user-service
+    ports:
+      - "9002:9002"
+    networks:
+      - be-common-network
+    depends_on:
+      - postgresql
+    environment:
+      - SERVER_PORT=9002
+      - SPRING_PROFILES_ACTIVE=docker
+  cloud-config-server:
+    build:
+      context: ./cloud-config-server
+      args:
+        JAR_FILE: cloud-config-server-0.0.1-SNAPSHOT.jar
+      dockerfile: Dockerfile
+    image: cloud-config-server
+    container_name: cloud-config-server
+    hostname: cloud-config-server
+    ports:
+      - "9296:9296"
+    networks:
+      - be-common-network
+    depends_on:
+      - postgresql
+    environment:
+      - SERVER_PORT=9296
+      - SPRING_PROFILES_ACTIVE=docker
+networks:
+  be-common-network:
+    driver: bridge
