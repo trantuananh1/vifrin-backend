@@ -59,9 +59,27 @@ services:
     networks:
       - be-common-network
     depends_on:
-      - service-registry
+      - postgresql
     environment:
       - SERVER_PORT=9002
+      - SPRING_PROFILES_ACTIVE=docker
+  cloud-config-server:
+    build:
+      context: ./cloud-config-server
+      args:
+        JAR_FILE: cloud-config-server-0.0.1-SNAPSHOT.jar
+      dockerfile: Dockerfile
+    image: cloud-config-server
+    container_name: cloud-config-server
+    hostname: cloud-config-server
+    ports:
+      - "9296:9296"
+    networks:
+      - be-common-network
+    depends_on:
+      - postgresql
+    environment:
+      - SERVER_PORT=9296
       - SPRING_PROFILES_ACTIVE=docker
 networks:
   be-common-network:
