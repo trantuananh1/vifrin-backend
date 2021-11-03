@@ -7,16 +7,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping(path = "/upload")
+@RequestMapping(path = "/media")
 public class UploadController {
 
     @Autowired
     private CdnService cdnSv;
 
-    @GetMapping("/test")
+    @GetMapping("/upload")
     public final String upload() {
-        String pathFile = "C:\\Users\\hungq\\Desktop\\onepunchman.jpg";
-        // VD: C:\Users\hungq\Desktop\onepunchman.jpg
+        String pathFile = "";
         return cdnSv.uploadToCdn(pathFile);
     }
 }
