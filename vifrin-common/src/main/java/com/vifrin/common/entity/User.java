@@ -4,8 +4,6 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.time.Instant;
-import java.util.ArrayList;
-import java.util.Collection;
 
 @Entity
 @Data
@@ -21,6 +19,9 @@ public class User {
 
     @Column(name = "username")
     private String username;
+
+    @Column(name = "email")
+    private String email;
 
     @Column(name = "password")
     private String password;
@@ -40,19 +41,21 @@ public class User {
     @Column(name = "updated_at")
     private Instant updatedAt;
 
-    @ManyToMany(fetch = FetchType.EAGER)
-    private Collection<Role> roles;
+    @Column(name = "role")
+    private String role;
 
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
     @PrimaryKeyJoinColumn
     @ToString.Exclude
     private Profile profile;
 
-    public User(String username, String password) {
+    public User(String username, String password, String email) {
         this.username = username;
+        this.email = email;
         this.password = password;
         this.isEnabled = true;
         this.createdAt = Instant.now();
         this.updatedAt = Instant.now();
+        this.role = "USER";
     }
 }

@@ -7,13 +7,13 @@ spring:
   zipkin:
     base-url: http://127.0.0.1:9411/
   datasource:
-    url: jdbc:postgresql://pg-database:5432/vifrin
-    username: root
-    password: 'root'
+    url: jdbc:postgresql://localhost:5432/vifrin
+    username: postgres
+    password: '09071999'
     driver-class-name: org.postgresql.Driver
   jpa:
     hibernate:
-      ddl-auto: update
+      ddl-auto: create-drop
     show-sql: true
     database-platform: org.hibernate.dialect.PostgreSQLDialect
 eureka:
