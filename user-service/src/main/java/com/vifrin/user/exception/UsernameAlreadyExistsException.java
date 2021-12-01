@@ -1,5 +1,6 @@
 package com.vifrin.user.exception;
 
+import com.vifrin.common.response.ResponseType;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
@@ -9,7 +10,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
  **/
 
 public class UsernameAlreadyExistsException extends RuntimeException{
-    public UsernameAlreadyExistsException(String message) {
-        super(message);
+    public UsernameAlreadyExistsException() {
+        super();
     }
 }

@@ -1,5 +1,7 @@
 package com.vifrin.user.controller;
 
+import com.vifrin.common.response.ResponseTemplate;
+import com.vifrin.common.response.ResponseType;
 import com.vifrin.user.service.UserService;
 import com.vifrin.common.payload.UserDto;
 import com.vifrin.common.payload.request.RegisterRequest;
@@ -17,21 +19,30 @@ public class UserController {
     @Autowired UserService userService;
 
     @PostMapping
-    public ResponseEntity<?> createUser(@RequestBody RegisterRequest registerRequest) {
+    public ResponseEntity<ResponseTemplate> createUser(@RequestBody RegisterRequest registerRequest) {
 //        log.info("Inside createUser of UserController");
-        return ResponseEntity.ok(userService.createUser(registerRequest));
+        UserDto userDto = userService.createUser(registerRequest);
+        return ResponseEntity.ok(new ResponseTemplate(ResponseType.CREATED, userDto));
     }
 
+//    @GetMapping
+//    public ResponseEntity<?> getUser(@RequestParam("username") Optional<String> username,
+//                                        @RequestParam("userId") Optional<Long> userId){
+//        UserDto user = null;
+//        if (username.isPresent()){
+//            user = userService.getUserByUserName(username.get());
+//        } else if (userId.isPresent()){
+////            user = userService.getUserByUserId(userId.get());
+//        }
+//        return ResponseEntity.ok(user);
+//    }
+
     @GetMapping
-    public ResponseEntity<?> getUser(@RequestParam("username") Optional<String> username,
-                                        @RequestParam("userId") Optional<Long> userId){
+    public ResponseEntity<ResponseTemplate> getUser(@RequestParam String username){
         UserDto user = null;
-        if (username.isPresent()){
-            user = userService.getUserByUserName(username.get());
-        } else if (userId.isPresent()){
-//            user = userService.getUserByUserId(userId.get());
-        }
-        return ResponseEntity.ok(user);
+        user = userService.getUserByUserName(username);
+        ResponseTemplate responseTemplate = new ResponseTemplate(ResponseType.OK, user);
+        return ResponseEntity.ok().body(responseTemplate);
     }
 
     @GetMapping("/me")

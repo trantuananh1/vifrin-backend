@@ -1,8 +1,13 @@
 package com.vifrin.auth.controller;
 
+import com.vifrin.auth.exception.EmailAlreadyExistsException;
+import com.vifrin.auth.exception.UsernameAlreadyExistsException;
+import com.vifrin.common.payload.UserDto;
 import com.vifrin.common.payload.response.AuthenticationResponse;
 import com.vifrin.auth.service.AuthService;
 import com.vifrin.common.payload.request.RegisterRequest;
+import com.vifrin.common.response.ResponseTemplate;
+import com.vifrin.common.response.ResponseType;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -27,8 +32,9 @@ public class AuthController {
     AuthService authService;
 
     @PostMapping("/register")
-    public ResponseEntity<?> register(@RequestBody RegisterRequest registerRequest) throws Exception {
-        return ResponseEntity.ok(authService.register(registerRequest));
+    public ResponseEntity<?> register(@RequestBody RegisterRequest registerRequest) throws UsernameAlreadyExistsException, IOException {
+        UserDto userDto = authService.register(registerRequest);
+        return ResponseEntity.ok(new ResponseTemplate(ResponseType.ACCEPTED, userDto));
     }
 
     @PostMapping("/token/refresh")

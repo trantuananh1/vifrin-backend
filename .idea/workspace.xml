@@ -28,88 +28,62 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2223b2b6-d04b-4cb4-81d1-8890c581dd1b" name="Default Changelist" comment="feature auth">
-      <change afterPath="$PROJECT_DIR$/auth-service/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/auth-service/.mvn/wrapper/MavenWrapperDownloader.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/auth-service/.mvn/wrapper/maven-wrapper.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/auth-service/.mvn/wrapper/maven-wrapper.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/auth-service/mvnw" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/auth-service/mvnw.cmd" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/auth-service/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/auth-service/src/main/java/com/vifrin/auth/controller/AuthController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/auth-service/src/main/java/com/vifrin/auth/exception/EmailAlreadyExistsException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/auth-service/src/main/java/com/vifrin/auth/exception/Error.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/auth-service/src/main/java/com/vifrin/auth/exception/ErrorResponse.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/auth-service/src/main/java/com/vifrin/auth/exception/GlobalExceptionHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/auth-service/src/main/java/com/vifrin/auth/exception/ResourceNotFoundException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/auth-service/src/main/java/com/vifrin/auth/exception/SuccessCodeWithErrorResponse.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/auth-service/src/main/java/com/vifrin/auth/exception/UsernameAlreadyExistsException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/auth-service/src/main/java/com/vifrin/auth/mapper/UserMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/auth-service/src/main/java/com/vifrin/auth/service/AuthService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/auth-service/src/main/java/com/vifrin/auth/service/MailService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/auth-service/src/main/java/com/vifrin/auth/util/JwtUtil.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/auth-service/src/main/java/com/vifrin/auth/util/MailContentBuilder.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/auth-service/src/main/java/com/vifrin/auth/validator/EmailValidator.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user-service/src/main/java/com/vifrin/user/config/SecurityConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user-service/src/main/java/com/vifrin/user/exception/EmailAlreadyExistsException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user-service/src/main/java/com/vifrin/user/exception/Error.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user-service/src/main/java/com/vifrin/user/exception/ErrorResponse.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user-service/src/main/java/com/vifrin/user/exception/ResourceNotFoundException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user-service/src/main/java/com/vifrin/user/exception/UsernameAlreadyExistsException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user-service/src/main/java/com/vifrin/user/mapper/UserMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user-service/src/main/java/com/vifrin/user/service/UserService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vifrin-common/src/main/java/com/vifrin/common/entity/ConfirmationToken.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vifrin-common/src/main/java/com/vifrin/common/payload/NotificationEmail.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vifrin-common/src/main/java/com/vifrin/common/payload/UserDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vifrin-common/src/main/java/com/vifrin/common/repository/ConfirmationTokenRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vifrin-common/src/main/java/com/vifrin/common/response/ResponseConstant.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user-service/src/main/java/com/vifrin/user/exception/GlobalExceptionHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user-service/src/main/java/com/vifrin/user/exception/UsernameNotExistsException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__antlr_antlr_2_7_7.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_fasterxml_classmate_1_5_1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_sun_activation_jakarta_activation_1_2_2.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_vaadin_external_google_android_json_0_0_20131108_vaadin1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__jakarta_activation_jakarta_activation_api_1_2_2.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__jakarta_annotation_jakarta_annotation_api_1_3_5.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__jakarta_persistence_jakarta_persistence_api_2_2_3.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__jakarta_transaction_jakarta_transaction_api_1_3_3.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__jakarta_xml_bind_jakarta_xml_bind_api_2_3_3.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apiguardian_apiguardian_api_1_1_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_dom4j_dom4j_2_1_3.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_hamcrest_hamcrest_2_2.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_opentest4j_opentest4j_1_2_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_skyscreamer_jsonassert_1_5_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vifrin-backend.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vifrin-backend.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/auth-service/src/main/java/com/snw/auth/AuthServiceApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth-service/src/main/java/com/vifrin/auth/AuthServiceApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/auth-service/src/main/java/com/snw/auth/config/AppConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth-service/src/main/java/com/vifrin/auth/config/AppConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/auth-service/src/main/java/com/snw/auth/config/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth-service/src/main/java/com/vifrin/auth/config/SecurityConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/auth-service/src/main/java/com/snw/auth/controller/AuthController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/auth-service/src/main/java/com/snw/auth/payload/AuthenticationResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/vifrin-common/src/main/java/com/vifrin/common/payload/response/AuthenticationResponse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/auth-service/src/main/java/com/snw/auth/payload/LoginRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/vifrin-common/src/main/java/com/vifrin/common/payload/request/LoginRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/auth-service/src/main/java/com/snw/auth/payload/RegisterRequest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/auth-service/src/main/java/com/snw/auth/service/AuthService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/auth-service/src/main/java/com/snw/auth/service/UserDetailServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth-service/src/main/java/com/vifrin/auth/service/UserDetailServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/auth-service/src/main/java/com/snw/auth/util/CustomAuthenticationFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth-service/src/main/java/com/vifrin/auth/util/CustomAuthenticationFilter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/auth-service/src/main/java/com/snw/auth/util/CustomAuthorizationFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth-service/src/main/java/com/vifrin/auth/util/CustomAuthorizationFilter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/auth-service/src/main/java/com/snw/auth/util/JwtAuthenticationFilter.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/auth-service/src/main/java/com/snw/auth/util/JwtProvider.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/auth-service/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/auth-service/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/auth-service/src/main/resources/springblog.jks" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cloud-config-server/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/cloud-config-server/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cloud-config-server/target/classes/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/cloud-config-server/target/classes/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cloud-gateway/src/main/resources/application.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cloud-gateway/target/classes/application.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-service/src/main/java/com/snw/user/UserServiceApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/main/java/com/vifrin/user/UserServiceApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-service/src/main/java/com/snw/user/VO/Department.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/main/java/com/vifrin/user/VO/Department.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-service/src/main/java/com/snw/user/VO/ResponseTemplateVO.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/main/java/com/vifrin/user/VO/ResponseTemplateVO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-service/src/main/java/com/snw/user/controller/RoleController.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/main/java/com/vifrin/user/controller/RoleController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-service/src/main/java/com/snw/user/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/main/java/com/vifrin/user/controller/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-service/src/main/java/com/snw/user/payload/UpdateProfileRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/vifrin-common/src/main/java/com/vifrin/common/payload/request/UpdateProfileRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-service/src/main/java/com/snw/user/service/RoleService.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/main/java/com/vifrin/user/service/RoleService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-service/src/main/java/com/snw/user/service/UserService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-service/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-service/src/test/java/com/snw/user/UserServiceApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/test/java/com/vifrin/user/UserServiceApplicationTests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-service/target/classes/com/snw/user/UserServiceApplication.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-service/target/classes/com/snw/user/controller/UserController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-service/target/classes/com/snw/user/service/UserService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth-service/src/main/java/com/vifrin/auth/AuthServiceApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth-service/src/main/java/com/vifrin/auth/AuthServiceApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth-service/src/main/java/com/vifrin/auth/controller/AuthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth-service/src/main/java/com/vifrin/auth/controller/AuthController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth-service/src/main/java/com/vifrin/auth/exception/Error.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth-service/src/main/java/com/vifrin/auth/exception/ErrorResponse.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth-service/src/main/java/com/vifrin/auth/exception/GlobalExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth-service/src/main/java/com/vifrin/auth/exception/GlobalExceptionHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth-service/src/main/java/com/vifrin/auth/exception/ResourceNotFoundException.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth-service/src/main/java/com/vifrin/auth/exception/ResourceNotFoundException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth-service/src/main/java/com/vifrin/auth/exception/SuccessCodeWithErrorResponse.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth-service/src/main/java/com/vifrin/auth/exception/UsernameAlreadyExistsException.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth-service/src/main/java/com/vifrin/auth/exception/UsernameAlreadyExistsException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth-service/src/main/java/com/vifrin/auth/mapper/UserMapper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth-service/src/main/java/com/vifrin/auth/service/AuthService.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth-service/src/main/java/com/vifrin/auth/service/AuthService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth-service/src/main/java/com/vifrin/auth/util/CustomAuthenticationFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth-service/src/main/java/com/vifrin/auth/util/CustomAuthenticationFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth-service/src/test/java/com/vifrin/auth/AuthServiceApplicationTests.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloud-gateway/cloud-gateway.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloud-gateway/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/cloud-gateway/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloud-gateway/target/classes/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/cloud-gateway/target/classes/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/department-service/department-service.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/hystrix-dashboard/hystrix-dashboard.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/user-service/src/main/java/com/vifrin/user/controller/RoleController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/user-service/src/main/java/com/vifrin/user/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/main/java/com/vifrin/user/controller/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user-service/src/main/java/com/vifrin/user/exception/EmailAlreadyExistsException.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/main/java/com/vifrin/user/exception/EmailAlreadyExistsException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user-service/src/main/java/com/vifrin/user/exception/Error.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/user-service/src/main/java/com/vifrin/user/exception/ErrorResponse.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/user-service/src/main/java/com/vifrin/user/exception/UsernameAlreadyExistsException.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/main/java/com/vifrin/user/exception/UsernameAlreadyExistsException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user-service/src/main/java/com/vifrin/user/service/RoleService.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/main/java/com/vifrin/user/service/RoleService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user-service/src/main/java/com/vifrin/user/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/main/java/com/vifrin/user/service/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user-service/target/classes/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/target/classes/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user-service/target/classes/com/snw/user/VO/Department.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/user-service/target/classes/com/snw/user/VO/ResponseTemplateVO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/user-service/target/test-classes/com/snw/user/UserServiceApplicationTests.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/user-service/user-service.iml" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/user-service.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/vifrin-common/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/vifrin-common/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vifrin-common/src/main/java/com/vifrin/common/entity/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/vifrin-common/src/main/java/com/vifrin/common/entity/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vifrin-common/src/main/java/com/vifrin/common/payload/CreateUserResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/vifrin-common/src/main/java/com/vifrin/common/payload/response/CreateUserResponse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vifrin-common/src/main/java/com/vifrin/common/payload/GetUserResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/vifrin-common/src/main/java/com/vifrin/common/payload/response/GetUserResponse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vifrin-common/src/main/java/com/vifrin/common/payload/RegisterRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/vifrin-common/src/main/java/com/vifrin/common/payload/request/RegisterRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vifrin-common/src/main/java/com/vifrin/common/payload/RoleToUserForm.java" beforeDir="false" afterPath="$PROJECT_DIR$/vifrin-common/src/main/java/com/vifrin/common/payload/request/RoleToUserForm.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vifrin-common/src/main/java/com/vifrin/common/repository/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/vifrin-common/src/main/java/com/vifrin/common/repository/UserRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vifrin-common/src/main/resources/application.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vifrin-common/src/test/java/com/vifrin/common/VifrinCommonApplicationTests.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vifrin-feign/src/main/java/com/vifrin/feign/client/AuthFeignClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/vifrin-feign/src/main/java/com/vifrin/feign/client/AuthFeignClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vifrin-common/src/main/java/com/vifrin/common/payload/UserDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/vifrin-common/src/main/java/com/vifrin/common/payload/UserDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vifrin-common/src/main/java/com/vifrin/common/repository/RoleRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vifrin-common/src/main/java/com/vifrin/common/response/ResponseTemplate.java" beforeDir="false" afterPath="$PROJECT_DIR$/vifrin-common/src/main/java/com/vifrin/common/response/ResponseTemplate.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vifrin-common/src/main/java/com/vifrin/common/type/ResponseType.java" beforeDir="false" afterPath="$PROJECT_DIR$/vifrin-common/src/main/java/com/vifrin/common/response/ResponseType.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/vifrin-feign/src/main/java/com/vifrin/feign/client/UserFeignClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/vifrin-feign/src/main/java/com/vifrin/feign/client/UserFeignClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vifrin-feign/src/main/resources/application.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vifrin-feign/src/test/java/com/vifrin/feign/VifrinFeignApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth-service/src/test/java/com/vifrin/auth/AuthServiceApplicationTests.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -158,9 +132,12 @@
       <map>
         <entry key="JPA Inspector" value="false" />
         <entry key="JPA Palette" value="false" />
-        <entry key="JPA Structure" value="true" />
+        <entry key="JPA Structure" value="false" />
       </map>
     </option>
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
   </component>
   <component name="ProjectId" id="1wkeMcs5Ay1sdYhGfMCF9dtYTYw" />
   <component name="ProjectViewState">
@@ -179,7 +156,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/user-service/src/main/java/com/vifrin/user/exception" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/vifrin-common" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -196,11 +173,11 @@
       <recent name="com.vifrin.common" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.vifrin.user.exception" />
       <recent name="com.vifrin.common.payload" />
       <recent name="com.snw.auth.util" />
       <recent name="com.snw.auth.mapper" />
       <recent name="com.vifrin.common.config" />
-      <recent name="com.vifrin.feign.payload" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -210,7 +187,7 @@
       </set>
     </option>
   </component>
-  <component name="RunManager" selected="Application.UserServiceApplication">
+  <component name="RunManager" selected="Compound.VIFRIN">
     <configuration name="AuthServiceApplication" type="Application" factoryName="Application" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.vifrin.auth.AuthServiceApplication" />
       <module name="auth-service" />
@@ -452,7 +429,6 @@
         </entry>
       </map>
     </option>
-    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="add docker compose" />
@@ -464,12 +440,12 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/auth-service/src/main/java/com/vifrin/auth/service/AuthService.java</url>
-          <line>57</line>
+          <line>58</line>
           <option name="timeStamp" value="4" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/user-service/src/main/java/com/vifrin/user/service/UserService.java</url>
-          <line>49</line>
+          <line>50</line>
           <option name="timeStamp" value="7" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
@@ -479,7 +455,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/auth-service/src/main/java/com/vifrin/auth/service/AuthService.java</url>
-          <line>81</line>
+          <line>82</line>
           <option name="timeStamp" value="13" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
@@ -489,7 +465,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/auth-service/src/main/java/com/vifrin/auth/service/AuthService.java</url>
-          <line>83</line>
+          <line>84</line>
           <option name="timeStamp" value="19" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
@@ -499,83 +475,98 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/auth-service/src/main/java/com/vifrin/auth/service/AuthService.java</url>
-          <line>89</line>
+          <line>90</line>
           <option name="timeStamp" value="28" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/auth-service/src/main/java/com/vifrin/auth/service/AuthService.java</url>
-          <line>74</line>
+          <line>75</line>
           <option name="timeStamp" value="34" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/user-service/src/main/java/com/vifrin/user/controller/UserController.java</url>
-          <line>38</line>
-          <option name="timeStamp" value="36" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/user-service/src/main/java/com/vifrin/user/service/UserService.java</url>
-          <line>39</line>
+          <line>40</line>
           <option name="timeStamp" value="53" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/user-service/src/main/java/com/vifrin/user/controller/UserController.java</url>
-          <line>49</line>
-          <option name="timeStamp" value="59" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/auth-service/src/main/java/com/vifrin/auth/controller/AuthController.java</url>
-          <line>53</line>
+          <line>59</line>
           <option name="timeStamp" value="61" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/user-service/src/main/java/com/vifrin/user/service/UserService.java</url>
-          <line>87</line>
+          <line>88</line>
           <option name="timeStamp" value="63" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/cloud-gateway/src/main/java/com/snw/cloud/gateway/CloudGatewayApplication.java</url>
-          <line>13</line>
-          <option name="timeStamp" value="64" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/user-service/src/main/java/com/vifrin/user/controller/UserController.java</url>
-          <line>32</line>
-          <option name="timeStamp" value="66" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/auth-service/src/main/java/com/vifrin/auth/util/CustomAuthenticationFilter.java</url>
-          <line>45</line>
+          <line>47</line>
           <option name="timeStamp" value="67" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/auth-service/src/main/java/com/vifrin/auth/util/CustomAuthenticationFilter.java</url>
-          <line>36</line>
-          <option name="timeStamp" value="68" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/auth-service/src/main/java/com/vifrin/auth/service/AuthService.java</url>
-          <line>59</line>
+          <line>60</line>
           <option name="timeStamp" value="69" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/auth-service/src/main/java/com/vifrin/auth/controller/AuthController.java</url>
-          <line>30</line>
+          <line>36</line>
           <option name="timeStamp" value="70" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/user-service/src/main/java/com/vifrin/user/service/UserService.java</url>
-          <line>38</line>
+          <line>39</line>
           <option name="timeStamp" value="71" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/auth-service/src/main/java/com/vifrin/auth/service/AuthService.java</url>
-          <line>65</line>
-          <option name="timeStamp" value="76" />
+          <line>63</line>
+          <option name="timeStamp" value="80" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/auth-service/src/main/java/com/vifrin/auth/exception/GlobalExceptionHandler.java</url>
-          <line>21</line>
-          <option name="timeStamp" value="77" />
+          <url>file://$PROJECT_DIR$/user-service/src/main/java/com/vifrin/user/exception/GlobalExceptionHandler.java</url>
+          <line>18</line>
+          <option name="timeStamp" value="85" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/user-service/src/main/java/com/vifrin/user/exception/GlobalExceptionHandler.java</url>
+          <line>32</line>
+          <option name="timeStamp" value="90" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/user-service/src/main/java/com/vifrin/user/service/UserService.java</url>
+          <line>63</line>
+          <option name="timeStamp" value="91" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/auth-service/src/main/java/com/vifrin/auth/util/CustomAuthenticationFilter.java</url>
+          <line>38</line>
+          <option name="timeStamp" value="92" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/user-service/src/main/java/com/vifrin/user/controller/UserController.java</url>
+          <line>30</line>
+          <option name="timeStamp" value="93" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/user-service/src/main/java/com/vifrin/user/controller/UserController.java</url>
+          <line>41</line>
+          <option name="timeStamp" value="94" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/auth-service/src/main/java/com/vifrin/auth/service/AuthService.java</url>
+          <line>68</line>
+          <option name="timeStamp" value="98" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/vifrin-common/src/main/java/com/vifrin/common/response/ResponseTemplate.java</url>
+          <line>34</line>
+          <option name="timeStamp" value="100" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/user-service/src/main/java/com/vifrin/user/controller/UserController.java</url>
+          <line>24</line>
+          <option name="timeStamp" value="101" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

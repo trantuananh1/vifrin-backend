@@ -4,14 +4,18 @@ import com.auth0.jwt.JWT;
 import com.auth0.jwt.JWTVerifier;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.interfaces.DecodedJWT;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.vifrin.auth.mapper.UserMapper;
+import com.vifrin.auth.exception.UsernameAlreadyExistsException;
 import com.vifrin.auth.validator.EmailValidator;
 import com.vifrin.common.entity.ConfirmationToken;
 import com.vifrin.common.payload.NotificationEmail;
 import com.vifrin.common.payload.UserDto;
 import com.vifrin.common.entity.User;
 import com.vifrin.common.repository.*;
+import com.vifrin.common.response.ResponseConstant;
+import com.vifrin.common.response.ResponseTemplate;
+import com.vifrin.common.response.ResponseType;
 import com.vifrin.feign.client.UserFeignClient;
 import com.vifrin.common.payload.request.RegisterRequest;
 import lombok.extern.slf4j.Slf4j;
@@ -48,31 +52,30 @@ public class AuthService {
     @Autowired
     UserRepository userRepository;
     @Autowired
-    UserMapper userMapper;
-    @Autowired
     EmailValidator emailValidator;
     @Autowired
     ConfirmationTokenRepository confirmationTokenRepository;
     @Autowired
     MailService mailService;
 
-    public UserDto register(RegisterRequest registerRequest) throws Exception {
+    public UserDto register(RegisterRequest registerRequest) throws UsernameAlreadyExistsException, IOException {
         log.info("registering user " + registerRequest.getUsername());
         boolean isValidEmail = emailValidator.test(registerRequest.getEmail());
         if (!isValidEmail) {
-            throw new IllegalStateException("email not valid");
+            throw new IllegalStateException("");
         }
         registerRequest.setPassword(passwordEncoder.encode(registerRequest.getPassword()));
-        UserDto user = userFeignClient.createUser(registerRequest).getBody();
+        ResponseTemplate responseTemplate = userFeignClient.createUser(registerRequest).getBody();
+        UserDto user = responseTemplate.getUserDto();
         if (user == null){
-            throw new Exception("can't create user");
+            throw new IllegalStateException("can't create user");
         }
         //send verify email
         String token = UUID.randomUUID().toString();
         ConfirmationToken confirmationToken = new ConfirmationToken(token, Instant.now(), Instant.now().plus(15, ChronoUnit.MINUTES), userRepository.findByUserId(user.getUserId()).get());
         confirmationTokenRepository.save(confirmationToken);
         mailService.sendMail(new NotificationEmail("Activate your Account",
-                user.getEmail(), "Thank you for signing up to My Moments with username <b>" + user.getUsername() + "</b>, " +
+                user.getEmail(), "Thank you for signing up to Vifrin with username '" + user.getUsername() + "', " +
                 "please click on the below url to activate your account : "  + confirmationToken.getToken()));
         return user;
     }
@@ -105,8 +108,9 @@ public class AuthService {
                 Map<String, String> tokens = new HashMap<>();
                 tokens.put("access_token", accessToken);
                 tokens.put("refresh_token", refresh_token);
+                ResponseTemplate responseTemplate = new ResponseTemplate(ResponseType.OK, tokens);
                 response.setContentType(MediaType.APPLICATION_JSON);
-                new ObjectMapper().writeValue(response.getOutputStream(), tokens);
+                new ObjectMapper().writeValue(response.getOutputStream(), responseTemplate);
 
             } catch (Exception e) {
                 response.setHeader("error", e.getMessage());

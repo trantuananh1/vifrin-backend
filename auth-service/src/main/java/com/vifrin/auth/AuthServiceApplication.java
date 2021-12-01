@@ -20,4 +20,9 @@ public class AuthServiceApplication {
         SpringApplication.run(AuthServiceApplication.class, args);
     }
 
+//    @Bean
+//    public ErrorDecoder errorDecoder() {
+//        return new CustomErrorDecoder();
+//    }
+
 }

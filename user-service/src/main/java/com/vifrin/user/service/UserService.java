@@ -7,6 +7,7 @@ import com.auth0.jwt.interfaces.DecodedJWT;
 import com.vifrin.common.response.ResponseConstant;
 import com.vifrin.user.exception.EmailAlreadyExistsException;
 import com.vifrin.user.exception.UsernameAlreadyExistsException;
+import com.vifrin.user.exception.UsernameNotExistsException;
 import com.vifrin.user.mapper.UserMapper;
 import com.vifrin.common.entity.Profile;
 import com.vifrin.common.entity.User;
@@ -37,10 +38,10 @@ public class UserService {
     public UserDto createUser(RegisterRequest registerRequest) {
         log.info("Inside saveUser of UserService");
         if (userRepository.findByUsername(registerRequest.getUsername()).isPresent()){
-            throw new UsernameAlreadyExistsException(ResponseConstant.USERNAME_ALREADY_EXISTS);
+            throw new UsernameAlreadyExistsException();
         }
         if (userRepository.findByEmail(registerRequest.getEmail()).isPresent()){
-            throw new EmailAlreadyExistsException(ResponseConstant.EMAIL_ALREADY_EXISTS);
+            throw new EmailAlreadyExistsException();
         }
         User user = new User(registerRequest.getUsername(), registerRequest.getPassword(), registerRequest.getEmail());
         userRepository.save(user);
@@ -61,7 +62,7 @@ public class UserService {
 
     public UserDto getUserByUserName(String userName) {
         User user = userRepository.findByUsername(userName)
-                .orElseThrow(() -> new RuntimeException("Username not exist"));
+                .orElseThrow(UsernameNotExistsException::new);
         return userMapper.userToUserDto(user);
     }
 

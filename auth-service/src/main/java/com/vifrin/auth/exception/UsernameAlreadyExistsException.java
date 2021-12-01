@@ -1,5 +1,7 @@
 package com.vifrin.auth.exception;
 
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
@@ -8,8 +10,14 @@ import org.springframework.web.bind.annotation.ResponseStatus;
  * @since: Sun, 31/10/2021
  **/
 
+@Data
+@NoArgsConstructor
 public class UsernameAlreadyExistsException extends RuntimeException{
+    private Error error;
     public UsernameAlreadyExistsException(String message) {
         super(message);
+    }
+
+    public UsernameAlreadyExistsException(Error accountExistedError) {
     }
 }

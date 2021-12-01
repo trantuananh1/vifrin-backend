@@ -3,6 +3,7 @@ package com.vifrin.feign.client;
 import com.vifrin.common.payload.UserDto;
 import com.vifrin.common.payload.response.CreateUserResponse;
 import com.vifrin.common.payload.request.RegisterRequest;
+import com.vifrin.common.response.ResponseTemplate;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -15,7 +16,10 @@ import org.springframework.web.bind.annotation.*;
 @FeignClient("USER-SERVICE")
 public interface UserFeignClient {
     @PostMapping("/users")
-    ResponseEntity<UserDto> createUser(@RequestBody RegisterRequest registerRequest);
+    ResponseEntity<ResponseTemplate> createUser(@RequestBody RegisterRequest registerRequest);
+
+    @GetMapping("/users")
+    ResponseEntity<ResponseTemplate> getUser(@RequestParam String username);
 
     @GetMapping("/users/me")
     ResponseEntity<String> getCurrent();
