@@ -27,19 +27,18 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2223b2b6-d04b-4cb4-81d1-8890c581dd1b" name="Default Changelist" comment="add docker compose">
+    <list default="true" id="2223b2b6-d04b-4cb4-81d1-8890c581dd1b" name="Default Changelist" comment="implement Auth Service and update Common">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cloud-config-server/cloud-config-server.iml" beforeDir="false" afterPath="$PROJECT_DIR$/cloud-config-server/cloud-config-server.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cloud-config-server/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/cloud-config-server/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cloud-config-server/target/classes/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/cloud-config-server/target/classes/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-service/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/Dockerfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-service/target/classes/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/target/classes/application.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ChangesViewManager">
+    <option name="groupingKeys">
+      <option value="module" />
+    </option>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -66,6 +65,9 @@
       <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
     </file-type-list>
   </component>
+  <component name="GithubDefaultAccount">
+    <option name="defaultAccountId" value="33cc4fe1-316f-4eaf-a317-9b98e8e648ec" />
+  </component>
   <component name="JpbToolWindowState">
     <option name="myId2FirstActivated">
       <map>
@@ -82,39 +84,36 @@
       </map>
     </option>
   </component>
-  <component name="ProjectId" id="1wkeMcs5Ay1sdYhGfMCF9dtYTYw" />
-  <component name="ProjectLevelVcsManager">
-    <ConfirmationsSetting value="1" id="Add" />
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
   </component>
+  <component name="ProjectId" id="1wkeMcs5Ay1sdYhGfMCF9dtYTYw" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
-    <property name="DatabaseDriversLRU" value="mysql&#10;postgresql" />
+    <property name="DatabaseDriversLRU" value="postgresql&#10;mysql" />
     <property name="ExpandSpringBootJavaOptionsPanel" value="true" />
     <property name="RequestMappingsPanelOrder0" value="0" />
     <property name="RequestMappingsPanelOrder1" value="1" />
-    <property name="RequestMappingsPanelOrder2" value="2" />
     <property name="RequestMappingsPanelWidth0" value="75" />
     <property name="RequestMappingsPanelWidth1" value="75" />
-    <property name="RequestMappingsPanelWidth2" value="75" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/cloud-config-server" />
-    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/vifrin-common" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="reference.projectsettings.compiler.javacompiler" />
+    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.CommitDialog" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/cloud-config-server" />
-      <recent name="$PROJECT_DIR$/user-service" />
+      <recent name="$PROJECT_DIR$/user-service/src/main/java/com/vifrin/user/exception" />
+      <recent name="$PROJECT_DIR$/vifrin-common/src/main/java/com/vifrin/common/security" />
       <recent name="$PROJECT_DIR$/auth-service/src/main/resources" />
       <recent name="C:\Users\ADMIN\Desktop\vifrin\vifrin-backend\vifrin-feign\src\main\java\com\vifrin\feign\model" />
     </key>
@@ -122,7 +121,11 @@
       <recent name="com.vifrin.common" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
-      <recent name="com.vifrin.feign.payload" />
+      <recent name="com.vifrin.user.exception" />
+      <recent name="com.vifrin.common.payload" />
+      <recent name="com.snw.auth.util" />
+      <recent name="com.snw.auth.mapper" />
+      <recent name="com.vifrin.common.config" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -133,6 +136,61 @@
     </option>
   </component>
   <component name="RunManager" selected="Compound.VIFRIN">
+    <configuration name="AuthServiceApplication" type="Application" factoryName="Application" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.vifrin.auth.AuthServiceApplication" />
+      <module name="auth-service" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="CloudConfigServerApplication" type="Application" factoryName="Application" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.snw.cloud.CloudConfigServerApplication" />
+      <module name="cloud-config-server" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="CloudGatewayApplication" type="Application" factoryName="Application" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.snw.cloud.gateway.CloudGatewayApplication" />
+      <module name="cloud-gateway" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="DepartmentServiceApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.snw.department.DepartmentServiceApplication" />
+      <module name="department-service" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.snw.department.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="HystrixDashboardApplication" type="Application" factoryName="Application" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.snw.hystrix.dashboard.HystrixDashboardApplication" />
+      <module name="hystrix-dashboard" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ServiceRegistryApplication" type="Application" factoryName="Application" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.snw.service.registry.ServiceRegistryApplication" />
+      <module name="service-registry" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="UserServiceApplication" type="Application" factoryName="Application" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.vifrin.user.UserServiceApplication" />
+      <module name="user-service" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration default="true" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="com.snw.user.UserServiceApplication" />
       <module name="user-service" />
@@ -141,12 +199,12 @@
       </method>
     </configuration>
     <configuration name="VIFRIN" type="CompoundRunConfigurationType">
-      <toRun name="CloudGatewayApplication" type="SpringBootApplicationConfigurationType" />
-      <toRun name="UserServiceApplication" type="SpringBootApplicationConfigurationType" />
-      <toRun name="CloudConfigServerApplication" type="SpringBootApplicationConfigurationType" />
-      <toRun name="DepartmentServiceApplication" type="SpringBootApplicationConfigurationType" />
-      <toRun name="ServiceRegistryApplication" type="SpringBootApplicationConfigurationType" />
-      <toRun name="HystrixDashboardApplication" type="SpringBootApplicationConfigurationType" />
+      <toRun name="UserServiceApplication" type="Application" />
+      <toRun name="HystrixDashboardApplication" type="Application" />
+      <toRun name="CloudConfigServerApplication" type="Application" />
+      <toRun name="ServiceRegistryApplication" type="Application" />
+      <toRun name="AuthServiceApplication" type="Application" />
+      <toRun name="CloudGatewayApplication" type="Application" />
       <method v="2" />
     </configuration>
     <configuration default="true" type="CompoundRunConfigurationType">
@@ -160,9 +218,8 @@
     </configuration>
     <configuration name="CloudConfigServerApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <module name="cloud-config-server" />
-      <option name="SPRING_BOOT_MAIN_CLASS" value="com.snw.cloud.CloudConfigServerApplication" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.snw.CloudConfigServerApplication" />
       <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="SHORTEN_COMMAND_LINE" value="NONE" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -177,9 +234,7 @@
     </configuration>
     <configuration name="CloudGatewayApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <module name="cloud-gateway" />
-      <option name="SPRING_BOOT_MAIN_CLASS" value="com.snw.cloud.gateway.CloudGatewayApplication" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="SHORTEN_COMMAND_LINE" value="NONE" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.dailycodebuffer.cloud.gateway.CloudGatewayApplication" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -194,9 +249,7 @@
     </configuration>
     <configuration name="DepartmentServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <module name="department-service" />
-      <option name="SPRING_BOOT_MAIN_CLASS" value="com.snw.department.DepartmentServiceApplication" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="SHORTEN_COMMAND_LINE" value="NONE" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.dailycodebuffer.department.DepartmentServiceApplication" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -211,9 +264,7 @@
     </configuration>
     <configuration name="HystrixDashboardApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <module name="hystrix-dashboard" />
-      <option name="SPRING_BOOT_MAIN_CLASS" value="com.snw.hystrix.dashboard.HystrixDashboardApplication" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="SHORTEN_COMMAND_LINE" value="NONE" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.dailycodebuffer.hystrix.dashboard.HystrixDashboardApplication" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -228,9 +279,7 @@
     </configuration>
     <configuration name="ServiceRegistryApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <module name="service-registry" />
-      <option name="SPRING_BOOT_MAIN_CLASS" value="com.snw.service.registry.ServiceRegistryApplication" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="SHORTEN_COMMAND_LINE" value="NONE" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.dailycodebuffer.service.registry.ServiceRegistryApplication" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -245,9 +294,7 @@
     </configuration>
     <configuration name="UserServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <module name="user-service" />
-      <option name="SPRING_BOOT_MAIN_CLASS" value="com.snw.user.UserServiceApplication" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="SHORTEN_COMMAND_LINE" value="NONE" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.dailycodebuffer.user.UserServiceApplication" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -261,14 +308,20 @@
       </method>
     </configuration>
     <list>
+      <item itemvalue="Application.UserServiceApplication" />
+      <item itemvalue="Application.CloudConfigServerApplication" />
+      <item itemvalue="Application.CloudGatewayApplication" />
+      <item itemvalue="Application.AuthServiceApplication" />
+      <item itemvalue="Application.ServiceRegistryApplication" />
+      <item itemvalue="Application.HystrixDashboardApplication" />
+      <item itemvalue="Application.DepartmentServiceApplication" />
       <item itemvalue="Compound.VIFRIN" />
-      <item itemvalue="Spring Boot.CloudConfigServerApplication" />
-      <item itemvalue="Spring Boot.CloudGatewayApplication" />
-      <item itemvalue="Spring Boot.DepartmentServiceApplication" />
-      <item itemvalue="Spring Boot.HystrixDashboardApplication" />
-      <item itemvalue="Spring Boot.ServiceRegistryApplication" />
-      <item itemvalue="Spring Boot.UserServiceApplication" />
     </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.DepartmentServiceApplication" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="SvnConfiguration">
@@ -293,9 +346,6 @@
       <workItem from="1632621611694" duration="10415000" />
       <workItem from="1632713625074" duration="676000" />
       <workItem from="1632715078932" duration="2226000" />
-      <workItem from="1634577908315" duration="57000" />
-      <workItem from="1634860983146" duration="16097000" />
-      <workItem from="1635044064703" duration="45000" />
     </task>
     <task id="LOCAL-00001" summary="add docker compose">
       <created>1630339284430</created>
@@ -304,11 +354,25 @@
       <option name="project" value="LOCAL" />
       <updated>1630339284430</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="feature auth">
+      <created>1633274022776</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1633274022777</updated>
+    </task>
+    <task id="LOCAL-00003" summary="implement Auth Service and update Common">
+      <created>1638373036781</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1638373036781</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="3" />
+    <option name="version" value="2" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
@@ -320,24 +384,25 @@
         </entry>
       </map>
     </option>
-    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="add docker compose" />
-    <option name="LAST_COMMIT_MESSAGE" value="add docker compose" />
+    <MESSAGE value="feature auth" />
+    <MESSAGE value="implement Auth Service and update Common" />
+    <option name="LAST_COMMIT_MESSAGE" value="implement Auth Service and update Common" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/auth-service/src/main/java/com/snw/auth/controller/AuthController.java</url>
-          <line>32</line>
-          <option name="timeStamp" value="1" />
+          <url>file://$PROJECT_DIR$/auth-service/src/main/java/com/vifrin/auth/service/AuthService.java</url>
+          <line>58</line>
+          <option name="timeStamp" value="4" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/auth-service/src/main/java/com/snw/auth/service/AuthService.java</url>
-          <line>54</line>
-          <option name="timeStamp" value="4" />
+          <url>file://$PROJECT_DIR$/user-service/src/main/java/com/vifrin/user/service/UserService.java</url>
+          <line>50</line>
+          <option name="timeStamp" value="7" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/department-service/src/main/java/com/snw/department/service/DepartmentService.java</url>
@@ -345,39 +410,19 @@
           <option name="timeStamp" value="8" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/auth-service/src/main/java/com/snw/auth/service/AuthService.java</url>
-          <line>57</line>
-          <option name="timeStamp" value="10" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/auth-service/src/main/java/com/snw/auth/service/AuthService.java</url>
-          <line>65</line>
+          <url>file://$PROJECT_DIR$/auth-service/src/main/java/com/vifrin/auth/service/AuthService.java</url>
+          <line>82</line>
           <option name="timeStamp" value="13" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/auth-service/src/main/java/com/snw/auth/controller/AuthController.java</url>
-          <line>38</line>
-          <option name="timeStamp" value="14" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/auth-service/src/main/java/com/snw/auth/service/UserDetailServiceImpl.java</url>
+          <url>file://$PROJECT_DIR$/auth-service/src/main/java/com/vifrin/auth/service/UserDetailServiceImpl.java</url>
           <line>31</line>
           <option name="timeStamp" value="18" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/auth-service/src/main/java/com/snw/auth/service/AuthService.java</url>
-          <line>67</line>
+          <url>file://$PROJECT_DIR$/auth-service/src/main/java/com/vifrin/auth/service/AuthService.java</url>
+          <line>84</line>
           <option name="timeStamp" value="19" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/auth-service/src/main/java/com/snw/auth/util/JwtProvider.java</url>
-          <line>45</line>
-          <option name="timeStamp" value="20" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/auth-service/src/main/java/com/snw/auth/util/JwtProvider.java</url>
-          <line>53</line>
-          <option name="timeStamp" value="21" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>jar://$USER_HOME$/.jdks/corretto-11.0.12/lib/src.zip!/java.base/java/security/KeyStore.java</url>
@@ -385,26 +430,104 @@
           <option name="timeStamp" value="23" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/auth-service/src/main/java/com/snw/auth/util/CustomAuthenticationFilter.java</url>
-          <line>45</line>
-          <option name="timeStamp" value="24" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/auth-service/src/main/java/com/snw/auth/util/CustomAuthenticationFilter.java</url>
-          <line>36</line>
-          <option name="timeStamp" value="25" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/auth-service/src/main/java/com/snw/auth/util/JwtAuthenticationFilter.java</url>
-          <line>36</line>
-          <option name="timeStamp" value="27" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/auth-service/src/main/java/com/snw/auth/service/AuthService.java</url>
-          <line>81</line>
+          <url>file://$PROJECT_DIR$/auth-service/src/main/java/com/vifrin/auth/service/AuthService.java</url>
+          <line>90</line>
           <option name="timeStamp" value="28" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/auth-service/src/main/java/com/vifrin/auth/service/AuthService.java</url>
+          <line>75</line>
+          <option name="timeStamp" value="34" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/user-service/src/main/java/com/vifrin/user/service/UserService.java</url>
+          <line>40</line>
+          <option name="timeStamp" value="53" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/auth-service/src/main/java/com/vifrin/auth/controller/AuthController.java</url>
+          <line>59</line>
+          <option name="timeStamp" value="61" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/user-service/src/main/java/com/vifrin/user/service/UserService.java</url>
+          <line>88</line>
+          <option name="timeStamp" value="63" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/auth-service/src/main/java/com/vifrin/auth/util/CustomAuthenticationFilter.java</url>
+          <line>47</line>
+          <option name="timeStamp" value="67" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/auth-service/src/main/java/com/vifrin/auth/service/AuthService.java</url>
+          <line>60</line>
+          <option name="timeStamp" value="69" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/auth-service/src/main/java/com/vifrin/auth/controller/AuthController.java</url>
+          <line>36</line>
+          <option name="timeStamp" value="70" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/user-service/src/main/java/com/vifrin/user/service/UserService.java</url>
+          <line>39</line>
+          <option name="timeStamp" value="71" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/auth-service/src/main/java/com/vifrin/auth/service/AuthService.java</url>
+          <line>63</line>
+          <option name="timeStamp" value="80" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/user-service/src/main/java/com/vifrin/user/exception/GlobalExceptionHandler.java</url>
+          <line>18</line>
+          <option name="timeStamp" value="85" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/user-service/src/main/java/com/vifrin/user/exception/GlobalExceptionHandler.java</url>
+          <line>32</line>
+          <option name="timeStamp" value="90" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/user-service/src/main/java/com/vifrin/user/service/UserService.java</url>
+          <line>63</line>
+          <option name="timeStamp" value="91" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/auth-service/src/main/java/com/vifrin/auth/util/CustomAuthenticationFilter.java</url>
+          <line>38</line>
+          <option name="timeStamp" value="92" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/user-service/src/main/java/com/vifrin/user/controller/UserController.java</url>
+          <line>30</line>
+          <option name="timeStamp" value="93" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/user-service/src/main/java/com/vifrin/user/controller/UserController.java</url>
+          <line>41</line>
+          <option name="timeStamp" value="94" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/auth-service/src/main/java/com/vifrin/auth/service/AuthService.java</url>
+          <line>68</line>
+          <option name="timeStamp" value="98" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/vifrin-common/src/main/java/com/vifrin/common/response/ResponseTemplate.java</url>
+          <line>34</line>
+          <option name="timeStamp" value="100" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/user-service/src/main/java/com/vifrin/user/controller/UserController.java</url>
+          <line>24</line>
+          <option name="timeStamp" value="101" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/cloud_config_server$UserServiceApplication.ic" NAME="UserServiceApplication Coverage Results" MODIFIED="1635673306270" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
 </project>

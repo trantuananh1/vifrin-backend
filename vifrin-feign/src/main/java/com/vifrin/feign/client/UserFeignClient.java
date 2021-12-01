@@ -1,12 +1,12 @@
 package com.vifrin.feign.client;
 
-import com.vifrin.common.entity.User;
-import com.vifrin.common.payload.CreateUserResponse;
-import com.vifrin.common.payload.RegisterRequest;
+import com.vifrin.common.payload.UserDto;
+import com.vifrin.common.payload.response.CreateUserResponse;
+import com.vifrin.common.payload.request.RegisterRequest;
+import com.vifrin.common.response.ResponseTemplate;
 import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.Optional;
 
 /**
  * @Author: trantuananh1
@@ -16,11 +16,11 @@ import java.util.Optional;
 @FeignClient("USER-SERVICE")
 public interface UserFeignClient {
     @PostMapping("/users")
-    CreateUserResponse createUser(@RequestBody RegisterRequest registerRequest);
+    ResponseEntity<ResponseTemplate> createUser(@RequestBody RegisterRequest registerRequest);
 
     @GetMapping("/users")
-    Optional<User> findByUserName(@RequestParam("username") String userName);
+    ResponseEntity<ResponseTemplate> getUser(@RequestParam String username);
 
-    @GetMapping("/users")
-    Optional<User> findByUserId(@RequestParam("userId") String userId);
+    @GetMapping("/users/me")
+    ResponseEntity<String> getCurrent();
 }
