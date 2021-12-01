@@ -1,28 +1,86 @@
-version: '3'
+version: '3.1'
 services:
-  database:
-    image: "postgres" # use latest official postgres version
-    env_file:
-      - database.env # configure postgres
-    volumes:
-      - database-data:/var/lib/postgresql/data/ # persist data even if container shuts down
-  pgadmin:
-    image: dpage/pgadmin4
-    environment:
-      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL:-pgadmin4@pgadmin.org}
-      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD:-admin}
-      PGADMIN_CONFIG_SERVER_MODE: 'False'
-    volumes:
-      - pgadmin:/var/lib/pgadmin
-
+  postgresql:
+    image: postgres
+    container_name: pg-docker
+    hostname: pg-database
     ports:
-      - "${PGADMIN_PORT:-5050}:80"
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=root
+      - POSTGRES_PASSWORD=root
+      - POSTGRES_DB=vifrin
+    restart: always
     networks:
-      - postgres
-    restart: unless-stopped
-networks:
-  postgres:
-    driver: bridge
-volumes:
-  database-data: # named volumes can be managed easier using docker-compose
+      - be-common-network
+
   pgadmin:
+    container_name: pgadmin4
+    image: dpage/pgadmin4
+    restart: always
+    environment:
+      PGADMIN_DEFAULT_EMAIL: root@root.com
+      PGADMIN_DEFAULT_PASSWORD: root
+      # PGADMIN_LISTEN_PORT = 80
+    ports:
+      - "5050:80"
+    networks:
+      - be-common-network
+
+
+  service-registry:
+    build:
+      context: ./service-registry
+      args:
+        JAR_FILE: service-registry-0.0.1-SNAPSHOT.jar
+      dockerfile: Dockerfile
+    image: service-registry
+    container_name: service-registry
+    hostname: service-registry
+    ports:
+      - "8761:8761"
+    networks:
+      - be-common-network
+    environment:
+      - SERVER_PORT=8761
+      - SPRING_PROFILES_ACTIVE=docker
+
+  user-service:
+    build:
+      context: ./user-service
+      args:
+        JAR_FILE: user-service-0.0.1-SNAPSHOT.jar
+      dockerfile: Dockerfile
+    image: user-service
+    container_name: user-service
+    hostname: user-service
+    ports:
+      - "9002:9002"
+    networks:
+      - be-common-network
+    depends_on:
+      - postgresql
+    environment:
+      - SERVER_PORT=9002
+      - SPRING_PROFILES_ACTIVE=docker
+  cloud-config-server:
+    build:
+      context: ./cloud-config-server
+      args:
+        JAR_FILE: cloud-config-server-0.0.1-SNAPSHOT.jar
+      dockerfile: Dockerfile
+    image: cloud-config-server
+    container_name: cloud-config-server
+    hostname: cloud-config-server
+    ports:
+      - "9296:9296"
+    networks:
+      - be-common-network
+    depends_on:
+      - postgresql
+    environment:
+      - SERVER_PORT=9296
+      - SPRING_PROFILES_ACTIVE=docker
+networks:
+  be-common-network:
+    driver: bridge
