@@ -10,7 +10,7 @@
     </parent>
 
     <groupId>com.devd.spring</groupId>
-    <artifactId>vifrin-application-parent</artifactId>
+    <artifactId>vifrin-backend</artifactId>
     <version>0.0.1-SNAPSHOT</version>
 
     <properties>
