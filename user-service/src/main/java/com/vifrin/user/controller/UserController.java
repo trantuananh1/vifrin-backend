@@ -19,10 +19,10 @@ public class UserController {
     @Autowired UserService userService;
 
     @PostMapping
-    public ResponseEntity<ResponseTemplate> createUser(@RequestBody RegisterRequest registerRequest) {
+    public ResponseEntity<ResponseTemplate<UserDto>> createUser(@RequestBody RegisterRequest registerRequest) {
 //        log.info("Inside createUser of UserController");
         UserDto userDto = userService.createUser(registerRequest);
-        return ResponseEntity.ok(new ResponseTemplate(ResponseType.CREATED, userDto));
+        return ResponseEntity.ok(new ResponseTemplate<UserDto>(ResponseType.CREATED, userDto));
     }
 
 //    @GetMapping

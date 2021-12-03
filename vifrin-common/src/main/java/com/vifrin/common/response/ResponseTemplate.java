@@ -19,22 +19,14 @@ import java.io.Serializable;
 @AllArgsConstructor
 @Data
 @Builder
-public class ResponseTemplate implements Serializable {
+public class ResponseTemplate<T> implements Serializable {
     private int code;
     private String message;
-    private Object data;
-    private UserDto userDto;
+    private T data;
 
-    public ResponseTemplate(ResponseType responseType, Object data) {
+    public ResponseTemplate(ResponseType responseType, T data) {
         this.code = responseType.getCode();
         this.message = responseType.getMessage();
         this.data = data;
-    }
-
-    public ResponseTemplate(ResponseType responseType, UserDto userDto) {
-        this.code = responseType.getCode();
-        this.message = responseType.getMessage();
-        this.userDto = userDto;
-        this.data = userDto;
     }
 }

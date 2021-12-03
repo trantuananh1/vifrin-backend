@@ -34,7 +34,7 @@ public class AuthController {
     @PostMapping("/register")
     public ResponseEntity<?> register(@RequestBody RegisterRequest registerRequest) throws UsernameAlreadyExistsException, IOException {
         UserDto userDto = authService.register(registerRequest);
-        return ResponseEntity.ok(new ResponseTemplate(ResponseType.ACCEPTED, userDto));
+        return ResponseEntity.ok(new ResponseTemplate(ResponseType.CREATED, userDto));
     }
 
     @PostMapping("/token/refresh")
@@ -42,7 +42,7 @@ public class AuthController {
         authService.refreshToken(request, response);
     }
 
-    @PostMapping("/password")
+    @PutMapping("/password")
     public void changePassword() throws IOException {
 //        authService.refreshToken();
     }

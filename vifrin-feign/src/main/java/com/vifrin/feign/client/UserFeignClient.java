@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.*;
 @FeignClient("USER-SERVICE")
 public interface UserFeignClient {
     @PostMapping("/users")
-    ResponseEntity<ResponseTemplate> createUser(@RequestBody RegisterRequest registerRequest);
+    ResponseEntity<ResponseTemplate<UserDto>> createUser(@RequestBody RegisterRequest registerRequest);
 
     @GetMapping("/users")
     ResponseEntity<ResponseTemplate> getUser(@RequestParam String username);

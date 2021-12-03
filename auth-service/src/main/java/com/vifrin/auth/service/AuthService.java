@@ -65,8 +65,8 @@ public class AuthService {
             throw new IllegalStateException("");
         }
         registerRequest.setPassword(passwordEncoder.encode(registerRequest.getPassword()));
-        ResponseTemplate responseTemplate = userFeignClient.createUser(registerRequest).getBody();
-        UserDto user = responseTemplate.getUserDto();
+        ResponseTemplate<UserDto> responseTemplate = userFeignClient.createUser(registerRequest).getBody();
+        UserDto user = responseTemplate.getData();
         if (user == null){
             throw new IllegalStateException("can't create user");
         }
