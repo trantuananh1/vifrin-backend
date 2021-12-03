@@ -9,7 +9,7 @@
         <relativePath/>
     </parent>
 
-    <groupId>com.devd.spring</groupId>
+    <groupId>com.vifrin.spring</groupId>
     <artifactId>vifrin-backend</artifactId>
     <version>0.0.1-SNAPSHOT</version>
 

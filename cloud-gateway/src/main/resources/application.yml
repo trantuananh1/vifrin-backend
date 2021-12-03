@@ -34,15 +34,14 @@ spring:
               args:
                 name: AUTH-SERVICE
                 fallbackuri: forward:/authServiceFallBack
-
-hystrix:
-  command:
-    fallbackcmd:
-      execution:
-        isolation:
-          thread:
-            timeoutInMilliseconds: 200000
-
+#
+#hystrix:
+#  command:
+#    fallbackcmd:
+#      execution:
+#        isolation:
+#          thread:
+#            timeoutInMilliseconds: 200000
 
 management:
   endpoints:

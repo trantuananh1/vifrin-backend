@@ -71,12 +71,12 @@ public class AuthService {
             throw new IllegalStateException("can't create user");
         }
         //send verify email
-        String token = UUID.randomUUID().toString();
-        ConfirmationToken confirmationToken = new ConfirmationToken(token, Instant.now(), Instant.now().plus(15, ChronoUnit.MINUTES), userRepository.findByUserId(user.getUserId()).get());
-        confirmationTokenRepository.save(confirmationToken);
-        mailService.sendMail(new NotificationEmail("Activate your Account",
-                user.getEmail(), "Thank you for signing up to Vifrin with username '" + user.getUsername() + "', " +
-                "please click on the below url to activate your account : "  + confirmationToken.getToken()));
+//        String token = UUID.randomUUID().toString();
+//        ConfirmationToken confirmationToken = new ConfirmationToken(token, Instant.now(), Instant.now().plus(15, ChronoUnit.MINUTES), userRepository.findByUserId(user.getUserId()).get());
+//        confirmationTokenRepository.save(confirmationToken);
+//        mailService.sendMail(new NotificationEmail("Activate your Account",
+//                user.getEmail(), "Thank you for signing up to Vifrin with username '" + user.getUsername() + "', " +
+//                "please click on the below url to activate your account : "  + confirmationToken.getToken()));
         return user;
     }
 

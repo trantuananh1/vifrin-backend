@@ -16,11 +16,3 @@ spring:
       ddl-auto: create-drop
     show-sql: true
     database-platform: org.hibernate.dialect.PostgreSQLDialect
-eureka:
-  instance:
-    hostname: service-registry
-  client:
-    registerWithEureka: true
-    fetchRegistry: true
-    serviceUrl:
-      defaultZone: http://service-registry:8761/eureka

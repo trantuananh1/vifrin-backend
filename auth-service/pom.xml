@@ -9,7 +9,7 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.snw</groupId>
-    <artifactId>auth</artifactId>
+    <artifactId>auth-service</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>auth-service</name>
     <description>Auth Service</description>
@@ -125,13 +125,13 @@
         </dependency>
         <dependency>
             <groupId>com.vifrin</groupId>
-            <artifactId>feign</artifactId>
+            <artifactId>vifrin-feign</artifactId>
             <version>0.0.1-SNAPSHOT</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>com.vifrin</groupId>
-            <artifactId>common</artifactId>
+            <artifactId>vifrin-common</artifactId>
             <version>0.0.1-SNAPSHOT</version>
             <scope>compile</scope>
         </dependency>

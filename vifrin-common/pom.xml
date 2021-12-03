@@ -9,7 +9,7 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.vifrin</groupId>
-    <artifactId>common</artifactId>
+    <artifactId>vifrin-common</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>vifrin-common</name>
     <description>Vifrin Common</description>
