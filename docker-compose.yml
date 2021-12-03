@@ -7,8 +7,8 @@ services:
     ports:
       - "5432:5432"
     environment:
-      - POSTGRES_USER=root
-      - POSTGRES_PASSWORD=root
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=09071999
       - POSTGRES_DB=vifrin
     restart: always
     networks:
@@ -28,59 +28,59 @@ services:
       - be-common-network
 
 
-  service-registry:
-    build:
-      context: ./service-registry
-      args:
-        JAR_FILE: service-registry-0.0.1-SNAPSHOT.jar
-      dockerfile: Dockerfile
-    image: service-registry
-    container_name: service-registry
-    hostname: service-registry
-    ports:
-      - "8761:8761"
-    networks:
-      - be-common-network
-    environment:
-      - SERVER_PORT=8761
-      - SPRING_PROFILES_ACTIVE=docker
-
-  user-service:
-    build:
-      context: ./user-service
-      args:
-        JAR_FILE: user-service-0.0.1-SNAPSHOT.jar
-      dockerfile: Dockerfile
-    image: user-service
-    container_name: user-service
-    hostname: user-service
-    ports:
-      - "9002:9002"
-    networks:
-      - be-common-network
-    depends_on:
-      - postgresql
-    environment:
-      - SERVER_PORT=9002
-      - SPRING_PROFILES_ACTIVE=docker
-  cloud-config-server:
-    build:
-      context: ./cloud-config-server
-      args:
-        JAR_FILE: cloud-config-server-0.0.1-SNAPSHOT.jar
-      dockerfile: Dockerfile
-    image: cloud-config-server
-    container_name: cloud-config-server
-    hostname: cloud-config-server
-    ports:
-      - "9296:9296"
-    networks:
-      - be-common-network
-    depends_on:
-      - postgresql
-    environment:
-      - SERVER_PORT=9296
-      - SPRING_PROFILES_ACTIVE=docker
+#  service-registry:
+#    build:
+#      context: ./service-registry
+#      args:
+#        JAR_FILE: service-registry-0.0.1-SNAPSHOT.jar
+#      dockerfile: Dockerfile
+#    image: service-registry
+#    container_name: service-registry
+#    hostname: service-registry
+#    ports:
+#      - "8761:8761"
+#    networks:
+#      - be-common-network
+#    environment:
+#      - SERVER_PORT=8761
+#      - SPRING_PROFILES_ACTIVE=docker
+#
+#  user-service:
+#    build:
+#      context: ./user-service
+#      args:
+#        JAR_FILE: user-service-0.0.1-SNAPSHOT.jar
+#      dockerfile: Dockerfile
+#    image: user-service
+#    container_name: user-service
+#    hostname: user-service
+#    ports:
+#      - "9002:9002"
+#    networks:
+#      - be-common-network
+#    depends_on:
+#      - postgresql
+#    environment:
+#      - SERVER_PORT=9002
+#      - SPRING_PROFILES_ACTIVE=docker
+#  cloud-config-server:
+#    build:
+#      context: ./cloud-config-server
+#      args:
+#        JAR_FILE: cloud-config-server-0.0.1-SNAPSHOT.jar
+#      dockerfile: Dockerfile
+#    image: cloud-config-server
+#    container_name: cloud-config-server
+#    hostname: cloud-config-server
+#    ports:
+#      - "9296:9296"
+#    networks:
+#      - be-common-network
+#    depends_on:
+#      - postgresql
+#    environment:
+#      - SERVER_PORT=9296
+#      - SPRING_PROFILES_ACTIVE=docker
 networks:
   be-common-network:
     driver: bridge
