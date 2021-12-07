@@ -1,6 +1,5 @@
 package com.vifrin.common.payload.response;
 
-import com.vifrin.common.entity.Role;
 import lombok.Builder;
 import lombok.Data;
 
@@ -20,5 +19,4 @@ public class GetUserResponse {
     private boolean isEnabled;
     private Instant createdAt;
     private Instant updatedAt;
-    private Collection<Role> roles;
 }

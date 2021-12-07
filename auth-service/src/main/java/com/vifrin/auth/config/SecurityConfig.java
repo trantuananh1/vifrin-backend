@@ -1,7 +1,5 @@
 package com.vifrin.auth.config;
 
-import com.vifrin.auth.util.CustomAuthenticationFilter;
-import com.vifrin.auth.util.CustomAuthorizationFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.authentication.AuthenticationManager;

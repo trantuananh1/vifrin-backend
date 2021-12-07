@@ -7,7 +7,7 @@ import java.time.Instant;
 
 @Entity
 @Data
-@Table(name = "confirmation_token")
+@Table(name = "confirmation_tokens")
 public class ConfirmationToken {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
