@@ -34,6 +34,15 @@ spring:
               args:
                 name: AUTH-SERVICE
                 fallbackuri: forward:/authServiceFallBack
+        - id: POST-SERVICE
+          uri: lb://POST-SERVICE
+          predicates:
+            - Path=/posts/**
+          filters:
+            - name: CircuitBreaker
+              args:
+                name: POST-SERVICE
+                fallbackuri: forward:/postServiceFallBack
 #
 #hystrix:
 #  command:

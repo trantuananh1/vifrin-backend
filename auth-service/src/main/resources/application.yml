@@ -27,3 +27,6 @@ spring:
           auth: true
           starttls:
             enable: true
+token:
+  expiration:
+    time: 7

@@ -1,11 +1,10 @@
-package com.vifrin.user.exception;
+package com.vifrin.post.exception;
 
 import com.vifrin.common.response.ResponseTemplate;
 import com.vifrin.common.response.ResponseType;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
@@ -13,7 +12,6 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 @RestControllerAdvice
 @Slf4j
 public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
-
     @ExceptionHandler(UsernameAlreadyExistsException.class)
     public ResponseEntity<?> handleCustomException(UsernameAlreadyExistsException ex){
         ResponseTemplate responseTemplate = new ResponseTemplate(ResponseType.USERNAME_ALREADY_EXISTS, null);

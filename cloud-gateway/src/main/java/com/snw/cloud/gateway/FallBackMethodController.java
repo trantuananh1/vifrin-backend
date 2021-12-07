@@ -23,4 +23,10 @@ public class FallBackMethodController {
         return "Auth Service is taking longer than Expected." +
                 " Please try again later";
     }
+
+    @GetMapping("/postServiceFallBack")
+    public String postServiceFallBackMethod() {
+        return "Post Service is taking longer than Expected." +
+                " Please try again later";
+    }
 }

@@ -47,7 +47,7 @@ public class Profile {
 
     @OneToOne
     @MapsId
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "id")
     @ToString.Exclude
     private User user;
 

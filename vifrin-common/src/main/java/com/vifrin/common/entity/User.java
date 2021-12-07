@@ -3,19 +3,22 @@ package com.vifrin.common.entity;
 import lombok.*;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.time.Instant;
+import java.util.Set;
 
 @Entity
-@Data
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
 @Table(name = "users")
-public class User {
+public class User implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "user_id")
-    private Long userId;
+    @Column(name = "id")
+    private Long id;
 
     @Column(name = "username")
     private String username;
@@ -46,8 +49,11 @@ public class User {
 
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
     @PrimaryKeyJoinColumn
-    @ToString.Exclude
     private Profile profile;
+
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY,
+            cascade = CascadeType.ALL)
+    private Set<Post> posts;
 
     public User(String username, String password, String email) {
         this.username = username;
@@ -57,5 +63,23 @@ public class User {
         this.createdAt = Instant.now();
         this.updatedAt = Instant.now();
         this.role = "USER";
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", isEnabled=" + isEnabled +
+                ", lastLogin=" + lastLogin +
+                ", lastIP='" + lastIP + '\'' +
+                ", createdAt=" + createdAt +
+                ", updatedAt=" + updatedAt +
+                ", role='" + role + '\'' +
+                ", profile=" + profile +
+                ", posts=" + posts +
+                '}';
     }
 }

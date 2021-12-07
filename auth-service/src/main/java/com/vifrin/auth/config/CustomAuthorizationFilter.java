@@ -1,4 +1,4 @@
-package com.vifrin.auth.util;
+package com.vifrin.auth.config;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.JWTVerifier;

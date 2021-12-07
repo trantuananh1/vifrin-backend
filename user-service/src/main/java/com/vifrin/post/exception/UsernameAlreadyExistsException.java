@@ -1,8 +1,4 @@
-package com.vifrin.user.exception;
-
-import com.vifrin.common.response.ResponseType;
-import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.ResponseStatus;
+package com.vifrin.post.exception;
 
 /**
  * @author: trantuananh1
