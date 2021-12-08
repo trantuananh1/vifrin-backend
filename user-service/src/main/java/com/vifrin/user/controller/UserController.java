@@ -1,13 +1,12 @@
-package com.vifrin.post.controller;
+package com.vifrin.user.controller;
 
 import com.vifrin.common.response.ResponseTemplate;
 import com.vifrin.common.response.ResponseType;
-import com.vifrin.post.service.UserService;
+import com.vifrin.user.service.UserService;
 import com.vifrin.common.payload.UserDto;
 import com.vifrin.common.payload.request.RegisterRequest;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -18,7 +17,8 @@ import java.net.URI;
 @RequestMapping("/users")
 @Slf4j
 public class UserController {
-    @Autowired UserService userService;
+    @Autowired
+    UserService userService;
 
     @PostMapping
     public ResponseEntity<ResponseTemplate<UserDto>> createUser(@RequestBody RegisterRequest registerRequest) {

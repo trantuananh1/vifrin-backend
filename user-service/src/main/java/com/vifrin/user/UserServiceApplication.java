@@ -1,4 +1,4 @@
-package com.vifrin.post;
+package com.vifrin.user;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;

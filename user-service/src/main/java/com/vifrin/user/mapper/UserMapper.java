@@ -1,4 +1,4 @@
-package com.vifrin.post.mapper;
+package com.vifrin.user.mapper;
 
 import com.vifrin.common.entity.User;
 import com.vifrin.common.payload.UserDto;

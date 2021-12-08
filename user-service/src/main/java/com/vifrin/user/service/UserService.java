@@ -1,13 +1,13 @@
-package com.vifrin.post.service;
+package com.vifrin.user.service;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.JWTVerifier;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.interfaces.DecodedJWT;
-import com.vifrin.post.exception.EmailAlreadyExistsException;
-import com.vifrin.post.exception.UsernameAlreadyExistsException;
-import com.vifrin.post.exception.UsernameNotExistsException;
-import com.vifrin.post.mapper.UserMapper;
+import com.vifrin.user.exception.EmailAlreadyExistsException;
+import com.vifrin.user.exception.UsernameAlreadyExistsException;
+import com.vifrin.user.exception.UsernameNotExistsException;
+import com.vifrin.user.mapper.UserMapper;
 import com.vifrin.common.entity.Profile;
 import com.vifrin.common.entity.User;
 import com.vifrin.common.payload.UserDto;

@@ -1,4 +1,4 @@
-package com.vifrin.post.exception;
+package com.vifrin.user.exception;
 
 /**
  * @author: trantuananh1

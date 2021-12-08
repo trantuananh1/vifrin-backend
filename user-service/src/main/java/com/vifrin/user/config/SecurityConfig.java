@@ -1,4 +1,4 @@
-package com.vifrin.post.config;
+package com.vifrin.user.config;
 
 public class SecurityConfig {
 }

@@ -1,4 +1,4 @@
-package com.vifrin.post.exception;
+package com.vifrin.user.exception;
 
 import com.vifrin.common.response.ResponseTemplate;
 import com.vifrin.common.response.ResponseType;
