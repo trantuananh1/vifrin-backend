@@ -70,25 +70,29 @@ public class PostController {
                 .ok(new ResponseTemplate<>(ResponseType.OK, null));
     }
 
-//    @GetMapping("/posts/me")
-//    public ResponseEntity<?> findCurrentUserPosts(@AuthenticationPrincipal Principal principal) {
-//        log.info("retrieving posts for user {}", principal.getName());
-//
-//        List<Post> posts = postService.postsByUsername(principal.getName());
-//        log.info("found {} posts for user {}", posts.size(), principal.getName());
-//
-//        return ResponseEntity.ok(posts);
-//    }
-//
-//    @GetMapping("/posts/{username}")
-//    public ResponseEntity<?> findUserPosts(@PathVariable("username") String username) {
-//        log.info("retrieving posts for user {}", username);
-//
-//        List<Post> posts = postService.postsByUsername(username);
-//        log.info("found {} posts for user {}", posts.size(), username);
-//
-//        return ResponseEntity.ok(posts);
-//    }
+    @GetMapping("/me")
+    public ResponseEntity<?> getMyPosts(@AuthenticationPrincipal Principal principal) {
+        log.info("retrieving posts for user {}", principal.getName());
+        List<PostDto> postDtos = postService.getPostsByUsername(principal.getName());
+        log.info("found {} posts for user {}", postDtos.size(), principal.getName());
+        if (postDtos.isEmpty()){
+            return ResponseEntity.noContent().build();
+        }
+        return ResponseEntity
+                .ok(new ResponseTemplate<List<PostDto>>(ResponseType.OK, postDtos));
+    }
+
+    @GetMapping
+    public ResponseEntity<?> getPostsByUsername(@RequestParam String username) {
+        log.info("retrieving posts for user {}", username);
+        List<PostDto> postDtos = postService.getPostsByUsername(username);
+        log.info("found {} posts for user {}", postDtos.size(), username);
+        if (postDtos.isEmpty()){
+            return ResponseEntity.noContent().build();
+        }
+        return ResponseEntity
+                .ok(new ResponseTemplate<List<PostDto>>(ResponseType.OK, postDtos));
+    }
 //
 //    @PostMapping("/posts/in")
 //    public ResponseEntity<?> findPostsByIdIn(@RequestBody List<String> ids) {

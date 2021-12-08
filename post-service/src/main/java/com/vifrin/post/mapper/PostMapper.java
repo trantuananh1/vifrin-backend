@@ -7,6 +7,8 @@ import com.vifrin.common.payload.post.PostDto;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
+import java.util.List;
+
 /**
  * @author: trantuananh1
  * @since: Sun, 05/12/2021
@@ -22,4 +24,6 @@ public abstract class PostMapper {
     @Mapping(target = "updatedAt", source = "post.updatedAt")
     @Mapping(target = "config", source = "post.config")
     public abstract PostDto postToPostDto(Post post);
+
+    public abstract List<PostDto> postsToPostDtos(List<Post> posts);
 }

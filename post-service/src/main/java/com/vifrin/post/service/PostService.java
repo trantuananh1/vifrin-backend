@@ -103,11 +103,15 @@ public class PostService {
                 });
     }
 
-//    public List<Post> postsByUsername(String username) {
-//        return postRepository.f(username);
-//    }
+    public List<PostDto> getPostsByUsername(String username) {
+        User user = userRepository.findByUsername(username)
+                .orElseThrow(() -> new ResourceNotFoundException(username));
+        List<Post> posts = postRepository.findByUserIdOrderByCreatedAtDesc(user.getId());
+        return postMapper.postsToPostDtos(posts);
+    }
 
     public List<Post> postsByIdIn(List<String> ids) {
-        return postRepository.findByIdInOrderByCreatedAtDesc(ids);
+//        return postRepository.findByIdInOrderByCreatedAtDesc(ids);
+        return null;
     }
 }
