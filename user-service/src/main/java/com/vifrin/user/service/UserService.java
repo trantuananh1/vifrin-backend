@@ -4,9 +4,13 @@ import com.auth0.jwt.JWT;
 import com.auth0.jwt.JWTVerifier;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.interfaces.DecodedJWT;
+import com.vifrin.common.dto.FollowDto;
+import com.vifrin.common.dto.ProfileDto;
 import com.vifrin.user.exception.EmailAlreadyExistsException;
+import com.vifrin.user.exception.ResourceNotFoundException;
 import com.vifrin.user.exception.UsernameAlreadyExistsException;
 import com.vifrin.user.exception.UsernameNotExistsException;
+import com.vifrin.user.mapper.ProfileMapper;
 import com.vifrin.user.mapper.UserMapper;
 import com.vifrin.common.entity.Profile;
 import com.vifrin.common.entity.User;
@@ -19,20 +23,22 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.Instant;
 import java.util.List;
+import java.util.Set;
 
 @Service
 @Slf4j
 public class UserService {
 
     @Autowired
-    private UserRepository userRepository;
+    UserRepository userRepository;
     @Autowired
-    private ProfileRepository profileRepository;
-    @Autowired
-    AuthFeignClient authFeignClient;
+    ProfileRepository profileRepository;
     @Autowired
     UserMapper userMapper;
+    @Autowired
+    ProfileMapper profileMapper;
 
     public UserDto createUser(RegisterRequest registerRequest) {
         log.info("Inside saveUser of UserService");
@@ -59,63 +65,96 @@ public class UserService {
         return userRepository.findAll();
     }
 
-    public UserDto getUserByUserName(String userName) {
-        User user = userRepository.findByUsername(userName)
-                .orElseThrow(UsernameNotExistsException::new);
+    public UserDto getUserByUsername(String username) {
+        User user = userRepository.findByUsername(username)
+                .orElseThrow(() -> new ResourceNotFoundException(username));
         return userMapper.userToUserDto(user);
     }
 
-//    public GetUserResponse getUserByUserId(long userId) {
-//        User user = userRepository.findByUserId(userId)
-//                .orElseThrow(() -> new RuntimeException("UserId not exist"));
-//        return GetUserResponse.builder()
-//                .userId(user.getUserId())
-//                .username(user.getUsername())
-//                .isEnabled(user.isEnabled())
-//                .createdAt(user.getCreatedAt())
-//                .updatedAt(user.getUpdatedAt())
-//                .roles(user.getRoles())
-//                .build();
-//    }
-
-//    public void addRoleToUser(String username, String roleName) {
-//        User user = userRepository.findByUsername(username)
-//                .orElseThrow(() -> new RuntimeException("Username not exist"));
-//        Role role = roleRepository.findByName(roleName)
-//                .orElseThrow(() -> new RuntimeException("Role not exist"));
-//        user.getRoles().add(role);
-//        userRepository.save(user);
-//    }
+    public UserDto getUserById(Long id) {
+        User user = userRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException(id));
+        return userMapper.userToUserDto(user);
+    }
 
     @Transactional(readOnly = true)
     public UserDto getCurrentUser(String token) {
-        UserDto userna = authFeignClient.getCurrentUser().getBody();
-        token = token.startsWith("Bearer ") ? token.substring("Bearer ".length()) : token;
-        Algorithm algorithm = Algorithm.HMAC256("secret".getBytes());
-        JWTVerifier verifier = JWT.require(algorithm).build();
-        DecodedJWT decodedJWT = verifier.verify(token);
-        String username = decodedJWT.getSubject();
-        User user = userRepository.findByUsername(username)
-                .orElseThrow(()-> new RuntimeException("Username not exist"));
-//        UserDto userDto = authFeignClient.getCurrentUser(token).getBody();
-        return userMapper.userToUserDto(user);
+        return null;
     }
 
-//    public boolean updateProfile(UpdateProfileRequest request){
-//
-//    }
-//    public ResponseTemplateVO getUserWithDepartment(Long userId) {
-//        log.info("Inside getUserWithDepartment of UserService");
-//        ResponseTemplateVO vo = new ResponseTemplateVO();
-//        User user = userRepository.findByUserId(userId);
-//
-//        Department department =
-//                restTemplate.getForObject("http://DEPARTMENT-SERVICE/departments/" + user.getDepartmentId()
-//                        , Department.class);
-//
-//        vo.setUser(user);
-//        vo.setDepartment(department);
-//
-//        return vo;
-//    }
+    public ProfileDto getProfile(String username){
+        User user = userRepository.findByUsername(username)
+                .orElseThrow(() -> new ResourceNotFoundException(username));
+        Profile profile = profileRepository.getOne(user.getId());
+        return profileMapper.profileToProfileDto(profile);
+    }
+
+    public void updateProfile(ProfileDto profileDto, String username){
+        Profile profile = profileMapper.profileDtoToProfile(profileDto);
+        User user = userRepository.findByUsername(username)
+                .orElseThrow(() -> new ResourceNotFoundException(username));
+        profile.setUser(user);
+        profile.setUserId(user.getId());
+        profileRepository.save(profile);
+
+        user.setUpdatedAt(Instant.now());
+        userRepository.save(user);
+    }
+
+    public void updateAvatar(ProfileDto body, String username){
+        User user = userRepository.findByUsername(username)
+                .orElseThrow(() -> new ResourceNotFoundException(username));
+        user.setAvatarUrl(body.getAvatarUrl());
+        userRepository.save(user);
+    }
+
+    public void follow(Long targetId, String username){
+        User target = userRepository.findById(targetId)
+                .orElseThrow(() -> new ResourceNotFoundException(targetId));
+        User follower = userRepository.findByUsername(username)
+                .orElseThrow(() -> new ResourceNotFoundException(username));
+
+        target.getFollowers().add(follower);
+        follower.getFollowings().add(target);
+
+        target.getActivity().setFollowersCount(target.getFollowers().size());
+        follower.getActivity().setFollowingsCount(follower.getFollowings().size());
+
+        userRepository.save(target);
+        userRepository.save(follower);
+    }
+
+    public void unfollow(Long targetId, String username){
+        User target = userRepository.findById(targetId)
+                .orElseThrow(() -> new ResourceNotFoundException(targetId));
+        User follower = userRepository.findByUsername(username)
+                .orElseThrow(() -> new ResourceNotFoundException(username));
+
+        target.getFollowers().remove(follower);
+        follower.getFollowings().remove(target);
+
+        target.getActivity().setFollowersCount(target.getFollowers().size());
+        follower.getActivity().setFollowingsCount(follower.getFollowings().size());
+
+        userRepository.save(target);
+        userRepository.save(follower);
+    }
+
+    public List<FollowDto> getFollowers(Long targetId, String username){
+        User target = userRepository.findById(targetId)
+                .orElseThrow(() -> new ResourceNotFoundException(targetId));
+        User user = userRepository.findByUsername(username)
+                .orElseThrow(() -> new ResourceNotFoundException(username));
+        Set<User> followers = target.getFollowers();
+        return userMapper.userListToFollowDtoList(List.copyOf(followers), user);
+    }
+
+    public List<FollowDto> getFollowings(Long targetId, String username){
+        User target = userRepository.findById(targetId)
+                .orElseThrow(() -> new ResourceNotFoundException(targetId));
+        User user = userRepository.findByUsername(username)
+                .orElseThrow(() -> new ResourceNotFoundException(username));
+        Set<User> followers = target.getFollowings();
+        return userMapper.userListToFollowDtoList(List.copyOf(followers), user);
+    }
 }

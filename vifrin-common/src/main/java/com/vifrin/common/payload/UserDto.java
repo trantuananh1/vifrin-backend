@@ -20,4 +20,5 @@ public class UserDto implements Serializable {
     private Instant createdAt;
     private Instant updatedAt;
     private String role;
+    private String avatarUrl;
 }

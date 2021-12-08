@@ -5,6 +5,7 @@ import lombok.*;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.Instant;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -13,6 +14,7 @@ import java.util.Set;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
+@SecondaryTable(name = "activities", pkJoinColumns = @PrimaryKeyJoinColumn(name = "id"))
 @Table(name = "users")
 public class User implements Serializable {
     @Id
@@ -47,6 +49,9 @@ public class User implements Serializable {
     @Column(name = "role")
     private String role;
 
+    @Column(name = "avatar_url")
+    private String avatarUrl;
+
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
     @PrimaryKeyJoinColumn
     private Profile profile;
@@ -54,6 +59,15 @@ public class User implements Serializable {
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY,
             cascade = CascadeType.ALL)
     private Set<Post> posts;
+
+    @ManyToMany
+    private Set<User> followers = new HashSet<>();
+
+    @ManyToMany(mappedBy = "followers")
+    private Set<User> followings;
+
+    @Embedded
+    private Activity activity;
 
     public User(String username, String password, String email) {
         this.username = username;
@@ -63,6 +77,7 @@ public class User implements Serializable {
         this.createdAt = Instant.now();
         this.updatedAt = Instant.now();
         this.role = "USER";
+        this.activity = new Activity();
     }
 
     @Override
@@ -77,9 +92,8 @@ public class User implements Serializable {
                 ", lastIP='" + lastIP + '\'' +
                 ", createdAt=" + createdAt +
                 ", updatedAt=" + updatedAt +
-                ", role='" + role + '\'' +
-                ", profile=" + profile +
-                ", posts=" + posts +
+                ", role=" + role +
+                ", avatarUrl='" + avatarUrl + '\'' +
                 '}';
     }
 }
