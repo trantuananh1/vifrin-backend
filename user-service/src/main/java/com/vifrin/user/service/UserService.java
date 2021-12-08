@@ -65,21 +65,18 @@ public class UserService {
         return userRepository.findAll();
     }
 
+    @Transactional(readOnly = true)
     public UserDto getUserByUsername(String username) {
         User user = userRepository.findByUsername(username)
                 .orElseThrow(() -> new ResourceNotFoundException(username));
         return userMapper.userToUserDto(user);
     }
 
+    @Transactional(readOnly = true)
     public UserDto getUserById(Long id) {
         User user = userRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException(id));
         return userMapper.userToUserDto(user);
-    }
-
-    @Transactional(readOnly = true)
-    public UserDto getCurrentUser(String token) {
-        return null;
     }
 
     public ProfileDto getProfile(String username){
