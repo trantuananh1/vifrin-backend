@@ -32,4 +32,11 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST)
                 .body(responseTemplate);
     }
+
+    @ExceptionHandler(Exception.class)
+    public ResponseEntity<?> handleCustomException(Exception ex){
+        ResponseTemplate responseTemplate = new ResponseTemplate(400, ex.getMessage(), null);
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                .body(responseTemplate);
+    }
 }

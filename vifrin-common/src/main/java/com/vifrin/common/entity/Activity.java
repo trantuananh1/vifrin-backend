@@ -18,17 +18,25 @@ import java.time.Instant;
 @Table(name = "activities")
 public class Activity {
     @Column(name = "likes_count")
-    private Long likesCount = 0L;
+    private int likesCount;
 
     @Column(name = "comments_count")
-    private Long commentsCount = 0L;
+    private int commentsCount;
 
     @Column(name = "posts_count")
-    private Long postsCount = 0L;
+    private int postsCount;
 
     @Column(name = "followers_count")
-    private Long followersCount= 0L;
+    private int followersCount;
 
     @Column(name = "followings_count")
-    private Long followingsCount = 0L;
+    private int followingsCount;
+
+    public Activity() {
+        likesCount = 0;
+        commentsCount = 0;
+        postsCount = 0;
+        followersCount = 0;
+        followingsCount = 0;
+    }
 }
