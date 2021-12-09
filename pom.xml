@@ -21,14 +21,14 @@
     <modules>
         <module>vifrin-common</module>
         <module>vifrin-feign</module>
-        <module>auth-service</module>
         <module>service-registry</module>
         <module>cloud-config-server</module>
         <module>cloud-gateway</module>
-        <module>department-service</module>
         <module>hystrix-dashboard</module>
+        <module>auth-service</module>
         <module>user-service</module>
         <module>media-service</module>
+        <module>post-service</module>
     </modules>
     <packaging>pom</packaging>
     <dependencies>
