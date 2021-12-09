@@ -6,13 +6,32 @@ spring:
     name: POST-SERVICE
   zipkin:
     base-url: http://127.0.0.1:9411/
-  datasource:
-    url: jdbc:postgresql://localhost:5432/vifrin
-    username: postgres
-    password: '09071999'
-    driver-class-name: org.postgresql.Driver
-  jpa:
-    hibernate:
-      ddl-auto: update
-    show-sql: true
-    database-platform: org.hibernate.dialect.PostgreSQLDialect
+
+  data:
+    cassandra:
+      keyspaceName: vifrin_feed
+      contactPoints: localhost
+      port: 9042
+      schema-action: CREATE_IF_NOT_EXISTS
+
+  cloud:
+    stream:
+      kafka:
+        binder:
+          brokers: localhost:9092
+          configuration:
+            key:
+              deserializer: org.apache.kafka.common.serialization.StringDeserializer
+        bindings:
+          momentsPostChanged:
+            consumer:
+              startOffset: latest
+              autoCommitOffset: false
+      bindings:
+        momentsPostChanged:
+          destination: moments.post.changed
+          contentType: application/json
+          group: graphService
+          consumer:
+            startOffset: latest
+            autoCommitOffset: false

@@ -23,4 +23,7 @@ public interface UserFeignClient {
 
     @GetMapping("/users/me")
     ResponseEntity<String> getCurrent();
+
+    @GetMapping("/users/{userId}/followings")
+    ResponseEntity<?> getFollowings(@PathVariable Long userId);
 }

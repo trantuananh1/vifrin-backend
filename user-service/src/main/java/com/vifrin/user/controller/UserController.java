@@ -1,5 +1,6 @@
 package com.vifrin.user.controller;
 
+import com.vifrin.common.constant.BaseConstant;
 import com.vifrin.common.dto.FollowDto;
 import com.vifrin.common.dto.ProfileDto;
 import com.vifrin.common.response.ResponseTemplate;
@@ -83,7 +84,9 @@ public class UserController {
     }
 
     @GetMapping("/{userId}/followers")
-    public ResponseEntity<?> getFollowers(@PathVariable Long userId, @AuthenticationPrincipal Principal principal){
+    public ResponseEntity<?> getFollowers(@PathVariable Long userId, @AuthenticationPrincipal Principal principal,
+                                          @RequestParam(value = "page", defaultValue = BaseConstant.DEFAULT_PAGE_NUMBER) int page,
+                                          @RequestParam(value = "size", defaultValue = BaseConstant.DEFAULT_PAGE_SIZE) int size){
         List<FollowDto> followDtos = userService.getFollowers(userId, principal.getName());
         if (followDtos.isEmpty()){
             return ResponseEntity.noContent().build();

@@ -17,6 +17,13 @@ services:
       - "2181:2181"
     environment:
       - KAFKA_ADVERTISED_HOST_NAME=zookeeper
+  cassandra:
+    image: cassandra:latest
+    ports:
+      - "7000:7000"
+      - "9042:9042"
+    volumes:
+      - /home/anhtrt/vifrinCassandra:/var/lib/cassandra
 #  postgresql:
 #    image: postgres
 #    container_name: pg-docker

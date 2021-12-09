@@ -142,7 +142,7 @@ public class UserService {
                 .orElseThrow(() -> new ResourceNotFoundException(targetId));
         User user = userRepository.findByUsername(username)
                 .orElseThrow(() -> new ResourceNotFoundException(username));
-        Set<User> followers = target.getFollowers();
+        Set<User> followers = target.getFollowers().;
         return userMapper.userListToFollowDtoList(List.copyOf(followers), user);
     }
 
