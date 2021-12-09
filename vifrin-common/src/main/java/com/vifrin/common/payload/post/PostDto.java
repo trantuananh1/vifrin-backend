@@ -12,6 +12,7 @@ import java.time.Instant;
 @Data
 public class PostDto {
     private Long id;
+    private Long userId;
     private String content;
     private String imageUrl;
     private boolean hasDetail;

@@ -1,4 +1,4 @@
-package com.vifrin.post;
+package com.vifrin.feed;
 
 import com.vifrin.post.messaging.PostEventStream;
 import org.springframework.boot.SpringApplication;

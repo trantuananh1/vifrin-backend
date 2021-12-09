@@ -1,5 +1,6 @@
 package com.vifrin.feign.client;
 
+import com.vifrin.common.dto.FollowDto;
 import com.vifrin.common.payload.UserDto;
 import com.vifrin.common.payload.response.CreateUserResponse;
 import com.vifrin.common.payload.request.RegisterRequest;
@@ -7,6 +8,8 @@ import com.vifrin.common.response.ResponseTemplate;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 /**
  * @Author: trantuananh1
@@ -26,4 +29,9 @@ public interface UserFeignClient {
 
     @GetMapping("/users/{userId}/followings")
     ResponseEntity<?> getFollowings(@PathVariable Long userId);
+
+    @GetMapping("/users/{userId}/followings")
+    ResponseEntity<ResponseTemplate<List<FollowDto>>> getFollowers(@PathVariable Long userId,
+                                                                   @RequestParam int page,
+                                                                   @RequestParam int size);
 }

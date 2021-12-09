@@ -1,7 +1,6 @@
-package com.vifrin.post.controller;
+package com.vifrin.feed.controller;
 
 import com.vifrin.common.constant.StringPool;
-import com.vifrin.common.entity.Post;
 import com.vifrin.common.payload.post.PostDto;
 import com.vifrin.common.payload.post.PostRequest;
 import com.vifrin.common.response.ResponseTemplate;
@@ -9,7 +8,6 @@ import com.vifrin.common.response.ResponseType;
 import com.vifrin.post.service.PostService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;

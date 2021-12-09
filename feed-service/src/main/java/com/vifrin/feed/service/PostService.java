@@ -1,4 +1,4 @@
-package com.vifrin.post.service;
+package com.vifrin.feed.service;
 
 import com.vifrin.common.constant.OperationConstant;
 import com.vifrin.common.entity.Post;
@@ -12,7 +12,6 @@ import com.vifrin.post.exception.ResourceNotFoundException;
 import com.vifrin.post.mapper.PostMapper;
 import com.vifrin.post.messaging.PostEventSender;
 import lombok.extern.slf4j.Slf4j;
-import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

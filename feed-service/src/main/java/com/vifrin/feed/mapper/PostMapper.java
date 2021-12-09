@@ -1,4 +1,4 @@
-package com.vifrin.post.mapper;
+package com.vifrin.feed.mapper;
 
 import com.vifrin.common.entity.Post;
 import com.vifrin.common.entity.User;
