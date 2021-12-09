@@ -45,7 +45,8 @@ public class PostService {
 
         post = postRepository.save(post);
 //        postEventSender.sendPostCreated(post);
-
+        user.getActivity().setPostsCount(user.getPosts().size());
+        userRepository.save(user);
         log.info("post {} is saved successfully for user {}",
                 post.getId(), post.getUser().getUsername());
 

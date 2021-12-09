@@ -21,6 +21,10 @@ public abstract class UserMapper {
     @Mapping(target = "updatedAt", source = "user.updatedAt")
     @Mapping(target = "role", source = "user.role")
     @Mapping(target = "avatarUrl", source = "user.avatarUrl")
+    @Mapping(target = "bio", source = "user.profile.bio")
+    @Mapping(target = "postsCount", source = "user.activity.postsCount")
+    @Mapping(target = "followersCount", source = "user.activity.followersCount")
+    @Mapping(target = "followingsCount", source = "user.activity.followingsCount")
     public abstract UserDto userToUserDto(User user);
 
     @Mapping(target = "userId", source = "user.id")

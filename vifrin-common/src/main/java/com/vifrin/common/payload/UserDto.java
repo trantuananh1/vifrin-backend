@@ -21,4 +21,8 @@ public class UserDto implements Serializable {
     private Instant updatedAt;
     private String role;
     private String avatarUrl;
+    private String bio;
+    private int postsCount;
+    private int followersCount;
+    private int followingsCount;
 }
