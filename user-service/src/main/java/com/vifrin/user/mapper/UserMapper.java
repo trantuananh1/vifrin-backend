@@ -32,7 +32,10 @@ public abstract class UserMapper {
 
     public List<FollowDto> userListToFollowDtoList(List<User> users, User iUser) {
         List<FollowDto> followDtos = new ArrayList<>();
-        users.stream().map(user -> followDtos.add(userToFollowDto(user, iUser)));
+        for (User user : users){
+            FollowDto followDto = userToFollowDto(user, iUser);
+            followDtos.add(followDto);
+        }
         return followDtos;
     }
 
