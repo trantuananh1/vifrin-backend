@@ -6,6 +6,8 @@ import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.interfaces.DecodedJWT;
 import com.vifrin.common.dto.FollowDto;
 import com.vifrin.common.dto.ProfileDto;
+import com.vifrin.common.response.ResponseTemplate;
+import com.vifrin.common.response.ResponseType;
 import com.vifrin.user.exception.EmailAlreadyExistsException;
 import com.vifrin.user.exception.ResourceNotFoundException;
 import com.vifrin.user.exception.UsernameAlreadyExistsException;
@@ -20,9 +22,17 @@ import com.vifrin.common.payload.request.RegisterRequest;
 import com.vifrin.feign.client.AuthFeignClient;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import java.security.Principal;
 import java.time.Instant;
 import java.util.List;
 import java.util.Set;
@@ -137,21 +147,19 @@ public class UserService {
         userRepository.save(follower);
     }
 
-    public List<FollowDto> getFollowers(Long targetId, String username){
-        User target = userRepository.findById(targetId)
-                .orElseThrow(() -> new ResourceNotFoundException(targetId));
+    public List<FollowDto> getFollowers(Long targetId, String username, int page, int size){
         User user = userRepository.findByUsername(username)
                 .orElseThrow(() -> new ResourceNotFoundException(username));
-        Set<User> followers = target.getFollowers();
+        List<Long> followerIds = userRepository.getFollowersByUserId(targetId, PageRequest.of(page, size));
+        List<User> followers = userRepository.findAllById(followerIds);
         return userMapper.userListToFollowDtoList(List.copyOf(followers), user);
     }
 
-    public List<FollowDto> getFollowings(Long targetId, String username){
-        User target = userRepository.findById(targetId)
-                .orElseThrow(() -> new ResourceNotFoundException(targetId));
+    public List<FollowDto> getFollowings(Long targetId, String username, int page, int size){
         User user = userRepository.findByUsername(username)
                 .orElseThrow(() -> new ResourceNotFoundException(username));
-        Set<User> followers = target.getFollowings();
-        return userMapper.userListToFollowDtoList(List.copyOf(followers), user);
+        List<Long> followerIds = userRepository.getFollowingsByUserId(targetId, PageRequest.of(page, size));
+        List<User> followers = userRepository.findAllById(followerIds);
+        return userMapper.userListToFollowDtoList(followers, user);
     }
 }

@@ -26,6 +26,7 @@ import static java.util.Arrays.stream;
 
 @RestController
 @Slf4j
+@CrossOrigin(origins = "*")
 @RequestMapping("/auth")
 public class AuthController {
     @Autowired
