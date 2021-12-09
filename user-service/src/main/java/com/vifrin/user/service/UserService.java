@@ -158,8 +158,8 @@ public class UserService {
     public List<FollowDto> getFollowings(Long targetId, String username, int page, int size){
         User user = userRepository.findByUsername(username)
                 .orElseThrow(() -> new ResourceNotFoundException(username));
-        List<Long> followerIds = userRepository.getFollowingsByUserId(targetId, PageRequest.of(page, size));
-        List<User> followers = userRepository.findAllById(followerIds);
-        return userMapper.userListToFollowDtoList(followers, user);
+        List<Long> followingIds = userRepository.getFollowingsByUserId(targetId, PageRequest.of(page, size));
+        List<User> followings = userRepository.findAllById(followingIds);
+        return userMapper.userListToFollowDtoList(followings, user);
     }
 }

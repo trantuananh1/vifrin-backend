@@ -31,13 +31,14 @@ public abstract class UserMapper {
     @Mapping(target = "username", source = "user.username")
     @Mapping(target = "avatarUrl", source = "user.avatarUrl")
     @Mapping(target = "fullName", expression = "java(getFullName(user))")
-    @Mapping(target = "follow", expression = "java(isFollowing(user, iUser))")
-    public abstract FollowDto userToFollowDto(User user, User iUser);
+    @Mapping(target = "following", expression = "java(isFollowing(user, me))")
+    @Mapping(target = "follower", expression = "java(isFollower(user, me))")
+    public abstract FollowDto userToFollowDto(User user, User me);
 
-    public List<FollowDto> userListToFollowDtoList(List<User> users, User iUser) {
+    public List<FollowDto> userListToFollowDtoList(List<User> users, User me) {
         List<FollowDto> followDtos = new ArrayList<>();
         for (User user : users){
-            FollowDto followDto = userToFollowDto(user, iUser);
+            FollowDto followDto = userToFollowDto(user, me);
             followDtos.add(followDto);
         }
         return followDtos;
@@ -47,7 +48,10 @@ public abstract class UserMapper {
         return user.getProfile().getFullName();
     }
 
-    boolean isFollowing(User user, User iUser){
-        return iUser.getFollowings().contains(user);
+    boolean isFollowing(User user, User me){
+        return me.getFollowings().contains(user);
+    }
+    boolean isFollower(User user, User me){
+        return me.getFollowers().contains(user);
     }
 }
