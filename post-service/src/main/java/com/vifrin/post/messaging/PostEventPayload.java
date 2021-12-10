@@ -9,12 +9,8 @@ import java.time.Instant;
 @Builder
 public class PostEventPayload {
 
-    private Long id;
+    private Long postId;
     private Instant createdAt;
-    private Instant updatedAt;
-    private String username;
-    private String lastModifiedBy;
-    private String imageUrl;
-    private String caption;
+    private Long userId;
     private PostEventType eventType;
 }

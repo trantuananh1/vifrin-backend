@@ -1,5 +1,6 @@
 package com.vifrin.common.payload.post;
 
+import lombok.Builder;
 import lombok.Data;
 
 import java.time.Instant;
@@ -10,6 +11,7 @@ import java.time.Instant;
  **/
 
 @Data
+@Builder
 public class PostDto {
     private Long id;
     private Long userId;

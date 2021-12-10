@@ -19,6 +19,7 @@ public abstract class PostMapper {
     @Mapping(target = "content", source = "post.content")
     @Mapping(target = "imageUrl", source = "post.imageUrl")
     @Mapping(target = "hasDetail", source = "post.hasDetail")
+    @Mapping(target = "userId", source = "post.userId")
     @Mapping(target = "detail", source = "post.detail")
     @Mapping(target = "createdAt", source = "post.createdAt")
     @Mapping(target = "updatedAt", source = "post.updatedAt")

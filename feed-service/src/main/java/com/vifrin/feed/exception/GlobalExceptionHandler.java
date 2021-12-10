@@ -11,17 +11,17 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 @RestControllerAdvice
 @Slf4j
 public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
-    @ExceptionHandler(NotAllowedException.class)
-    public ResponseEntity<?> handleCustomException(NotAllowedException ex){
-        ResponseTemplate responseTemplate = new ResponseTemplate(403, ex.getMessage(), null);
-        return ResponseEntity.status(HttpStatus.FORBIDDEN)
-                .body(responseTemplate);
-    }
-
-    @ExceptionHandler(ResourceNotFoundException.class)
-    public ResponseEntity<?> handleCustomException(ResourceNotFoundException ex){
-        ResponseTemplate responseTemplate = new ResponseTemplate(404, ex.getMessage(), null);
-        return ResponseEntity.status(HttpStatus.NOT_FOUND)
-                .body(responseTemplate);
-    }
+//    @ExceptionHandler(NotAllowedException.class)
+//    public ResponseEntity<?> handleCustomException(NotAllowedException ex){
+//        ResponseTemplate responseTemplate = new ResponseTemplate(403, ex.getMessage(), null);
+//        return ResponseEntity.status(HttpStatus.FORBIDDEN)
+//                .body(responseTemplate);
+//    }
+//
+//    @ExceptionHandler(ResourceNotFoundException.class)
+//    public ResponseEntity<?> handleCustomException(ResourceNotFoundException ex){
+//        ResponseTemplate responseTemplate = new ResponseTemplate(404, ex.getMessage(), null);
+//        return ResponseEntity.status(HttpStatus.NOT_FOUND)
+//                .body(responseTemplate);
+//    }
 }

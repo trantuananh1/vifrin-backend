@@ -91,7 +91,7 @@ public class UserController {
         if (followDtos.isEmpty()) {
             return ResponseEntity.noContent().build();
         }
-        return ResponseEntity.ok(new ResponseTemplate<List<FollowDto>>(ResponseType.OK, followDtos));
+        return ResponseEntity.ok(followDtos);
     }
 
     @GetMapping("/{userId}/followings")
@@ -102,7 +102,7 @@ public class UserController {
         if (followDtos.isEmpty()) {
             return ResponseEntity.noContent().build();
         }
-        return ResponseEntity.ok(new ResponseTemplate<List<FollowDto>>(ResponseType.OK, followDtos));
+        return ResponseEntity.ok(followDtos);
     }
 }
 

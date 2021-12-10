@@ -1,6 +1,6 @@
 package com.vifrin.feed;
 
-import com.vifrin.post.messaging.PostEventStream;
+import com.vifrin.feed.messaging.PostEventStream;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -22,8 +22,8 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 @EnableJpaRepositories(basePackages = {"com.vifrin.common"})
 @EntityScan(basePackages = {"com.vifrin.common"})
 @EnableBinding(PostEventStream.class)
-public class PostServiceApplication {
+public class FeedServiceApplication {
     public static void main(String[] args) {
-        SpringApplication.run(PostServiceApplication.class, args);
+        SpringApplication.run(FeedServiceApplication.class, args);
     }
 }

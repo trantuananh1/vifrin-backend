@@ -29,6 +29,7 @@
         <module>user-service</module>
         <module>media-service</module>
         <module>post-service</module>
+        <module>feed-service</module>
     </modules>
     <packaging>pom</packaging>
     <dependencies>

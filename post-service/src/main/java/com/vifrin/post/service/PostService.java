@@ -42,14 +42,18 @@ public class PostService {
 
         Post post = new Post(postRequest.getContent(), postRequest.getImageUrl(), postRequest.isHasDetail(),
                 postRequest.getDetail(), postRequest.getConfig(), user);
-
         post = postRepository.save(post);
-//        postEventSender.sendPostCreated(post);
 
         log.info("post {} is saved successfully for user {}",
                 post.getId(), post.getUser().getUsername());
 
-        return postMapper.postToPostDto(post);
+
+        user.getActivity().setPostsCount(user.getPosts().size());
+        userRepository.save(user);
+
+        PostDto postDto = postMapper.postToPostDto(post);
+        postEventSender.sendPostCreated(postDto);
+        return postDto;
     }
 
     public PostDto getPost(Long postId){

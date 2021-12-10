@@ -13,5 +13,6 @@ public class FollowDto {
     private String username;
     private String fullName;
     private String avatarUrl;
-    private boolean isFollow;
+    private boolean isFollowing;
+    private boolean isFollower;
 }
