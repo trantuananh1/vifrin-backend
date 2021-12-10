@@ -52,10 +52,10 @@ public class UserService {
 
     public UserDto createUser(RegisterRequest registerRequest) {
         log.info("Inside saveUser of UserService");
-        if (userRepository.findByUsername(registerRequest.getUsername()).isPresent()){
+        if (userRepository.findByUsername(registerRequest.getUsername()).isPresent()) {
             throw new UsernameAlreadyExistsException();
         }
-        if (userRepository.findByEmail(registerRequest.getEmail()).isPresent()){
+        if (userRepository.findByEmail(registerRequest.getEmail()).isPresent()) {
             throw new EmailAlreadyExistsException();
         }
         User user = new User(registerRequest.getUsername(), registerRequest.getPassword(), registerRequest.getEmail());
@@ -89,14 +89,14 @@ public class UserService {
         return userMapper.userToUserDto(user);
     }
 
-    public ProfileDto getProfile(String username){
+    public ProfileDto getProfile(String username) {
         User user = userRepository.findByUsername(username)
                 .orElseThrow(() -> new ResourceNotFoundException(username));
         Profile profile = profileRepository.getOne(user.getId());
         return profileMapper.profileToProfileDto(profile);
     }
 
-    public void updateProfile(ProfileDto profileDto, String username){
+    public void updateProfile(ProfileDto profileDto, String username) {
         Profile profile = profileMapper.profileDtoToProfile(profileDto);
         User user = userRepository.findByUsername(username)
                 .orElseThrow(() -> new ResourceNotFoundException(username));
@@ -108,14 +108,14 @@ public class UserService {
         userRepository.save(user);
     }
 
-    public void updateAvatar(ProfileDto body, String username){
+    public void updateAvatar(ProfileDto body, String username) {
         User user = userRepository.findByUsername(username)
                 .orElseThrow(() -> new ResourceNotFoundException(username));
         user.setAvatarUrl(body.getAvatarUrl());
         userRepository.save(user);
     }
 
-    public void follow(Long targetId, String username){
+    public void follow(Long targetId, String username) {
         User target = userRepository.findById(targetId)
                 .orElseThrow(() -> new ResourceNotFoundException(targetId));
         User follower = userRepository.findByUsername(username)
@@ -131,7 +131,23 @@ public class UserService {
         userRepository.save(follower);
     }
 
-    public void unfollow(Long targetId, String username){
+    public void removeFollow(Long targetId, String username) {
+        User target = userRepository.findById(targetId)
+                .orElseThrow(() -> new ResourceNotFoundException(targetId));
+        User me = userRepository.findByUsername(username)
+                .orElseThrow(() -> new ResourceNotFoundException(username));
+
+        target.getFollowings().remove(me);
+        me.getFollowers().remove(target);
+
+        target.getActivity().setFollowingsCount(target.getActivity().getFollowingsCount() - 1);
+        me.getActivity().setFollowersCount(target.getActivity().getFollowersCount() - 1);
+
+        userRepository.save(target);
+        userRepository.save(me);
+    }
+
+    public void unfollow(Long targetId, String username) {
         User target = userRepository.findById(targetId)
                 .orElseThrow(() -> new ResourceNotFoundException(targetId));
         User follower = userRepository.findByUsername(username)
@@ -147,7 +163,7 @@ public class UserService {
         userRepository.save(follower);
     }
 
-    public List<FollowDto> getFollowers(Long targetId, String username, int page, int size){
+    public List<FollowDto> getFollowers(Long targetId, String username, int page, int size) {
         User user = userRepository.findByUsername(username)
                 .orElseThrow(() -> new ResourceNotFoundException(username));
         List<Long> followerIds = userRepository.getFollowersByUserId(targetId, PageRequest.of(page, size));
@@ -155,7 +171,7 @@ public class UserService {
         return userMapper.userListToFollowDtoList(List.copyOf(followers), user);
     }
 
-    public List<FollowDto> getFollowings(Long targetId, String username, int page, int size){
+    public List<FollowDto> getFollowings(Long targetId, String username, int page, int size) {
         User user = userRepository.findByUsername(username)
                 .orElseThrow(() -> new ResourceNotFoundException(username));
         List<Long> followingIds = userRepository.getFollowingsByUserId(targetId, PageRequest.of(page, size));
