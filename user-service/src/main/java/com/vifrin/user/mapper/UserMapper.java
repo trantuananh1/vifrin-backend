@@ -2,14 +2,12 @@ package com.vifrin.user.mapper;
 
 import com.vifrin.common.dto.FollowDto;
 import com.vifrin.common.entity.User;
-import com.vifrin.common.payload.UserDto;
+import com.vifrin.common.dto.UserDto;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
 
 @Mapper(componentModel = "spring")
 public abstract class UserMapper {

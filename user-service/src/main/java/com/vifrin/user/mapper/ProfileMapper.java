@@ -2,8 +2,6 @@ package com.vifrin.user.mapper;
 
 import com.vifrin.common.dto.ProfileDto;
 import com.vifrin.common.entity.Profile;
-import com.vifrin.common.entity.User;
-import com.vifrin.common.payload.UserDto;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 

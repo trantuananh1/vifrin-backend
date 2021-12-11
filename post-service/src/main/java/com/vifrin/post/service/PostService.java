@@ -3,8 +3,8 @@ package com.vifrin.post.service;
 import com.vifrin.common.constant.OperationConstant;
 import com.vifrin.common.entity.Post;
 import com.vifrin.common.entity.User;
-import com.vifrin.common.payload.post.PostDto;
-import com.vifrin.common.payload.post.PostRequest;
+import com.vifrin.common.dto.PostDto;
+import com.vifrin.common.payload.PostRequest;
 import com.vifrin.common.repository.PostRepository;
 import com.vifrin.common.repository.UserRepository;
 import com.vifrin.post.exception.NotAllowedException;
@@ -12,7 +12,6 @@ import com.vifrin.post.exception.ResourceNotFoundException;
 import com.vifrin.post.mapper.PostMapper;
 import com.vifrin.post.messaging.PostEventSender;
 import lombok.extern.slf4j.Slf4j;
-import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -42,15 +41,18 @@ public class PostService {
 
         Post post = new Post(postRequest.getContent(), postRequest.getImageUrl(), postRequest.isHasDetail(),
                 postRequest.getDetail(), postRequest.getConfig(), user);
-
         post = postRepository.save(post);
-//        postEventSender.sendPostCreated(post);
-        user.getActivity().setPostsCount(user.getPosts().size());
-        userRepository.save(user);
+
         log.info("post {} is saved successfully for user {}",
                 post.getId(), post.getUser().getUsername());
 
-        return postMapper.postToPostDto(post);
+
+        user.getActivity().setPostsCount(user.getPosts().size());
+        userRepository.save(user);
+
+        PostDto postDto = postMapper.postToPostDto(post);
+        postEventSender.sendPostCreated(postDto);
+        return postDto;
     }
 
     public PostDto getPost(Long postId){

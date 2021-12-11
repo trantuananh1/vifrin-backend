@@ -1,11 +1,10 @@
 package com.vifrin.auth.controller;
 
-import com.vifrin.auth.exception.EmailAlreadyExistsException;
 import com.vifrin.auth.exception.UsernameAlreadyExistsException;
-import com.vifrin.common.payload.UserDto;
-import com.vifrin.common.payload.response.AuthenticationResponse;
+import com.vifrin.common.dto.UserDto;
+import com.vifrin.common.payload.AuthenticationResponse;
 import com.vifrin.auth.service.AuthService;
-import com.vifrin.common.payload.request.RegisterRequest;
+import com.vifrin.common.payload.RegisterRequest;
 import com.vifrin.common.response.ResponseTemplate;
 import com.vifrin.common.response.ResponseType;
 import lombok.extern.slf4j.Slf4j;

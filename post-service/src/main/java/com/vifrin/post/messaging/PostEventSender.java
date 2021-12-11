@@ -1,7 +1,7 @@
 package com.vifrin.post.messaging;
 
 
-import com.vifrin.common.entity.Post;
+import com.vifrin.common.dto.PostDto;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.kafka.support.KafkaHeaders;
 import org.springframework.messaging.Message;
@@ -19,19 +19,19 @@ public class PostEventSender {
         this.channels = channels;
     }
 
-    public void sendPostCreated(Post post) {
-        log.info("sending post created event for post id {}", post.getId());
-        sendPostChangedEvent(convertTo(post, PostEventType.CREATED));
+    public void sendPostCreated(PostDto postDto) {
+        log.info("sending post created event for post id {}", postDto.getId());
+        sendPostChangedEvent(convertTo(postDto, PostEventType.CREATED));
     }
 
-    public void sendPostUpdated(Post post) {
-        log.info("sending post updated event for post {}", post.getId());
-        sendPostChangedEvent(convertTo(post, PostEventType.UPDATED));
+    public void sendPostUpdated(PostDto postDto) {
+        log.info("sending post updated event for post {}", postDto.getId());
+        sendPostChangedEvent(convertTo(postDto, PostEventType.UPDATED));
     }
 
-    public void sendPostDeleted(Post post) {
-        log.info("sending post deleted event for post {}", post.getId());
-        sendPostChangedEvent(convertTo(post, PostEventType.DELETED));
+    public void sendPostDeleted(PostDto postDto) {
+        log.info("sending post deleted event for post {}", postDto.getId());
+        sendPostChangedEvent(convertTo(postDto, PostEventType.DELETED));
     }
 
     private void sendPostChangedEvent(PostEventPayload payload) {
@@ -39,28 +39,25 @@ public class PostEventSender {
         Message<PostEventPayload> message =
                 MessageBuilder
                         .withPayload(payload)
-                        .setHeader(KafkaHeaders.MESSAGE_KEY, String.valueOf(payload.getId()))
+                        .setHeader(KafkaHeaders.MESSAGE_KEY, String.valueOf(payload.getPostId()))
                         .build();
 
-        channels.momentsPostChanged().send(message);
+        channels.postChanged().send(message);
 
         log.info("post event {} sent to topic {} for post {} and user {}",
                 message.getPayload().getEventType().name(),
                 channels.OUTPUT,
-                message.getPayload().getId(),
-                message.getPayload().getUsername());
+                message.getPayload().getPostId(),
+                message.getPayload().getUserId());
     }
 
-    private PostEventPayload convertTo(Post post, PostEventType eventType) {
+    private PostEventPayload convertTo(PostDto postDto, PostEventType eventType) {
         return PostEventPayload
                 .builder()
                 .eventType(eventType)
-                .id(post.getId())
-                .username(post.getUser().getUsername())
-                .caption(post.getContent())
-                .createdAt(post.getCreatedAt())
-                .updatedAt(post.getUpdatedAt())
-                .imageUrl(post.getImageUrl())
+                .postId(postDto.getId())
+                .userId(postDto.getUserId())
+                .createdAt(postDto.getCreatedAt())
                 .build();
     }
 }

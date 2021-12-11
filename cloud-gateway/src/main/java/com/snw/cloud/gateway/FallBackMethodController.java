@@ -29,4 +29,10 @@ public class FallBackMethodController {
         return "Post Service is taking longer than Expected." +
                 " Please try again later";
     }
+
+    @GetMapping("/feedServiceFallBack")
+    public String feedServiceFallBackMethod() {
+        return "Feed Service is taking longer than Expected." +
+                " Please try again later";
+    }
 }
