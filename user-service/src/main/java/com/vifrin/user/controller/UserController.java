@@ -74,13 +74,19 @@ public class UserController {
     @PostMapping("/follow/{id}")
     public ResponseEntity<?> follow(@PathVariable Long id, @AuthenticationPrincipal Principal principal) {
         userService.follow(id, principal.getName());
-        return ResponseEntity.ok(new ResponseTemplate<ProfileDto>(ResponseType.OK, null));
+        return ResponseEntity.ok(new ResponseTemplate<>(ResponseType.OK, null));
+    }
+
+    @DeleteMapping("/follow/{id}")
+    public ResponseEntity<?> removeFollow(@PathVariable Long id, @AuthenticationPrincipal Principal principal) {
+        userService.removeFollow(id, principal.getName());
+        return ResponseEntity.ok(new ResponseTemplate<>(ResponseType.OK, null));
     }
 
     @DeleteMapping("/unfollow/{id}")
     public ResponseEntity<?> unfollow(@PathVariable Long id, @AuthenticationPrincipal Principal principal) {
         userService.unfollow(id, principal.getName());
-        return ResponseEntity.ok(new ResponseTemplate<ProfileDto>(ResponseType.OK, null));
+        return ResponseEntity.ok(new ResponseTemplate<>(ResponseType.OK, null));
     }
 
     @GetMapping("/{userId}/followers")
