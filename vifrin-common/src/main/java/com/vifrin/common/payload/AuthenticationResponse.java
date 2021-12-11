@@ -1,4 +1,4 @@
-package com.vifrin.common.payload.response;
+package com.vifrin.common.payload;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

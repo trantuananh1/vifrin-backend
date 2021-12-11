@@ -1,11 +1,9 @@
 package com.vifrin.feign.client;
 
-import com.vifrin.common.payload.UserDto;
+import com.vifrin.common.dto.UserDto;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestHeader;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
  * @Author: trantuananh1

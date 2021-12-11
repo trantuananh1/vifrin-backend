@@ -1,14 +1,16 @@
 package com.vifrin.feed.controller;
 
-import com.vifrin.common.payload.post.PostDto;
-import com.vifrin.feed.payload.SlicedResult;
+import com.vifrin.common.constant.BaseConstant;
+import com.vifrin.common.dto.PostDto;
 import com.vifrin.feed.service.FeedService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Optional;
+import java.security.Principal;
+import java.util.List;
 
 /**
  * @author: trantuananh1
@@ -23,13 +25,15 @@ public class FeedController {
     FeedService feedService;
 
     @GetMapping
-    public ResponseEntity<SlicedResult<PostDto>> getFeed(
-            @PathVariable String username,
-            @RequestParam(value = "ps",required = false) Optional<String> pagingState) {
-
-        log.info("fetching feed for user {} isFirstPage {}",
-                username, pagingState.isEmpty());
-
-        return ResponseEntity.ok(feedService.getUserFeed(username, pagingState));
+    public ResponseEntity<List<PostDto>> getFeed(@AuthenticationPrincipal Principal principal,
+                                                 @RequestParam(defaultValue = BaseConstant.DEFAULT_PAGE_NUMBER) int page,
+                                                 @RequestParam(defaultValue = BaseConstant.DEFAULT_PAGE_SIZE) int size) {
+        log.info("fetching feed for user {} page {}",
+                principal.getName(), page);
+        List<PostDto> postDtos = feedService.getUserFeed(principal.getName(), page, size);
+        if (postDtos == null){
+            return ResponseEntity.noContent().build();
+        }
+        return ResponseEntity.ok(postDtos);
     }
 }

@@ -1,7 +1,5 @@
 package com.vifrin.feed.messaging;
 
-import com.vifrin.common.payload.post.PostDto;
-import com.vifrin.feed.payload.PostEventPayload;
 import com.vifrin.feed.service.FeedGeneratorService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.cloud.stream.annotation.StreamListener;
@@ -36,7 +34,7 @@ public class PostEventListener {
 
         switch (eventType) {
             case CREATED:
-                feedGeneratorService.addToFeed(convertTo(message.getPayload()));
+                feedGeneratorService.addToFeed(message.getPayload());
                 break;
             case DELETED:
                 break;
@@ -45,14 +43,5 @@ public class PostEventListener {
         if(acknowledgment != null) {
             acknowledgment.acknowledge();
         }
-    }
-
-    private PostDto convertTo(PostEventPayload payload) {
-        return PostDto
-                .builder()
-                .id(payload.getPostId())
-                .createdAt(payload.getCreatedAt())
-                .userId(payload.getUserId())
-                .build();
     }
 }

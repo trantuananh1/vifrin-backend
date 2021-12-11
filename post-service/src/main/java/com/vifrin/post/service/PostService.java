@@ -3,8 +3,8 @@ package com.vifrin.post.service;
 import com.vifrin.common.constant.OperationConstant;
 import com.vifrin.common.entity.Post;
 import com.vifrin.common.entity.User;
-import com.vifrin.common.payload.post.PostDto;
-import com.vifrin.common.payload.post.PostRequest;
+import com.vifrin.common.dto.PostDto;
+import com.vifrin.common.payload.PostRequest;
 import com.vifrin.common.repository.PostRepository;
 import com.vifrin.common.repository.UserRepository;
 import com.vifrin.post.exception.NotAllowedException;
@@ -12,7 +12,6 @@ import com.vifrin.post.exception.ResourceNotFoundException;
 import com.vifrin.post.mapper.PostMapper;
 import com.vifrin.post.messaging.PostEventSender;
 import lombok.extern.slf4j.Slf4j;
-import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

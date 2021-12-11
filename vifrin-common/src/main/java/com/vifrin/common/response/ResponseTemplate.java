@@ -1,13 +1,10 @@
 package com.vifrin.common.response;
 
-import com.vifrin.common.payload.UserDto;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.xml.bind.annotation.XmlTransient;
 import java.io.Serializable;
 
 /**

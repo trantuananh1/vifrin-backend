@@ -5,8 +5,8 @@ import org.springframework.messaging.MessageChannel;
 
 public interface PostEventStream {
 
-    String OUTPUT = "momentsPostChanged";
+    String OUTPUT = "PostChanged";
 
     @Output(OUTPUT)
-    MessageChannel momentsPostChanged();
+    MessageChannel postChanged();
 }

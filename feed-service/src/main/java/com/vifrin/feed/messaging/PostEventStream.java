@@ -6,8 +6,8 @@ import org.springframework.messaging.SubscribableChannel;
 
 public interface PostEventStream {
 
-    String INPUT = "momentsPostChanged";
+    String INPUT = "PostChanged";
 
     @Input(INPUT)
-    SubscribableChannel momentsPostChanged();
+    SubscribableChannel postChanged();
 }

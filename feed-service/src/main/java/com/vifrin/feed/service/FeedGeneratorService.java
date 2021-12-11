@@ -2,16 +2,22 @@ package com.vifrin.feed.service;
 
 import com.vifrin.common.constant.BaseConstant;
 import com.vifrin.common.dto.FollowDto;
-import com.vifrin.common.payload.PagedResult;
-import com.vifrin.common.payload.post.PostDto;
-import com.vifrin.feed.entity.UserFeed;
+import com.vifrin.common.entity.Feed;
+import com.vifrin.common.entity.User;
+import com.vifrin.common.repository.FeedRepository;
+import com.vifrin.common.repository.PostRepository;
+import com.vifrin.common.repository.UserRepository;
+import com.vifrin.feed.exception.ResourceNotFoundException;
 import com.vifrin.feed.exception.UnableToGetFollowersException;
-import com.vifrin.feed.repository.FeedRepository;
+import com.vifrin.feed.messaging.PostEventPayload;
 import com.vifrin.feign.client.UserFeignClient;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+
+import java.time.Instant;
+import java.util.List;
 
 
 @Service
@@ -21,49 +27,52 @@ public class FeedGeneratorService {
     UserFeignClient userFeignClient;
     @Autowired
     FeedRepository feedRepository;
+    @Autowired
+    PostRepository postRepository;
+    @Autowired
+    UserRepository userRepository;
+    @Autowired
+    AuthService authService;
 
-    public void addToFeed(PostDto postDto) {
+    public void addToFeed(PostEventPayload postEventPayload) {
+        long userId = postEventPayload.getUserId();
+        long postId = postEventPayload.getPostId();
+        User user = userRepository.findById(userId)
+                .orElseThrow(()->new ResourceNotFoundException(userId));
+        String accessToken = authService.getAccessToken(user.getUsername());
+
         log.info("adding post {} to feed for user {}" ,
-                postDto.getId(), postDto.getUserId());
+                postId, userId);
 
         boolean isLast = false;
         int page = 0;
         int size = BaseConstant.PAGE_SIZE;
 
-        while(!isLast) {
-            ResponseEntity<PagedResult<FollowDto>> response = userFeignClient.getFollowers(postDto.getUserId(), page, size);
+        while(true) {
+            ResponseEntity<List<FollowDto>> response = userFeignClient.getFollowers(userId, page, size, accessToken);
             if(response.getStatusCode().is2xxSuccessful()) {
 
-                PagedResult<FollowDto> followDtos = response.getBody();
-
+                List<FollowDto> followDtos = response.getBody();
+                if (followDtos == null || followDtos.isEmpty()){
+                    break;
+                }
                 log.info("found {} followers for user {}, page {}",
-                        followDtos.getTotalElements(), postDto.getUserId(), page);
+                        followDtos.size(), userId, page);
 
-                followDtos.getContent()
-                        .stream()
-                        .map(followDto -> convertTo(followDto, postDto))
-                        .forEach(feedRepository::insert);
-
-                isLast = followDtos.isLast();
+                for (FollowDto followDto : followDtos){
+                    if (feedRepository.getFeedCountByUsernameAndPostId(followDto.getUsername(), postId) > 0){
+                        continue;
+                    }
+                    Feed feed = new Feed(followDto.getUserId(),followDto.getUsername(), postId, Instant.now());
+                    feedRepository.save(feed);
+                }
                 page++;
 
             } else {
-                String message =
-                        String.format("unable to get followers for user %s", postDto.getUserId());
-
+                String message = String.format("unable to get followers for user %s", userId);
                 log.warn(message);
                 throw new UnableToGetFollowersException(message);
             }
         }
-    }
-
-    private UserFeed convertTo(FollowDto followDto, PostDto postDto) {
-        return UserFeed
-                .builder()
-                .userId(followDto.getUserId())
-                .username(followDto.getUsername())
-                .postId(postDto.getId())
-                .createdAt(postDto.getCreatedAt())
-                .build();
     }
 }

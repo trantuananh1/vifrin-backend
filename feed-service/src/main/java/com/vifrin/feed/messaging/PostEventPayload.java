@@ -1,6 +1,5 @@
-package com.vifrin.feed.payload;
+package com.vifrin.feed.messaging;
 
-import com.vifrin.feed.messaging.PostEventType;
 import lombok.Builder;
 import lombok.Data;
 

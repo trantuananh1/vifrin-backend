@@ -1,16 +1,23 @@
 package com.vifrin.common.repository;
 
-import com.vifrin.common.entity.UserFeed;
-import org.springframework.data.cassandra.repository.CassandraRepository;
+import com.vifrin.common.entity.Feed;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Slice;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 /**
  * @author: trantuananh1
- * @since: Thu, 09/12/2021
+ * @since: Sat, 11/12/2021
  **/
 
-public interface FeedRepository extends CassandraRepository<UserFeed, String> {
+@Repository
+public interface FeedRepository extends JpaRepository<Feed, Long> {
+    @Query(value = "SELECT post_id FROM feeds WHERE username=?1 ORDER BY score DESC", nativeQuery = true)
+    List<Long> getFeedByUsername(String username, Pageable pageable);
 
-    Slice<UserFeed> findByUsername(String username, Pageable pageable);
+    @Query(value = "SELECT COUNT(*) FROM feeds WHERE username=?1 AND post_id=?2", nativeQuery = true)
+    Long getFeedCountByUsernameAndPostId(String username, Long postId);
 }

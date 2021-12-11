@@ -1,4 +1,4 @@
-package com.vifrin.common.payload;
+package com.vifrin.common.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

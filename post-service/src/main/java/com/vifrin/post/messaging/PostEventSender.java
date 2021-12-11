@@ -1,8 +1,7 @@
 package com.vifrin.post.messaging;
 
 
-import com.vifrin.common.entity.Post;
-import com.vifrin.common.payload.post.PostDto;
+import com.vifrin.common.dto.PostDto;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.kafka.support.KafkaHeaders;
 import org.springframework.messaging.Message;
@@ -43,7 +42,7 @@ public class PostEventSender {
                         .setHeader(KafkaHeaders.MESSAGE_KEY, String.valueOf(payload.getPostId()))
                         .build();
 
-        channels.momentsPostChanged().send(message);
+        channels.postChanged().send(message);
 
         log.info("post event {} sent to topic {} for post {} and user {}",
                 message.getPayload().getEventType().name(),

@@ -6,8 +6,8 @@ import com.vifrin.common.dto.ProfileDto;
 import com.vifrin.common.response.ResponseTemplate;
 import com.vifrin.common.response.ResponseType;
 import com.vifrin.user.service.UserService;
-import com.vifrin.common.payload.UserDto;
-import com.vifrin.common.payload.request.RegisterRequest;
+import com.vifrin.common.dto.UserDto;
+import com.vifrin.common.payload.RegisterRequest;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -18,7 +18,6 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import java.net.URI;
 import java.security.Principal;
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/users")
@@ -90,7 +89,7 @@ public class UserController {
     }
 
     @GetMapping("/{userId}/followers")
-    public ResponseEntity<?> getFollowers(@PathVariable Long userId, @AuthenticationPrincipal Principal principal,
+    public ResponseEntity<List<FollowDto>> getFollowers(@PathVariable Long userId, @AuthenticationPrincipal Principal principal,
                                           @RequestParam(value = "page", defaultValue = BaseConstant.DEFAULT_PAGE_NUMBER) int page,
                                           @RequestParam(value = "size", defaultValue = BaseConstant.DEFAULT_PAGE_SIZE) int size) {
         List<FollowDto> followDtos = userService.getFollowers(userId, principal.getName(), page, size);
@@ -101,7 +100,7 @@ public class UserController {
     }
 
     @GetMapping("/{userId}/followings")
-    public ResponseEntity<?> getFollowings(@PathVariable Long userId, @AuthenticationPrincipal Principal principal,
+    public ResponseEntity<List<FollowDto>> getFollowings(@PathVariable Long userId, @AuthenticationPrincipal Principal principal,
                                            @RequestParam(value = "page", defaultValue = BaseConstant.DEFAULT_PAGE_NUMBER) int page,
                                            @RequestParam(value = "size", defaultValue = BaseConstant.DEFAULT_PAGE_SIZE) int size) {
         List<FollowDto> followDtos = userService.getFollowings(userId, principal.getName(), page, size);

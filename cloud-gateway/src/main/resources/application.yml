@@ -52,14 +52,23 @@ spring:
               args:
                 name: POST-SERVICE
                 fallbackuri: forward:/postServiceFallBack
-#
-#hystrix:
-#  command:
-#    fallbackcmd:
-#      execution:
-#        isolation:
-#          thread:
-#            timeoutInMilliseconds: 200000
+        - id: FEED-SERVICE
+          uri: lb://FEED-SERVICE
+          predicates:
+            - Path=/feed/**
+          filters:
+            - name: CircuitBreaker
+              args:
+                name: FEED-SERVICE
+                fallbackuri: forward:/feedServiceFallBack
+
+hystrix:
+  command:
+    fallbackcmd:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 200000
 
 management:
   endpoints:

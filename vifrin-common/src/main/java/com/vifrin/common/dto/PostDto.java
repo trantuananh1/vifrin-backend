@@ -1,9 +1,8 @@
-package com.vifrin.common.payload.post;
+package com.vifrin.common.dto;
 
+import lombok.Builder;
 import lombok.Data;
-import org.json.JSONObject;
 
-import javax.persistence.Column;
 import java.time.Instant;
 
 /**
@@ -12,10 +11,15 @@ import java.time.Instant;
  **/
 
 @Data
-public class PostRequest {
+@Builder
+public class PostDto {
+    private Long id;
+    private Long userId;
     private String content;
     private String imageUrl;
     private boolean hasDetail;
     private String detail;
+    private Instant createdAt;
+    private Instant updatedAt;
     private String config;
 }

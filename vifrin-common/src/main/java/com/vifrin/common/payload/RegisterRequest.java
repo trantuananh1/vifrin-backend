@@ -1,4 +1,4 @@
-package com.vifrin.common.payload.request;
+package com.vifrin.common.payload;
 
 import lombok.Data;
 

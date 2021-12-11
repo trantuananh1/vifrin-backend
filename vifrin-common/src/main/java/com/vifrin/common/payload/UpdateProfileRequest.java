@@ -1,4 +1,4 @@
-package com.vifrin.common.payload.request;
+package com.vifrin.common.payload;
 
 import com.vifrin.common.entity.Gender;
 import lombok.Data;
