@@ -18,7 +18,10 @@ import java.time.Instant;
 @Data
 public class CommentDto {
     private Long id;
+    private Long postId;
     private String content;
     private Instant createdAt;
     private Instant updatedAt;
+    private int likesCount;
+    private UserSummary user;
 }

@@ -19,7 +19,7 @@ import java.time.Instant;
 @NoArgsConstructor
 @Builder
 @SecondaryTable(name = "activities", pkJoinColumns = @PrimaryKeyJoinColumn(name = "id"))
-@Table(name = "users")
+@Table(name = "comments")
 public class Comment {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

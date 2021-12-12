@@ -1,4 +1,4 @@
-package com.vifrin.post.config;
+package com.vifrin.comment.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;

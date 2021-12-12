@@ -1,6 +1,7 @@
 package com.vifrin.user.mapper;
 
 import com.vifrin.common.dto.FollowDto;
+import com.vifrin.common.dto.UserSummary;
 import com.vifrin.common.entity.User;
 import com.vifrin.common.dto.UserDto;
 import org.mapstruct.Mapper;
@@ -24,6 +25,12 @@ public abstract class UserMapper {
     @Mapping(target = "followersCount", source = "user.activity.followersCount")
     @Mapping(target = "followingsCount", source = "user.activity.followingsCount")
     public abstract UserDto userToUserDto(User user);
+
+    @Mapping(target = "id", source = "user.id")
+    @Mapping(target = "username", source = "user.username")
+    @Mapping(target = "avatarUrl", source = "user.avatarUrl")
+    @Mapping(target = "fullName", source = "user.profile.fullName")
+    public abstract UserSummary userToUserSummary(User user);
 
     @Mapping(target = "userId", source = "user.id")
     @Mapping(target = "username", source = "user.username")

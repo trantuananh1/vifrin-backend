@@ -41,4 +41,10 @@ public class FallBackMethodController {
         return "Media Service is taking longer than Expected." +
                 " Please try again later";
     }
+
+    @GetMapping("/commentServiceFallBack")
+    public String commentServiceFallBackMethod() {
+        return "Comment Service is taking longer than Expected." +
+                " Please try again later";
+    }
 }

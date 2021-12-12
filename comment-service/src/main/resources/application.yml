@@ -1,9 +1,9 @@
 server:
-  port: 9005
+  port: 9006
 
 spring:
   application:
-    name: POST-SERVICE
+    name: COMMENT-SERVICE
   zipkin:
     base-url: http://127.0.0.1:9411/
 
@@ -27,6 +27,6 @@ spring:
             key:
               serializer: org.apache.kafka.common.serialization.StringSerializer
       bindings:
-        PostChanged:
-          destination: vifrin-post-changed
+        CommentChanged:
+          destination: vifrin-comment-changed
           contentType: application/json

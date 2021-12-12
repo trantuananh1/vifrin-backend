@@ -1,6 +1,5 @@
-package com.vifrin.post;
+package com.vifrin.comment;
 
-import com.vifrin.post.messaging.PostEventStream;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -21,9 +20,8 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 @EnableFeignClients(basePackages = {"com.vifrin.feign"})
 @EnableJpaRepositories(basePackages = {"com.vifrin.common"})
 @EntityScan(basePackages = {"com.vifrin.common"})
-@EnableBinding(PostEventStream.class)
-public class PostServiceApplication {
+public class CommentServiceApplication {
     public static void main(String[] args) {
-        SpringApplication.run(PostServiceApplication.class, args);
+        SpringApplication.run(CommentServiceApplication.class, args);
     }
 }
