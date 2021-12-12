@@ -8,9 +8,11 @@ import com.amazonaws.services.s3.AmazonS3ClientBuilder;
 import com.amazonaws.services.s3.model.*;
 import com.vifrin.common.dto.MediaDto;
 import com.vifrin.common.entity.Media;
+import com.vifrin.common.entity.Post;
 import com.vifrin.common.entity.User;
 import com.vifrin.common.repository.MediaRepository;
 import com.vifrin.common.repository.UserRepository;
+import com.vifrin.media.dto.FileSupport;
 import com.vifrin.media.mapper.MediaMapper;
 import com.vifrin.media.utils.FileUploadHelper;
 import org.apache.commons.io.FilenameUtils;
@@ -27,7 +29,9 @@ import javax.annotation.PostConstruct;
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.List;
 
 @Service
 @PropertySources({ @PropertySource("aws_s3.properties") })
@@ -84,19 +88,6 @@ public class CdnService {
 
     }
 
-    public MediaDto uploadToCdn(MultipartFile file, String username) {
-        try {
-            String url = this.uploadToCdn(file.getOriginalFilename(), true);
-            BufferedImage image = ImageIO.read(file.getInputStream());
-            Media media = new Media(url, file.getName(), file.getContentType(), image.getWidth(), image.getHeight(), file.getSize());
-            User user = userRepository.findByUsername(username).get();
-            user.getMedia().add(mediaRepository.save(media));
-            return mediaMapper.mediaToMediaDto(media);
-        } catch (Exception e){
-            logger.error(e.getMessage());
-            return null;
-        }
-    }
 
     public String uploadToSpecificLocationOnCdn(String filePath, String targetLocation, boolean deleteLocalFile) {
         if (AWS_S3_ENABLE == null || AWS_S3_ENABLE == false) {
@@ -211,4 +202,42 @@ public class CdnService {
         return AWS_S3_BUCKET_ADDRESS_FORMAT;
     }
 
+    public MediaDto uploadToCdn(MultipartFile file, String username) {
+        try {
+            File fileUp = convertMultipartToFile(file);
+            String fileName = file.getOriginalFilename();
+            BufferedImage image = ImageIO.read(file.getInputStream());
+            String fileUrl = String.format(AWS_S3_BUCKET_ADDRESS_FORMAT, AWS_S3_MEDIA_FOLDER, fileName);
+            uploadFileToS3Bucket(fileName, fileUp);
+            float height = 0;
+            float width = 0;
+            if (FileSupport.IMAGE.getTypes().contains(file.getContentType())) {
+                height = image.getHeight();
+                width = image.getWidth();
+            }
+            Media media = new Media(fileUrl, file.getName(), file.getContentType(), width, height, file.getSize());
+            User user = userRepository.findByUsername(username).get();
+            media.setPost(new Post());
+            media.setUser(user);
+            media = mediaRepository.save(media);
+            user.getMedia().add(media);
+            return mediaMapper.mediaToMediaDto(media);
+        } catch (Exception e){
+            logger.error(e.getMessage());
+            return null;
+        }
+    }
+
+    private File convertMultipartToFile(MultipartFile file) throws IOException {
+        File convFile = new File(file.getOriginalFilename());
+        FileOutputStream fos = new FileOutputStream(convFile);
+        fos.write(file.getBytes());
+        fos.close();
+        return convFile;
+    }
+
+    private void uploadFileToS3Bucket(String fileName, File file) {
+        s3Client.putObject(new PutObjectRequest(AWS_S3_BUCKET_NAME, AWS_S3_MEDIA_FOLDER + "/" + fileName, file)
+                .withCannedAcl(CannedAccessControlList.PublicRead));
+    }
 }
