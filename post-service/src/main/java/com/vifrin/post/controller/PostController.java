@@ -31,7 +31,7 @@ public class PostController {
 
     @PostMapping
     public ResponseEntity<?> createPost(@RequestBody PostRequest postRequest, @AuthenticationPrincipal Principal principal){
-        log.info("received a request to create a post for image {}", postRequest.getImageUrls());
+        log.info("received a request to create a post for image {}", postRequest.getMediaIds());
         PostDto postDto = postService.createPost(postRequest, principal.getName());
         URI uri = ServletUriComponentsBuilder
                 .fromCurrentContextPath().path("/posts/{id}")
