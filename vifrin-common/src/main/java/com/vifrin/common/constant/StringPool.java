@@ -7,4 +7,6 @@ package com.vifrin.common.constant;
 
 public class StringPool {
     public static final String BLANK = "";
+    public static final String SPACE = " ";
+    public static final String UNDERLINE = "_";
 }

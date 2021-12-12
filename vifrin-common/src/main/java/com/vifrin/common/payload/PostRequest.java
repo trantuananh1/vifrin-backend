@@ -5,6 +5,7 @@ import org.json.JSONObject;
 
 import javax.persistence.Column;
 import java.time.Instant;
+import java.util.List;
 
 /**
  * @author: trantuananh1
@@ -14,8 +15,6 @@ import java.time.Instant;
 @Data
 public class PostRequest {
     private String content;
-    private String imageUrl;
-    private boolean hasDetail;
-    private String detail;
+    private List<Long> mediaIds;
     private String config;
 }

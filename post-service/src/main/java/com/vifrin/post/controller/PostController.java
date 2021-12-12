@@ -31,14 +31,14 @@ public class PostController {
 
     @PostMapping
     public ResponseEntity<?> createPost(@RequestBody PostRequest postRequest, @AuthenticationPrincipal Principal principal){
-        log.info("received a request to create a post for image {}", postRequest.getImageUrl());
+        log.info("received a request to create a post for image {}", postRequest.getImageUrls());
         PostDto postDto = postService.createPost(postRequest, principal.getName());
         URI uri = ServletUriComponentsBuilder
                 .fromCurrentContextPath().path("/posts/{id}")
                 .buildAndExpand(postDto.getId()).toUri();
         return ResponseEntity
                 .created(uri)
-                .body(new ResponseTemplate<PostDto>(ResponseType.CREATED, postDto));
+                .body(new ResponseTemplate<PostDto>(ResponseType.SUCCESS, postDto));
     }
 
     @PutMapping("/{id}")
@@ -46,7 +46,7 @@ public class PostController {
         log.info("received a request to update a post with id {}", id);
         postService.updatePost(postRequest, id, principal.getName());
         return ResponseEntity
-                .ok(new ResponseTemplate<>(ResponseType.OK, null));
+                .ok(new ResponseTemplate<>(ResponseType.SUCCESS, null));
     }
 
     @GetMapping("/{id}")
@@ -54,7 +54,7 @@ public class PostController {
         log.info("received a request to get a post with id {}", id);
         PostDto postDto = postService.getPost(id);
         return ResponseEntity
-                .ok(new ResponseTemplate<PostDto>(ResponseType.OK, postDto));
+                .ok(new ResponseTemplate<PostDto>(ResponseType.SUCCESS, postDto));
     }
 
     @DeleteMapping("/{id}")

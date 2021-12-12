@@ -9,6 +9,7 @@ import org.springframework.data.annotation.LastModifiedBy;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.Instant;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -33,15 +34,6 @@ public class Post implements Serializable {
     @Column(name = "content")
     private String content;
 
-    @Column(name= "image_url")
-    private String imageUrl;
-
-    @Column(name = "has_detail")
-    private boolean hasDetail;
-
-    @Column(name = "detail")
-    private String detail;
-
     @Column(name = "created_at")
     @CreatedDate
     private Instant createdAt;
@@ -57,18 +49,21 @@ public class Post implements Serializable {
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
+    @OneToMany(mappedBy = "post", fetch = FetchType.LAZY,
+            cascade = CascadeType.ALL)
+    private List<Media> medias;
+
     @Embedded
     private Activity activity;
 
-    public Post(String content, String imageUrl, boolean hasDetail, String detail, String config, User user){
+    public Post(String content, List<Media> medias, String config, User user){
         this.content = content;
-        this.imageUrl = imageUrl;
-        this.hasDetail = hasDetail;
-        this.detail = detail;
+        this.medias = medias;
         this.config = config;
         this.createdAt = Instant.now();
         this.updatedAt = Instant.now();
         this.user = user;
+        this.activity = new Activity();
     }
 
     @Override
@@ -76,14 +71,9 @@ public class Post implements Serializable {
         return "Post{" +
                 "id=" + id +
                 ", content='" + content + '\'' +
-                ", imageUrl='" + imageUrl + '\'' +
-                ", hasDetail=" + hasDetail +
-                ", detail='" + detail + '\'' +
                 ", createdAt=" + createdAt +
                 ", updatedAt=" + updatedAt +
                 ", config='" + config + '\'' +
-                ", user=" + user +
-                ", activity=" + activity +
                 '}';
     }
 }

@@ -99,52 +99,79 @@ public class UserService {
         userRepository.save(user);
     }
 
-    public void follow(Long targetId, String username) {
-        User target = userRepository.findById(targetId)
-                .orElseThrow(() -> new ResourceNotFoundException(targetId));
-        User follower = userRepository.findByUsername(username)
-                .orElseThrow(() -> new ResourceNotFoundException(username));
+    public boolean follow(Long targetId, String username) {
+        try {
+            User target = userRepository.findById(targetId)
+                    .orElseThrow(() -> new ResourceNotFoundException(targetId));
+            User me = userRepository.findByUsername(username)
+                    .orElseThrow(() -> new ResourceNotFoundException(username));
 
-        target.getFollowers().add(follower);
-        follower.getFollowings().add(target);
+            target.getFollowers().add(me);
+            me.getFollowings().add(target);
 
-        target.getActivity().setFollowersCount(target.getFollowers().size());
-        follower.getActivity().setFollowingsCount(follower.getFollowings().size());
+            target.getActivity().setFollowersCount(target.getFollowers().size());
+            me.getActivity().setFollowingsCount(me.getFollowings().size());
 
-        userRepository.save(target);
-        userRepository.save(follower);
+            userRepository.save(target);
+            userRepository.save(me);
+
+            return true;
+        } catch (Exception e) {
+            log.error(e.getMessage());
+            return false;
+        }
     }
 
-    public void removeFollow(Long targetId, String username) {
-        User target = userRepository.findById(targetId)
-                .orElseThrow(() -> new ResourceNotFoundException(targetId));
-        User me = userRepository.findByUsername(username)
-                .orElseThrow(() -> new ResourceNotFoundException(username));
+    public boolean removeFollow(Long targetId, String username) {
+        try {
+            User target = userRepository.findById(targetId)
+                    .orElseThrow(() -> new ResourceNotFoundException(targetId));
+            User me = userRepository.findByUsername(username)
+                    .orElseThrow(() -> new ResourceNotFoundException(username));
 
-        target.getFollowings().remove(me);
-        me.getFollowers().remove(target);
+            if (!me.getFollowers().contains(target)) {
+                return false;
+            }
 
-        target.getActivity().setFollowingsCount(target.getActivity().getFollowingsCount() - 1);
-        me.getActivity().setFollowersCount(target.getActivity().getFollowersCount() - 1);
+            target.getFollowings().remove(me);
+            me.getFollowers().remove(target);
 
-        userRepository.save(target);
-        userRepository.save(me);
+            target.getActivity().setFollowingsCount(target.getFollowings().size());
+            me.getActivity().setFollowersCount(me.getFollowers().size());
+
+            userRepository.save(target);
+            userRepository.save(me);
+            return true;
+        } catch (Exception e) {
+            log.error(e.getMessage());
+            return false;
+        }
     }
 
-    public void unfollow(Long targetId, String username) {
-        User target = userRepository.findById(targetId)
-                .orElseThrow(() -> new ResourceNotFoundException(targetId));
-        User follower = userRepository.findByUsername(username)
-                .orElseThrow(() -> new ResourceNotFoundException(username));
+    public boolean unfollow(Long targetId, String username) {
+        try {
+            User target = userRepository.findById(targetId)
+                    .orElseThrow(() -> new ResourceNotFoundException(targetId));
+            User me = userRepository.findByUsername(username)
+                    .orElseThrow(() -> new ResourceNotFoundException(username));
 
-        target.getFollowers().remove(follower);
-        follower.getFollowings().remove(target);
+            if (!me.getFollowings().contains(target)){
+                return false;
+            }
 
-        target.getActivity().setFollowersCount(target.getFollowers().size());
-        follower.getActivity().setFollowingsCount(follower.getFollowings().size());
+            target.getFollowers().remove(me);
+            me.getFollowings().remove(target);
 
-        userRepository.save(target);
-        userRepository.save(follower);
+            target.getActivity().setFollowersCount(target.getFollowers().size());
+            me.getActivity().setFollowingsCount(me.getFollowings().size());
+
+            userRepository.save(target);
+            userRepository.save(me);
+            return true;
+        }catch (Exception e){
+            log.error(e.getMessage());
+            return false;
+        }
     }
 
     public List<FollowDto> getFollowers(Long targetId, String username, int page, int size) {
