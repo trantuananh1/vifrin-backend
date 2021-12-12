@@ -12,6 +12,4 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @FeignClient("AUTH-SERVICE")
 public interface AuthFeignClient {
-    @GetMapping("/auth/me")
-    ResponseEntity<UserDto> getCurrentUser();
 }

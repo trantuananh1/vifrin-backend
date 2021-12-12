@@ -30,6 +30,7 @@
         <module>media-service</module>
         <module>post-service</module>
         <module>feed-service</module>
+        <module>comment-service</module>
     </modules>
     <packaging>pom</packaging>
     <dependencies>

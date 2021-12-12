@@ -3,6 +3,7 @@ package com.vifrin.user.controller;
 import com.vifrin.common.constant.BaseConstant;
 import com.vifrin.common.dto.FollowDto;
 import com.vifrin.common.dto.ProfileDto;
+import com.vifrin.common.dto.UserSummary;
 import com.vifrin.common.response.ResponseTemplate;
 import com.vifrin.common.response.ResponseType;
 import com.vifrin.user.service.UserService;
@@ -17,6 +18,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
 import java.security.Principal;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -66,6 +68,17 @@ public class UserController {
                 ResponseEntity.ok(new ResponseTemplate<UserDto>(ResponseType.OK, userDto)) :
                 ResponseEntity.badRequest().body(new ResponseTemplate<>(ResponseType.CANNOT_GET, null));
     }
+
+    @GetMapping("/summary/{userId}")
+    public ResponseEntity<?> getUserSummary(@PathVariable Long userId){
+        return ResponseEntity.ok(userService.getUserSummary(userId));
+    }
+
+    @GetMapping("/summary/in")
+    public ResponseEntity<?> getUserSummaries(@RequestBody List<Long> ids){
+        return ResponseEntity.ok(userService.getUserSummaries(ids));
+    }
+
 
     @GetMapping("/profile")
     public ResponseEntity<?> getProfile(@AuthenticationPrincipal Principal principal) {

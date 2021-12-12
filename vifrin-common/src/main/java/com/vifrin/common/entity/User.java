@@ -64,6 +64,10 @@ public class User implements Serializable {
             cascade = CascadeType.ALL)
     private Set<Media> medias;
 
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY,
+            cascade = CascadeType.ALL)
+    private Set<Comment> comments;
+
     @ManyToMany
     private Set<User> followers = new HashSet<>();
 

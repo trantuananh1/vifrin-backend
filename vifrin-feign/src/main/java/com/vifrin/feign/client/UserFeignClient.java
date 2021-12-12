@@ -2,6 +2,7 @@ package com.vifrin.feign.client;
 
 import com.vifrin.common.dto.FollowDto;
 import com.vifrin.common.dto.UserDto;
+import com.vifrin.common.dto.UserSummary;
 import com.vifrin.common.payload.RegisterRequest;
 import com.vifrin.common.response.ResponseTemplate;
 import org.springframework.cloud.openfeign.FeignClient;
@@ -37,4 +38,10 @@ public interface UserFeignClient {
                                                   @RequestParam int page,
                                                   @RequestParam int size,
                                                   @RequestHeader("Authorization") String token);
+
+    @GetMapping("/users/summary/in")
+    ResponseEntity<List<UserSummary>> getUserSummaries(@RequestBody List<Long> ids);
+
+    @GetMapping("/users/summary/{userId}")
+    ResponseEntity<UserSummary> getUserSummary(@PathVariable Long userId);
 }

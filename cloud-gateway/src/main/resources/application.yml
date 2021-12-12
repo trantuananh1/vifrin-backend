@@ -25,15 +25,6 @@ spring:
               args:
                 name: USER-SERVICE
                 fallbackuri: forward:/userServiceFallBack
-        - id: DEPARTMENT-SERVICE
-          uri: lb://DEPARTMENT-SERVICE
-          predicates:
-            - Path=/departments/**
-          filters:
-            - name: CircuitBreaker
-              args:
-                name: DEPARTMENT-SERVICE
-                fallbackuri: forward:/departmentServiceFallBack
         - id: AUTH-SERVICE
           uri: lb://AUTH-SERVICE
           predicates:
@@ -52,6 +43,15 @@ spring:
               args:
                 name: POST-SERVICE
                 fallbackuri: forward:/postServiceFallBack
+        - id: COMMENT-SERVICE
+          uri: lb://COMMENT-SERVICE
+          predicates:
+            - Path=/comments/**
+          filters:
+            - name: CircuitBreaker
+              args:
+                name: COMMENT-SERVICE
+                fallbackuri: forward:/commentServiceFallBack
         - id: FEED-SERVICE
           uri: lb://FEED-SERVICE
           predicates:

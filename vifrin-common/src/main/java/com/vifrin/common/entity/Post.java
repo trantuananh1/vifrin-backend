@@ -53,6 +53,10 @@ public class Post implements Serializable {
             cascade = CascadeType.ALL)
     private List<Media> medias;
 
+    @OneToMany(mappedBy = "post", fetch = FetchType.LAZY,
+            cascade = CascadeType.ALL)
+    private List<Comment> comments;
+
     @Embedded
     private Activity activity;
 
