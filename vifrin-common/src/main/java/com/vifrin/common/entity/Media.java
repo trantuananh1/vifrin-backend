@@ -18,7 +18,7 @@ import java.time.Instant;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@Table(name = "media")
+@Table(name = "medias")
 public class Media {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -51,15 +51,15 @@ public class Media {
     @LastModifiedBy
     private Instant updatedAt;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "post_id")
     private Post post;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private User user;
 
-    public Media(String url, String name, String mime, float width, float height, float size) {
+    public Media(String url, String name, String mime, float width, float height, float size, User user) {
         this.url = url;
         this.mime = mime;
         this.name = name;
@@ -68,6 +68,7 @@ public class Media {
         this.size = size;
         this.createdAt = Instant.now();
         this.updatedAt = Instant.now();
+        this.user = user;
     }
 
     @Override

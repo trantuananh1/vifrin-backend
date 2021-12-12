@@ -51,17 +51,19 @@ public class Post implements Serializable {
 
     @OneToMany(mappedBy = "post", fetch = FetchType.LAZY,
             cascade = CascadeType.ALL)
-    private Set<Media> medias;
+    private List<Media> medias;
 
     @Embedded
     private Activity activity;
 
-    public Post(String content, List<String> imageUrls, String config, User user){
+    public Post(String content, List<Media> medias, String config, User user){
         this.content = content;
+        this.medias = medias;
         this.config = config;
         this.createdAt = Instant.now();
         this.updatedAt = Instant.now();
         this.user = user;
+        this.activity = new Activity();
     }
 
     @Override

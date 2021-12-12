@@ -17,10 +17,10 @@ public class PostDto {
     private Long id;
     private Long userId;
     private String content;
-    private List<String> imageUrls;
     private Instant createdAt;
     private Instant updatedAt;
     private String config;
     private int likesCount;
     private int commentsCount;
+    private List<MediaDto> medias;
 }

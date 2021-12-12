@@ -15,6 +15,6 @@ import java.util.List;
 @Data
 public class PostRequest {
     private String content;
-    private List<String> imageUrls;
+    private List<Long> mediaIds;
     private String config;
 }

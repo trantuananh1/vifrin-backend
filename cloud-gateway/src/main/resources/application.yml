@@ -61,6 +61,15 @@ spring:
               args:
                 name: FEED-SERVICE
                 fallbackuri: forward:/feedServiceFallBack
+        - id: MEDIA-SERVICE
+          uri: lb://MEDIA-SERVICE
+          predicates:
+            - Path=/medias/**
+          filters:
+            - name: CircuitBreaker
+              args:
+                name: MEDIA-SERVICE
+                fallbackuri: forward:/mediaServiceFallBack
 
 hystrix:
   command:

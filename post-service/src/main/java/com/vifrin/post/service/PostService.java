@@ -1,10 +1,12 @@
 package com.vifrin.post.service;
 
 import com.vifrin.common.constant.OperationConstant;
+import com.vifrin.common.entity.Media;
 import com.vifrin.common.entity.Post;
 import com.vifrin.common.entity.User;
 import com.vifrin.common.dto.PostDto;
 import com.vifrin.common.payload.PostRequest;
+import com.vifrin.common.repository.MediaRepository;
 import com.vifrin.common.repository.PostRepository;
 import com.vifrin.common.repository.UserRepository;
 import com.vifrin.post.exception.NotAllowedException;
@@ -33,14 +35,23 @@ public class PostService {
     PostMapper postMapper;
     @Autowired
     UserRepository userRepository;
+    @Autowired
+    MediaRepository mediaRepository;
 
     public PostDto createPost(PostRequest postRequest, String username){
-        log.info("creating post image urls {}", postRequest.getImageUrls());
+        log.info("creating post image urls {}", postRequest.getMediaIds());
         User user = userRepository.findByUsername(username)
                 .orElseThrow(() -> new RuntimeException(""));
-
-        Post post = new Post(postRequest.getContent(), postRequest.getImageUrls(), postRequest.getConfig(), user);
+        List<Long> mediaIds = postRequest.getMediaIds();
+        List<Media> medias = mediaRepository.findAllById(mediaIds);
+        Post post = new Post(postRequest.getContent(), medias, postRequest.getConfig(), user);
         post = postRepository.save(post);
+
+        //update postId of media
+        for (Media media : medias){
+            media.setPost(post);
+        }
+        mediaRepository.saveAll(medias);
 
         log.info("post {} is saved successfully for user {}",
                 post.getId(), post.getUser().getUsername());

@@ -26,7 +26,7 @@ public class FileUploadHelper {
     private FileUploadHelper() {
     }
 
-    public static String ROOT_UPLOAD_DIRECTORY = null;
+    public static String ROOT_UPLOAD_DIRECTORY = System.getProperty("user.dir");
 
     public static String ROOT_TMP_DIRECTORY = null;
 

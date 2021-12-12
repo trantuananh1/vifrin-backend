@@ -6,6 +6,7 @@ import com.amazonaws.auth.BasicAWSCredentials;
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.AmazonS3ClientBuilder;
 import com.amazonaws.services.s3.model.*;
+import com.vifrin.common.constant.StringPool;
 import com.vifrin.common.dto.MediaDto;
 import com.vifrin.common.entity.Media;
 import com.vifrin.common.entity.Post;
@@ -32,6 +33,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.List;
+import java.util.Objects;
 
 @Service
 @PropertySources({ @PropertySource("aws_s3.properties") })
@@ -205,22 +207,19 @@ public class CdnService {
     public MediaDto uploadToCdn(MultipartFile file, String username) {
         try {
             File fileUp = convertMultipartToFile(file);
-            String fileName = file.getOriginalFilename();
-            BufferedImage image = ImageIO.read(file.getInputStream());
+            String fileName = Objects.requireNonNull(file.getOriginalFilename()).replace(StringPool.SPACE, StringPool.UNDERLINE);
             String fileUrl = String.format(AWS_S3_BUCKET_ADDRESS_FORMAT, AWS_S3_MEDIA_FOLDER, fileName);
             uploadFileToS3Bucket(fileName, fileUp);
             float height = 0;
             float width = 0;
             if (FileSupport.IMAGE.getTypes().contains(file.getContentType())) {
+                BufferedImage image = ImageIO.read(file.getInputStream());
                 height = image.getHeight();
                 width = image.getWidth();
             }
-            Media media = new Media(fileUrl, file.getName(), file.getContentType(), width, height, file.getSize());
             User user = userRepository.findByUsername(username).get();
-            media.setPost(new Post());
-            media.setUser(user);
-            media = mediaRepository.save(media);
-            user.getMedia().add(media);
+            Media media = mediaRepository.save(new Media(fileUrl, fileName, file.getContentType(), width, height, file.getSize(), user));
+            FileUploadHelper.removeLocalFile(fileName);
             return mediaMapper.mediaToMediaDto(media);
         } catch (Exception e){
             logger.error(e.getMessage());
