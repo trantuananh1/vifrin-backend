@@ -1,4 +1,4 @@
-package com.vifrin.mediaservice.dto;
+package com.vifrin.media.dto;
 
 public class ImageMessageRequest {
     private boolean isExtract = true;

@@ -1,4 +1,4 @@
-package com.vifrin.mediaservice.service;
+package com.vifrin.media.service;
 
 import com.amazonaws.ClientConfiguration;
 import com.amazonaws.auth.AWSStaticCredentialsProvider;
@@ -6,24 +6,41 @@ import com.amazonaws.auth.BasicAWSCredentials;
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.AmazonS3ClientBuilder;
 import com.amazonaws.services.s3.model.*;
-import com.vifrin.mediaservice.utils.FileUploadHelper;
+import com.vifrin.common.dto.MediaDto;
+import com.vifrin.common.entity.Media;
+import com.vifrin.common.entity.User;
+import com.vifrin.common.repository.MediaRepository;
+import com.vifrin.common.repository.UserRepository;
+import com.vifrin.media.mapper.MediaMapper;
+import com.vifrin.media.utils.FileUploadHelper;
 import org.apache.commons.io.FilenameUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.annotation.PropertySources;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.PostConstruct;
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
 import java.io.File;
-import java.io.InputStream;
+import java.io.IOException;
 
 @Service
 @PropertySources({ @PropertySource("aws_s3.properties") })
 public class CdnService {
 
     private static final Logger logger = LoggerFactory.getLogger(CdnService.class);
+
+    @Autowired
+    MediaRepository mediaRepository;
+    @Autowired
+    UserRepository userRepository;
+    @Autowired
+    MediaMapper mediaMapper;
 
     @Value("${AWS_S3_ACCESS_KEY}")
     private String AWS_S3_ACCESS_KEY;
@@ -67,8 +84,18 @@ public class CdnService {
 
     }
 
-    public String uploadToCdn(String filePath) {
-        return this.uploadToCdn(filePath, true);
+    public MediaDto uploadToCdn(MultipartFile file, String username) {
+        try {
+            String url = this.uploadToCdn(file.getOriginalFilename(), true);
+            BufferedImage image = ImageIO.read(file.getInputStream());
+            Media media = new Media(url, file.getName(), file.getContentType(), image.getWidth(), image.getHeight(), file.getSize());
+            User user = userRepository.findByUsername(username).get();
+            user.getMedia().add(mediaRepository.save(media));
+            return mediaMapper.mediaToMediaDto(media);
+        } catch (Exception e){
+            logger.error(e.getMessage());
+            return null;
+        }
     }
 
     public String uploadToSpecificLocationOnCdn(String filePath, String targetLocation, boolean deleteLocalFile) {
@@ -98,7 +125,6 @@ public class CdnService {
     }
 
     public String uploadToCdn(String filePath, boolean deleteLocalFile) {
-
         if (AWS_S3_ENABLE == null || AWS_S3_ENABLE == false) {
             logger.info("AWS disabled");
             return null;

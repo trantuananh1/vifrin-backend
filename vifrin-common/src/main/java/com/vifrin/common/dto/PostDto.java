@@ -4,6 +4,7 @@ import lombok.Builder;
 import lombok.Data;
 
 import java.time.Instant;
+import java.util.List;
 
 /**
  * @author: trantuananh1
@@ -16,10 +17,10 @@ public class PostDto {
     private Long id;
     private Long userId;
     private String content;
-    private String imageUrl;
-    private boolean hasDetail;
-    private String detail;
+    private List<String> imageUrls;
     private Instant createdAt;
     private Instant updatedAt;
     private String config;
+    private int likesCount;
+    private int commentsCount;
 }

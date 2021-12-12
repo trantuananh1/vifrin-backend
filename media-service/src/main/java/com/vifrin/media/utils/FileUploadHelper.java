@@ -1,4 +1,4 @@
-package com.vifrin.mediaservice.utils;
+package com.vifrin.media.utils;
 
 import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.io.IOUtils;

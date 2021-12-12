@@ -1,4 +1,4 @@
-package com.vifrin.mediaservice.utils;
+package com.vifrin.media.utils;
 
 public class VifrinBaseException extends Exception {
     private static final long serialVersionUID = 1L;

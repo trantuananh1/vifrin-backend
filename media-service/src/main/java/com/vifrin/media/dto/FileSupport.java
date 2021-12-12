@@ -1,4 +1,4 @@
-package com.vifrin.mediaservice.dto;
+package com.vifrin.media.dto;
 
 public enum FileSupport {
     IMAGE("image/jpg, image/jpeg, image/png, image/gif, image/bmp, image/svg+xml, image/tiff, image/vnd.ms-photo, image/webp, image/x-ms-bmp"),

@@ -18,6 +18,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import java.net.URI;
 import java.security.Principal;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/users")
@@ -52,6 +53,20 @@ public class UserController {
         return ResponseEntity.ok().body(responseTemplate);
     }
 
+    @GetMapping
+    public ResponseEntity<?> getUserByUsernameOrId(@RequestParam Optional<String> username,
+                                                   @RequestParam Optional<Long> id ){
+        UserDto userDto = null;
+        if (username.isPresent()){
+            userDto = userService.getUserByUsername(username.get());
+        } else if (id.isPresent()){
+            userDto = userService.getUserById(id.get());
+        }
+        return userDto != null ?
+                ResponseEntity.ok(new ResponseTemplate<UserDto>(ResponseType.OK, userDto)) :
+                ResponseEntity.badRequest().body(new ResponseTemplate<>(ResponseType.CANNOT_GET, null));
+    }
+
     @GetMapping("/profile")
     public ResponseEntity<?> getProfile(@AuthenticationPrincipal Principal principal) {
         ProfileDto profileDto = userService.getProfile(principal.getName());
@@ -72,20 +87,23 @@ public class UserController {
 
     @PostMapping("/follow/{id}")
     public ResponseEntity<?> follow(@PathVariable Long id, @AuthenticationPrincipal Principal principal) {
-        userService.follow(id, principal.getName());
-        return ResponseEntity.ok(new ResponseTemplate<>(ResponseType.OK, null));
+        return userService.follow(id, principal.getName()) ?
+                ResponseEntity.ok(new ResponseTemplate<>(ResponseType.OK, null)) :
+                ResponseEntity.badRequest().body(new ResponseTemplate<>(ResponseType.CANNOT_FOLLOW, null));
     }
 
     @DeleteMapping("/follow/{id}")
     public ResponseEntity<?> removeFollow(@PathVariable Long id, @AuthenticationPrincipal Principal principal) {
-        userService.removeFollow(id, principal.getName());
-        return ResponseEntity.ok(new ResponseTemplate<>(ResponseType.OK, null));
+        return userService.removeFollow(id, principal.getName()) ?
+                ResponseEntity.ok(new ResponseTemplate<>(ResponseType.OK, null)) :
+                ResponseEntity.badRequest().body(new ResponseTemplate<>(ResponseType.CANNOT_REMOVE_FOLLOW, null));
     }
 
     @DeleteMapping("/unfollow/{id}")
     public ResponseEntity<?> unfollow(@PathVariable Long id, @AuthenticationPrincipal Principal principal) {
-        userService.unfollow(id, principal.getName());
-        return ResponseEntity.ok(new ResponseTemplate<>(ResponseType.OK, null));
+        return userService.unfollow(id, principal.getName()) ?
+                ResponseEntity.ok(new ResponseTemplate<>(ResponseType.OK, null)) :
+                ResponseEntity.badRequest().body(new ResponseTemplate<>(ResponseType.CANNOT_UNFOLLOW, null));
     }
 
     @GetMapping("/{userId}/followers")
@@ -93,10 +111,9 @@ public class UserController {
                                           @RequestParam(value = "page", defaultValue = BaseConstant.DEFAULT_PAGE_NUMBER) int page,
                                           @RequestParam(value = "size", defaultValue = BaseConstant.DEFAULT_PAGE_SIZE) int size) {
         List<FollowDto> followDtos = userService.getFollowers(userId, principal.getName(), page, size);
-        if (followDtos.isEmpty()) {
-            return ResponseEntity.noContent().build();
-        }
-        return ResponseEntity.ok(followDtos);
+        return !followDtos.isEmpty() ?
+                ResponseEntity.ok(followDtos) :
+                ResponseEntity.noContent().build();
     }
 
     @GetMapping("/{userId}/followings")
@@ -104,10 +121,9 @@ public class UserController {
                                            @RequestParam(value = "page", defaultValue = BaseConstant.DEFAULT_PAGE_NUMBER) int page,
                                            @RequestParam(value = "size", defaultValue = BaseConstant.DEFAULT_PAGE_SIZE) int size) {
         List<FollowDto> followDtos = userService.getFollowings(userId, principal.getName(), page, size);
-        if (followDtos.isEmpty()) {
-            return ResponseEntity.noContent().build();
-        }
-        return ResponseEntity.ok(followDtos);
+        return !followDtos.isEmpty() ?
+                ResponseEntity.ok(followDtos) :
+                ResponseEntity.noContent().build();
     }
 }
 

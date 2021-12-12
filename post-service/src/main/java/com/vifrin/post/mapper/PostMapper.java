@@ -15,13 +15,13 @@ import java.util.List;
 @Mapper(componentModel = "spring")
 public abstract class PostMapper {
     @Mapping(target = "content", source = "post.content")
-    @Mapping(target = "imageUrl", source = "post.imageUrl")
-    @Mapping(target = "hasDetail", source = "post.hasDetail")
+    @Mapping(target = "imageUrls", source = "post.imageUrls")
     @Mapping(target = "userId", source = "post.user.id")
-    @Mapping(target = "detail", source = "post.detail")
     @Mapping(target = "createdAt", source = "post.createdAt")
     @Mapping(target = "updatedAt", source = "post.updatedAt")
     @Mapping(target = "config", source = "post.config")
+    @Mapping(target = "likesCount", source = "post.activity.likesCount")
+    @Mapping(target = "commentsCount", source = "post.activity.commentsCount")
     public abstract PostDto postToPostDto(Post post);
 
     public abstract List<PostDto> postsToPostDtos(List<Post> posts);

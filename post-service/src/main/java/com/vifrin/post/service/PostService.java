@@ -35,12 +35,11 @@ public class PostService {
     UserRepository userRepository;
 
     public PostDto createPost(PostRequest postRequest, String username){
-        log.info("creating post image url {}", postRequest.getImageUrl());
+        log.info("creating post image urls {}", postRequest.getImageUrls());
         User user = userRepository.findByUsername(username)
                 .orElseThrow(() -> new RuntimeException(""));
 
-        Post post = new Post(postRequest.getContent(), postRequest.getImageUrl(), postRequest.isHasDetail(),
-                postRequest.getDetail(), postRequest.getConfig(), user);
+        Post post = new Post(postRequest.getContent(), postRequest.getImageUrls(), postRequest.getConfig(), user);
         post = postRepository.save(post);
 
         log.info("post {} is saved successfully for user {}",
@@ -73,10 +72,7 @@ public class PostService {
                     if (!post.getUser().getUsername().equals(username)){
                         throw new NotAllowedException(username, String.valueOf(postId), OperationConstant.UPDATE);
                     }
-                    post.setImageUrl(postRequest.getImageUrl());
                     post.setContent(postRequest.getContent());
-                    post.setHasDetail(postRequest.isHasDetail());
-                    post.setDetail(postRequest.getDetail());
                     post.setConfig(postRequest.getConfig());
                     postRepository.save(post);
                     return post;

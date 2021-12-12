@@ -1,4 +1,4 @@
-package com.vifrin.mediaservice.service;
+package com.vifrin.media.service;
 
 public class MediaServiceImpl implements MediaService {
 }
