@@ -44,9 +44,9 @@ public class PostController {
     @PutMapping("/{id}")
     public ResponseEntity<?> updatePost(@RequestBody PostRequest postRequest, @PathVariable Long id, @AuthenticationPrincipal Principal principal){
         log.info("received a request to update a post with id {}", id);
-        postService.updatePost(postRequest, id, principal.getName());
+        PostDto postDto = postService.updatePost(postRequest, id, principal.getName());
         return ResponseEntity
-                .ok(new ResponseTemplate<>(ResponseType.SUCCESS, null));
+                .ok(new ResponseTemplate<>(ResponseType.SUCCESS, postDto));
     }
 
     @GetMapping("/{id}")

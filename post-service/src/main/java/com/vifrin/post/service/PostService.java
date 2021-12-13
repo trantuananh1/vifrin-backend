@@ -75,7 +75,7 @@ public class PostService {
         return postMapper.postToPostDto(post);
     }
 
-    public void updatePost(PostRequest postRequest, Long postId, String username){
+    public PostDto updatePost(PostRequest postRequest, Long postId, String username){
         log.info("updating post {}", postId);
         postRepository
                 .findById(postId)
@@ -85,6 +85,9 @@ public class PostService {
                     }
                     post.setContent(postRequest.getContent());
                     post.setConfig(postRequest.getConfig());
+                    List<Long> mediaIds = postRequest.getMediaIds();
+                    List<Media> medias = mediaRepository.findAllById(mediaIds);
+                    post.setMedias(medias);
                     postRepository.save(post);
                     return post;
                 })
@@ -92,6 +95,8 @@ public class PostService {
                     log.warn("post not found id {}", postId);
                     return new ResourceNotFoundException(String.valueOf(postId));
                 });
+        Post post = postRepository.findById(postId).get();
+        return postMapper.postToPostDto(post);
     }
 
     public void deletePost(Long postId, String username) {
