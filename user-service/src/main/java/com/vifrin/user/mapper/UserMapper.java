@@ -14,6 +14,7 @@ import java.util.List;
 public abstract class UserMapper {
     @Mapping(target = "id", source = "user.id")
     @Mapping(target = "username", source = "user.username")
+    @Mapping(target = "fullName", source = "user.profile.fullName")
     @Mapping(target = "email", source = "user.email")
     @Mapping(target = "isEnabled", source = "user.enabled")
     @Mapping(target = "createdAt", source = "user.createdAt")

@@ -15,6 +15,7 @@ import java.time.Instant;
 public class UserDto implements Serializable {
     private Long id;
     private String username;
+    private String fullName;
     private String email;
     private boolean isEnabled;
     private Instant createdAt;
