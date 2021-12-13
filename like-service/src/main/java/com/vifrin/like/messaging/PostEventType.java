@@ -1,4 +1,4 @@
-package com.vifrin.post.messaging;
+package com.vifrin.like.messaging;
 
 public enum PostEventType {
     CREATED, UPDATED, DELETED

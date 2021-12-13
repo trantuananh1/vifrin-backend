@@ -87,15 +87,17 @@ public class UserService {
         return userRepository.findAllById(ids);
     }
 
-    public UserSummary getUserSummary(Long userId){
+    public UserSummary getUserSummary(Long userId, String username){
+        User me = userRepository.findByUsername(username).get();
         return userRepository.findById(userId)
-                .map(user -> userMapper.userToUserSummary(user))
+                .map(user -> userMapper.userToUserSummary(user, me))
                 .orElseThrow(() -> new ResourceNotFoundException(userId));
     }
 
-    public List<UserSummary> getUserSummaries(List<Long> ids){
+    public List<UserSummary> getUserSummaries(List<Long> ids, String username){
+        User me = userRepository.findByUsername(username).get();
         return userRepository.findAllById(ids).stream()
-                .map(user -> userMapper.userToUserSummary(user))
+                .map(user -> userMapper.userToUserSummary(user, me))
                 .collect(Collectors.toList());
     }
 

@@ -1,4 +1,4 @@
-package com.vifrin.post.config;
+package com.vifrin.like.config;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.JWTVerifier;

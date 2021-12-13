@@ -9,6 +9,7 @@ import com.vifrin.common.entity.User;
 import com.vifrin.common.repository.CommentRepository;
 import com.vifrin.common.repository.PostRepository;
 import com.vifrin.common.repository.UserRepository;
+import com.vifrin.common.util.RedisUtil;
 import com.vifrin.feign.client.UserFeignClient;
 import com.vifrin.post.exception.ResourceNotFoundException;
 import lombok.extern.slf4j.Slf4j;
@@ -46,7 +47,7 @@ public class CommentService {
         Comment comment = commentMapper.commentDtoToComment(commentDto, post, user);
         comment = commentRepository.save(comment);
         post.getActivity().setCommentsCount(post.getComments().size());
-        return commentMapper.commentToCommentDto(comment);
+        return commentMapper.commentToCommentDto(comment, RedisUtil.getInstance().getValue(username));
     }
 
 //    public boolean updateComment(){
@@ -56,13 +57,13 @@ public class CommentService {
     public CommentDto getComment(Long commentId, String username){
         Comment comment = commentRepository.findById(commentId)
                 .orElseThrow(() -> new ResourceNotFoundException(commentId));
-        return commentMapper.commentToCommentDto(comment);
+        return commentMapper.commentToCommentDto(comment, RedisUtil.getInstance().getValue(username));
     }
 
-    public List<CommentDto> getComments(Long postId, int page, int size){
+    public List<CommentDto> getComments(Long postId, String username, int page, int size){
         Pageable pageable = PageRequest.of(page, size);
         List<Comment> comments = commentRepository.findAllByPostId(postId, pageable);
-        return commentMapper.commentsToCommentDtos(comments);
+        return commentMapper.commentsToCommentDtos(comments, RedisUtil.getInstance().getValue(username));
     }
 
     public void deleteComment(Long commentId){

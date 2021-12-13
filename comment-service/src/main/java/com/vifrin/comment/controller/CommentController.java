@@ -58,7 +58,7 @@ public class CommentController {
     public ResponseEntity<?> getCommentsByPost(@PathVariable Long postId, @AuthenticationPrincipal Principal principal,
                                                @RequestParam(value = "page", defaultValue = BaseConstant.DEFAULT_PAGE_NUMBER) int page,
                                                @RequestParam(value = "size", defaultValue = BaseConstant.DEFAULT_PAGE_SIZE) int size){
-        List<CommentDto> commentDtos = commentService.getComments(postId, page, size);
+        List<CommentDto> commentDtos = commentService.getComments(postId, principal.getName(), page, size);
         return commentDtos.isEmpty()?
                 ResponseEntity.noContent().build() :
                 ResponseEntity.ok(new ResponseTemplate<>(ResponseType.SUCCESS, commentDtos));
@@ -67,6 +67,6 @@ public class CommentController {
     @DeleteMapping("/{id}")
     public ResponseEntity<?> deleteComment(@PathVariable Long id){
         commentService.deleteComment(id);
-        return ResponseEntity.ok(new ResponseTemplate<>(ResponseType.SUCCESS, null));
+        return ResponseEntity.ok(new ResponseTemplate<>(ResponseType.SUCCESS));
     }
 }

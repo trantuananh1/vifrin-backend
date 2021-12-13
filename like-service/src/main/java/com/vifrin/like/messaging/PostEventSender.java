@@ -1,4 +1,4 @@
-package com.vifrin.post.messaging;
+package com.vifrin.like.messaging;
 
 
 import com.vifrin.common.dto.PostDto;

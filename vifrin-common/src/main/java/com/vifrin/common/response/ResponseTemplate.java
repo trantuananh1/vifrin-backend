@@ -26,4 +26,10 @@ public class ResponseTemplate<T> implements Serializable {
         this.message = responseType.getMessage();
         this.data = data;
     }
+
+    public ResponseTemplate(ResponseType responseType) {
+        this.code = responseType.getCode();
+        this.message = responseType.getMessage();
+        this.data = null;
+    }
 }

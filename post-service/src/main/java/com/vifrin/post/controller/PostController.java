@@ -50,9 +50,9 @@ public class PostController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<?> getPost(@PathVariable Long id, @AuthenticationPrincipal Principal user){
+    public ResponseEntity<?> getPost(@PathVariable Long id, @AuthenticationPrincipal Principal principal){
         log.info("received a request to get a post with id {}", id);
-        PostDto postDto = postService.getPost(id);
+        PostDto postDto = postService.getPost(id, principal.getName());
         return ResponseEntity
                 .ok(new ResponseTemplate<PostDto>(ResponseType.SUCCESS, postDto));
     }

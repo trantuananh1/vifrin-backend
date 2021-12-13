@@ -1,4 +1,4 @@
-package com.vifrin.post;
+package com.vifrin.like;
 
 import com.vifrin.post.messaging.PostEventStream;
 import org.springframework.boot.SpringApplication;
@@ -22,8 +22,8 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 @EnableJpaRepositories(basePackages = {"com.vifrin.common"})
 @EntityScan(basePackages = {"com.vifrin.common"})
 @EnableBinding(PostEventStream.class)
-public class PostServiceApplication {
+public class LikeServiceApplication {
     public static void main(String[] args) {
-        SpringApplication.run(PostServiceApplication.class, args);
+        SpringApplication.run(LikeServiceApplication.class, args);
     }
 }

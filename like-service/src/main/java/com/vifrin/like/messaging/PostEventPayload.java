@@ -1,4 +1,4 @@
-package com.vifrin.post.messaging;
+package com.vifrin.like.messaging;
 
 import lombok.Builder;
 import lombok.Data;

@@ -5,12 +5,14 @@ import com.vifrin.common.dto.UserSummary;
 import com.vifrin.common.entity.Media;
 import com.vifrin.common.entity.Post;
 import com.vifrin.common.dto.PostDto;
+import com.vifrin.common.util.RedisUtil;
 import com.vifrin.feign.client.UserFeignClient;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * @author: trantuananh1
@@ -32,17 +34,21 @@ public abstract class PostMapper {
     @Mapping(target = "likesCount", source = "post.activity.likesCount")
     @Mapping(target = "commentsCount", source = "post.activity.commentsCount")
     @Mapping(target = "medias", expression = "java(getMedias(post))")
-    @Mapping(target = "user", expression = "java(getUserSummary(post))")
-    public abstract PostDto postToPostDto(Post post);
+    @Mapping(target = "user", expression = "java(getUserSummary(post, token))")
+    public abstract PostDto postToPostDto(Post post, String token);
 
-    public abstract List<PostDto> postsToPostDtos(List<Post> posts);
+    public List<PostDto> postsToPostDtos(List<Post> posts, String token){
+        return posts.stream()
+                .map(post -> postToPostDto(post, token))
+                .collect(Collectors.toList());
+    }
 
     List<MediaDto> getMedias(Post post){
         List<Media> medias = post.getMedias();
         return mediaMapper.mediasToMediaDtos(medias);
     }
 
-    UserSummary getUserSummary(Post post){
-        return userFeignClient.getUserSummary(post.getUser().getId()).getBody();
+    UserSummary getUserSummary(Post post, String token){
+        return userFeignClient.getUserSummary(post.getUser().getId(), token).getBody();
     }
 }
