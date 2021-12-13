@@ -14,6 +14,7 @@ import java.security.Principal;
 
 @RestController
 @RequestMapping(path = "/medias")
+@CrossOrigin(origins = "*")
 public class MediaController {
 
     @Autowired
