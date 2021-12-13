@@ -2,6 +2,7 @@ package com.vifrin.user.service;
 
 import com.vifrin.common.dto.FollowDto;
 import com.vifrin.common.dto.ProfileDto;
+import com.vifrin.common.dto.UserSummary;
 import com.vifrin.user.exception.EmailAlreadyExistsException;
 import com.vifrin.user.exception.ResourceNotFoundException;
 import com.vifrin.user.exception.UsernameAlreadyExistsException;
@@ -20,6 +21,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.time.Instant;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @Slf4j
@@ -71,6 +73,22 @@ public class UserService {
         User user = userRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException(id));
         return userMapper.userToUserDto(user);
+    }
+
+    public List<User> findAllByIds(List<Long> ids){
+        return userRepository.findAllById(ids);
+    }
+
+    public UserSummary getUserSummary(Long userId){
+        return userRepository.findById(userId)
+                .map(user -> userMapper.userToUserSummary(user))
+                .orElseThrow(() -> new ResourceNotFoundException(userId));
+    }
+
+    public List<UserSummary> getUserSummaries(List<Long> ids){
+        return userRepository.findAllById(ids).stream()
+                .map(user -> userMapper.userToUserSummary(user))
+                .collect(Collectors.toList());
     }
 
     public ProfileDto getProfile(String username) {
