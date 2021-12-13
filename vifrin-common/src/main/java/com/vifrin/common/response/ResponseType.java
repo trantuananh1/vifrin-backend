@@ -26,7 +26,8 @@ public enum ResponseType {
     CANNOT_UNFOLLOW(1007, "cannot unfollow"),
     CANNOT_REMOVE_FOLLOW(1008, "cannot remove follow"),
     CANNOT_GET(1008, "cannot get"),
-    CANNOT_UPLOAD_FILE(1009, "cannot upload file");
+    CANNOT_UPLOAD_FILE(1009, "cannot upload file"),
+    CANNOT_LIKE(1010, "cannot like");
 
     private final int code;
     private final String message;

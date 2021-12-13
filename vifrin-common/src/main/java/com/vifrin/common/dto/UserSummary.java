@@ -13,4 +13,6 @@ public class UserSummary {
     private String username;
     private String fullName;
     private String avatarUrl;
+    private boolean isFollowing;
+    private boolean isFollower;
 }

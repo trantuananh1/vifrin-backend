@@ -70,13 +70,13 @@ public class UserController {
     }
 
     @GetMapping("/summary/{userId}")
-    public ResponseEntity<?> getUserSummary(@PathVariable Long userId){
-        return ResponseEntity.ok(userService.getUserSummary(userId));
+    public ResponseEntity<?> getUserSummary(@PathVariable Long userId, @AuthenticationPrincipal Principal principal){
+        return ResponseEntity.ok(userService.getUserSummary(userId, principal.getName()));
     }
 
     @GetMapping("/summary/in")
-    public ResponseEntity<?> getUserSummaries(@RequestBody List<Long> ids){
-        return ResponseEntity.ok(userService.getUserSummaries(ids));
+    public ResponseEntity<?> getUserSummaries(@RequestBody List<Long> ids, @AuthenticationPrincipal Principal principal){
+        return ResponseEntity.ok(userService.getUserSummaries(ids, principal.getName()));
     }
 
 

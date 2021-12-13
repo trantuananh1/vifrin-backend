@@ -70,6 +70,15 @@ spring:
               args:
                 name: MEDIA-SERVICE
                 fallbackuri: forward:/mediaServiceFallBack
+        - id: LIKE-SERVICE
+          uri: lb://LIKE-SERVICE
+          predicates:
+            - Path=/likes/**
+          filters:
+            - name: CircuitBreaker
+              args:
+                name: LIKE-SERVICE
+                fallbackuri: forward:/likeServiceFallBack
 
 hystrix:
   command:

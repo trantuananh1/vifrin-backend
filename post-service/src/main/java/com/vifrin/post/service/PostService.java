@@ -9,6 +9,7 @@ import com.vifrin.common.payload.PostRequest;
 import com.vifrin.common.repository.MediaRepository;
 import com.vifrin.common.repository.PostRepository;
 import com.vifrin.common.repository.UserRepository;
+import com.vifrin.common.util.RedisUtil;
 import com.vifrin.post.exception.NotAllowedException;
 import com.vifrin.post.exception.ResourceNotFoundException;
 import com.vifrin.post.mapper.PostMapper;
@@ -60,19 +61,19 @@ public class PostService {
         user.getActivity().setPostsCount(user.getPosts().size());
         userRepository.save(user);
 
-        PostDto postDto = postMapper.postToPostDto(post);
+        PostDto postDto = postMapper.postToPostDto(post, RedisUtil.getInstance().getValue(username));
         postEventSender.sendPostCreated(postDto);
         return postDto;
     }
 
-    public PostDto getPost(Long postId){
+    public PostDto getPost(Long postId, String username){
         Post post = postRepository
                 .findById(postId)
                 .orElseThrow(() -> {
                     log.warn("post not found id {}", postId);
                     return new ResourceNotFoundException(String.valueOf(postId));
                 });
-        return postMapper.postToPostDto(post);
+        return postMapper.postToPostDto(post, RedisUtil.getInstance().getValue(username));
     }
 
     public PostDto updatePost(PostRequest postRequest, Long postId, String username){
@@ -122,7 +123,8 @@ public class PostService {
         User user = userRepository.findByUsername(username)
                 .orElseThrow(() -> new ResourceNotFoundException(username));
         List<Post> posts = postRepository.findByUserIdOrderByCreatedAtDesc(user.getId());
-        return postMapper.postsToPostDtos(posts);
+        String token = RedisUtil.getInstance().getValue(username);
+        return postMapper.postsToPostDtos(posts, token);
     }
 
     public List<Post> postsByIdIn(List<String> ids) {

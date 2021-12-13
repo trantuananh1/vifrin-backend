@@ -12,6 +12,7 @@ import org.mapstruct.Mapping;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * @author: trantuananh1
@@ -29,10 +30,14 @@ public abstract class CommentMapper {
     @Mapping(target = "updatedAt", source = "comment.updatedAt")
     @Mapping(target = "postId", source = "comment.user.id")
     @Mapping(target = "likesCount", source = "comment.activity.likesCount")
-    @Mapping(target = "user", expression = "java(getUserSummary(comment))")
-    public abstract CommentDto commentToCommentDto(Comment comment);
+    @Mapping(target = "user", expression = "java(getUserSummary(comment, token))")
+    public abstract CommentDto commentToCommentDto(Comment comment, String token);
 
-    public abstract List<CommentDto> commentsToCommentDtos(List<Comment> comments);
+    public List<CommentDto> commentsToCommentDtos(List<Comment> comments, String token){
+        return comments.stream()
+                .map(comment -> commentToCommentDto(comment, token))
+                .collect(Collectors.toList());
+    }
 
     @Mapping(target = "id", ignore = true)
     @Mapping(target = "content", source = "commentDto.content")
@@ -45,7 +50,7 @@ public abstract class CommentMapper {
 
     public abstract List<Comment> commentDtosToComments(List<CommentDto> commentDtos);
 
-    UserSummary getUserSummary(Comment comment){
-        return userFeignClient.getUserSummary(comment.getUser().getId()).getBody();
+    UserSummary getUserSummary(Comment comment, String token){
+        return userFeignClient.getUserSummary(comment.getUser().getId(), token).getBody();
     }
 }

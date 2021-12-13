@@ -40,8 +40,8 @@ public interface UserFeignClient {
                                                   @RequestHeader("Authorization") String token);
 
     @GetMapping("/users/summary/in")
-    ResponseEntity<List<UserSummary>> getUserSummaries(@RequestBody List<Long> ids);
+    ResponseEntity<List<UserSummary>> getUserSummaries(@RequestBody List<Long> ids, @RequestHeader("Authorization") String token);
 
     @GetMapping("/users/summary/{userId}")
-    ResponseEntity<UserSummary> getUserSummary(@PathVariable Long userId);
+    ResponseEntity<UserSummary> getUserSummary(@PathVariable Long userId, @RequestHeader("Authorization") String token);
 }
