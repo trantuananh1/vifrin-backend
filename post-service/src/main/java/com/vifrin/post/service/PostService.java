@@ -86,9 +86,14 @@ public class PostService {
                     }
                     post.setContent(postRequest.getContent());
                     post.setConfig(postRequest.getConfig());
+                    List<Media> oldMedias = post.getMedias();
+                    for (Media media : oldMedias){
+                        media.setPost(null);
+                    }
+                    mediaRepository.saveAll(oldMedias);
                     List<Long> mediaIds = postRequest.getMediaIds();
                     List<Media> medias = mediaRepository.findAllById(mediaIds);
-                    post.getMedias().addAll(medias);
+                    post.setMedias(medias);
                     postRepository.save(post);
                     for (Media media : medias){
                         media.setPost(post);
