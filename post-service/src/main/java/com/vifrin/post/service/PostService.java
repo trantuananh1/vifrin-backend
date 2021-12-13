@@ -88,8 +88,12 @@ public class PostService {
                     post.setConfig(postRequest.getConfig());
                     List<Long> mediaIds = postRequest.getMediaIds();
                     List<Media> medias = mediaRepository.findAllById(mediaIds);
-                    post.setMedias(medias);
+                    post.getMedias().addAll(medias);
                     postRepository.save(post);
+                    for (Media media : medias){
+                        media.setPost(post);
+                    }
+                    mediaRepository.saveAll(medias);
                     return post;
                 })
                 .orElseThrow(() -> {
@@ -97,7 +101,7 @@ public class PostService {
                     return new ResourceNotFoundException(String.valueOf(postId));
                 });
         Post post = postRepository.findById(postId).get();
-        return postMapper.postToPostDto(post);
+        return postMapper.postToPostDto(post, RedisUtil.getInstance().getValue(username));
     }
 
     public void deletePost(Long postId, String username) {
