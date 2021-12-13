@@ -47,4 +47,10 @@ public class FallBackMethodController {
         return "Comment Service is taking longer than Expected." +
                 " Please try again later";
     }
+
+    @GetMapping("/likeServiceFallBack")
+    public String likeServiceFallBackMethod() {
+        return "Like Service is taking longer than Expected." +
+                " Please try again later";
+    }
 }
