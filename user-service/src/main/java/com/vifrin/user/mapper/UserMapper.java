@@ -24,6 +24,22 @@ public abstract class UserMapper {
     @Mapping(target = "postsCount", source = "user.activity.postsCount")
     @Mapping(target = "followersCount", source = "user.activity.followersCount")
     @Mapping(target = "followingsCount", source = "user.activity.followingsCount")
+    @Mapping(target = "isFollowing", expression = "java(isFollowing(user,me))")
+    public abstract UserDto userToUserDto(User user, User me);
+
+    @Mapping(target = "id", source = "user.id")
+    @Mapping(target = "username", source = "user.username")
+    @Mapping(target = "email", source = "user.email")
+    @Mapping(target = "isEnabled", source = "user.enabled")
+    @Mapping(target = "createdAt", source = "user.createdAt")
+    @Mapping(target = "updatedAt", source = "user.updatedAt")
+    @Mapping(target = "role", source = "user.role")
+    @Mapping(target = "avatarUrl", source = "user.avatarUrl")
+    @Mapping(target = "bio", source = "user.profile.bio")
+    @Mapping(target = "postsCount", source = "user.activity.postsCount")
+    @Mapping(target = "followersCount", source = "user.activity.followersCount")
+    @Mapping(target = "followingsCount", source = "user.activity.followingsCount")
+    @Mapping(target = "isFollowing", ignore = true)
     public abstract UserDto userToUserDto(User user);
 
     @Mapping(target = "id", source = "user.id")

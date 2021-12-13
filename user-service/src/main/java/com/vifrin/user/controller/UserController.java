@@ -41,9 +41,9 @@ public class UserController {
                 .body(new ResponseTemplate<UserDto>(ResponseType.CREATED, userDto));
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<?> getUserById(@PathVariable Long id) {
-        UserDto userDto = userService.getUserById(id);
+    @GetMapping("/{username}")
+    public ResponseEntity<?> getUserByUsername(@PathVariable String username, @AuthenticationPrincipal Principal principal) {
+        UserDto userDto = userService.getUserByUsername(username, principal.getName());
         ResponseTemplate<UserDto> responseTemplate = new ResponseTemplate<UserDto>(ResponseType.OK, userDto);
         return ResponseEntity.ok().body(responseTemplate);
     }

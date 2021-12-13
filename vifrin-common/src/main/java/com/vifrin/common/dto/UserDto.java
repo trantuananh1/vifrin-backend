@@ -25,4 +25,5 @@ public class UserDto implements Serializable {
     private int postsCount;
     private int followersCount;
     private int followingsCount;
+    private boolean isFollowing;
 }

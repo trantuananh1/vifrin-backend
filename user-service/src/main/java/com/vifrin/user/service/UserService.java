@@ -69,6 +69,14 @@ public class UserService {
     }
 
     @Transactional(readOnly = true)
+    public UserDto getUserByUsername(String username, String myName) {
+        User user = userRepository.findByUsername(username)
+                .orElseThrow(() -> new ResourceNotFoundException(username));
+        User me = userRepository.findByUsername(myName).get();
+        return userMapper.userToUserDto(user, me);
+    }
+
+    @Transactional(readOnly = true)
     public UserDto getUserById(Long id) {
         User user = userRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException(id));

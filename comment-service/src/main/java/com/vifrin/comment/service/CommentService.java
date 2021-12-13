@@ -45,6 +45,7 @@ public class CommentService {
         User user = userRepository.findByUsername(username).get();
         Comment comment = commentMapper.commentDtoToComment(commentDto, post, user);
         comment = commentRepository.save(comment);
+        post.getActivity().setCommentsCount(post.getComments().size());
         return commentMapper.commentToCommentDto(comment);
     }
 
