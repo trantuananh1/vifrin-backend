@@ -144,9 +144,17 @@ public class UserController {
     @GetMapping("/suggestions")
     public ResponseEntity<?> getFollowSuggestions(@AuthenticationPrincipal Principal principal,
                                                          @RequestParam(value = "size", defaultValue = BaseConstant.DEFAULT_PAGE_SIZE) int size) {
-        Set<UserSummary> userSummaries = userService.getFollowSuggestions(principal.getName(), size);
+        List<UserSummary> userSummaries = userService.getFollowSuggestions(principal.getName(), size);
         return !userSummaries.isEmpty() ?
-                ResponseEntity.ok(new ResponseTemplate<Set<UserSummary>>(ResponseType.SUCCESS, userSummaries)) :
+                ResponseEntity.ok(new ResponseTemplate<List<UserSummary>>(ResponseType.SUCCESS, userSummaries)) :
+                ResponseEntity.noContent().build();
+    }
+
+    @GetMapping("/search")
+    public ResponseEntity<?> searchUser(@RequestParam String key, @AuthenticationPrincipal Principal principal){
+        List<UserSummary> userSummaries = userService.searchUser(key, principal.getName());
+        return !userSummaries.isEmpty() ?
+                ResponseEntity.ok(new ResponseTemplate<List<UserSummary>>(ResponseType.SUCCESS, userSummaries)) :
                 ResponseEntity.noContent().build();
     }
 }

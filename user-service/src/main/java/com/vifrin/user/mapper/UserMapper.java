@@ -53,10 +53,10 @@ public abstract class UserMapper {
     @Mapping(target = "follower", expression = "java(isFollower(user, me))")
     public abstract UserSummary userToUserSummary(User user, User me);
 
-    public Set<UserSummary> usersToUserSummaries(Set<User> users, User me){
+    public List<UserSummary> usersToUserSummaries(List<User> users, User me){
         return users.stream()
                 .map(user -> userToUserSummary(user, me))
-                .collect(Collectors.toSet());
+                .collect(Collectors.toList());
     }
 
     @Mapping(target = "userId", source = "user.id")

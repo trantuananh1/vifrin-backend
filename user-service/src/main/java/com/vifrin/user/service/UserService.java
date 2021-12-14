@@ -47,6 +47,7 @@ public class UserService {
             throw new EmailAlreadyExistsException();
         }
         User user = new User(registerRequest.getUsername(), registerRequest.getPassword(), registerRequest.getEmail());
+        user.setFullName(registerRequest.getFullName());
         userRepository.save(user);
 
         Profile profile = new Profile(registerRequest.getEmail(), registerRequest.getFullName());
@@ -220,7 +221,7 @@ public class UserService {
         return userMapper.userListToFollowDtoList(followings, user);
     }
 
-    public Set<UserSummary> getFollowSuggestions(String username, int size){
+    public List<UserSummary> getFollowSuggestions(String username, int size){
         User user = userRepository.findByUsername(username).get();
         Set<User> suggestions = new HashSet<>();
         //get following from people you are following
@@ -246,6 +247,13 @@ public class UserService {
                 suggestions.add(tmpUser);
             }
         }
-        return userMapper.usersToUserSummaries(suggestions, user);
+        return userMapper.usersToUserSummaries(List.copyOf(suggestions), user);
+    }
+
+    public List<UserSummary> searchUser(String key, String username){
+        User user = userRepository.findByUsername(username).get();
+        List<User> matchedUsers = userRepository.searchByUsernameOrFullNameLike(key);
+        matchedUsers.remove(user);
+        return userMapper.usersToUserSummaries(matchedUsers, user);
     }
 }

@@ -4,10 +4,12 @@ import com.vifrin.common.entity.User;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @Repository
 public interface UserRepository extends JpaRepository<User, Long> {
@@ -23,4 +25,7 @@ public interface UserRepository extends JpaRepository<User, Long> {
         countQuery = "SELECT count(*) FROM users_followers WHERE followers_id=?1",
         nativeQuery = true)
     List<Long> getFollowingsByUserId(Long userId, Pageable pageable);
+
+    @Query(value = "SELECT * FROM users u WHERE u.username LIKE %?1% OR u.full_name LIKE %?1%", nativeQuery = true)
+    List<User> searchByUsernameOrFullNameLike(String key);
 }
