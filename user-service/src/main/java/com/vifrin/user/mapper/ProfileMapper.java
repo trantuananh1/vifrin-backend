@@ -20,6 +20,7 @@ public abstract class ProfileMapper {
     @Mapping(target = "fullName", source = "profile.fullName")
     @Mapping(target = "dateOfBirth", source = "profile.dateOfBirth")
     @Mapping(target = "country", source = "profile.country")
+    @Mapping(target = "avatarUrl", source = "profile.user.avatarUrl")
     public abstract ProfileDto profileToProfileDto(Profile profile);
 
     @Mapping(target = "userId", source = "profile.userId")
