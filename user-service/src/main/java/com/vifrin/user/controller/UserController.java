@@ -4,6 +4,7 @@ import com.vifrin.common.constant.BaseConstant;
 import com.vifrin.common.dto.FollowDto;
 import com.vifrin.common.dto.ProfileDto;
 import com.vifrin.common.dto.UserSummary;
+import com.vifrin.common.entity.User;
 import com.vifrin.common.response.ResponseTemplate;
 import com.vifrin.common.response.ResponseType;
 import com.vifrin.user.service.UserService;
@@ -21,6 +22,7 @@ import java.security.Principal;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @RestController
 @RequestMapping("/users")
@@ -136,6 +138,15 @@ public class UserController {
         List<FollowDto> followDtos = userService.getFollowings(userId, principal.getName(), page, size);
         return !followDtos.isEmpty() ?
                 ResponseEntity.ok(followDtos) :
+                ResponseEntity.noContent().build();
+    }
+
+    @GetMapping("/suggestions")
+    public ResponseEntity<?> getFollowSuggestions(@AuthenticationPrincipal Principal principal,
+                                                         @RequestParam(value = "size", defaultValue = BaseConstant.DEFAULT_PAGE_SIZE) int size) {
+        Set<UserSummary> userSummaries = userService.getFollowSuggestions(principal.getName(), size);
+        return !userSummaries.isEmpty() ?
+                ResponseEntity.ok(new ResponseTemplate<Set<UserSummary>>(ResponseType.SUCCESS, userSummaries)) :
                 ResponseEntity.noContent().build();
     }
 }

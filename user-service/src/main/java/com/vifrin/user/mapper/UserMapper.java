@@ -9,6 +9,8 @@ import org.mapstruct.Mapping;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @Mapper(componentModel = "spring")
 public abstract class UserMapper {
@@ -50,6 +52,12 @@ public abstract class UserMapper {
     @Mapping(target = "following", expression = "java(isFollowing(user, me))")
     @Mapping(target = "follower", expression = "java(isFollower(user, me))")
     public abstract UserSummary userToUserSummary(User user, User me);
+
+    public Set<UserSummary> usersToUserSummaries(Set<User> users, User me){
+        return users.stream()
+                .map(user -> userToUserSummary(user, me))
+                .collect(Collectors.toSet());
+    }
 
     @Mapping(target = "userId", source = "user.id")
     @Mapping(target = "username", source = "user.username")
