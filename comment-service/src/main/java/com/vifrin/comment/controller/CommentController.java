@@ -8,6 +8,9 @@ import com.vifrin.common.response.ResponseType;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.messaging.handler.annotation.DestinationVariable;
+import org.springframework.messaging.handler.annotation.MessageMapping;
+import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -28,11 +31,13 @@ public class CommentController {
     @Autowired
     CommentService commentService;
 
+    @MessageMapping("/comment.create")
+    @SendTo("/topic/comment/{postId}")
     @PostMapping
-    public ResponseEntity<?> addComment(@RequestBody CommentDto commentDto, @AuthenticationPrincipal Principal principal){
+    public ResponseEntity<?> addComment(@DestinationVariable Long postId, @RequestBody CommentDto commentDto, @AuthenticationPrincipal Principal principal){
         CommentDto commentDto1 = commentService.addComment(commentDto, principal.getName());
         URI uri = ServletUriComponentsBuilder
-                .fromCurrentContextPath().path("/comments/{id}")
+                .fromCurrentContextPath().path("/comments/{postId}")
                 .buildAndExpand(commentDto1.getId()).toUri();
         return ResponseEntity
                 .created(uri)
@@ -47,6 +52,8 @@ public class CommentController {
 //                .ok(new ResponseTemplate<>(ResponseType.SUCCESS, null));
 //    }
 
+    @MessageMapping("/comment.get")
+    @SendTo("/topic/comment/{postId}")
     @GetMapping("/{id}")
     public ResponseEntity<?> getComment(@PathVariable Long id, @AuthenticationPrincipal Principal principal){
         CommentDto commentDto = commentService.getComment(id, principal.getName());
@@ -54,6 +61,8 @@ public class CommentController {
                 .ok(new ResponseTemplate<CommentDto>(ResponseType.SUCCESS, commentDto));
     }
 
+    @MessageMapping("/comment.get.all")
+    @SendTo("/topic/comment/{postId}")
     @GetMapping("/by-post/{postId}")
     public ResponseEntity<?> getCommentsByPost(@PathVariable Long postId, @AuthenticationPrincipal Principal principal,
                                                @RequestParam(value = "page", defaultValue = BaseConstant.DEFAULT_PAGE_NUMBER) int page,
@@ -64,6 +73,8 @@ public class CommentController {
                 ResponseEntity.ok(new ResponseTemplate<>(ResponseType.SUCCESS, commentDtos));
     }
 
+    @MessageMapping("/comment.delete")
+    @SendTo("/topic/comment/{postId}")
     @DeleteMapping("/{id}")
     public ResponseEntity<?> deleteComment(@PathVariable Long id){
         commentService.deleteComment(id);
