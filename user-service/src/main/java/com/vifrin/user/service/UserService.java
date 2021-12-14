@@ -20,7 +20,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.Instant;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
@@ -216,5 +218,34 @@ public class UserService {
         List<Long> followingIds = userRepository.getFollowingsByUserId(targetId, PageRequest.of(page, size));
         List<User> followings = userRepository.findAllById(followingIds);
         return userMapper.userListToFollowDtoList(followings, user);
+    }
+
+    public Set<UserSummary> getFollowSuggestions(String username, int size){
+        User user = userRepository.findByUsername(username).get();
+        Set<User> suggestions = new HashSet<>();
+        //get following from people you are following
+        Set<User> followings = user.getFollowings();
+        for (User following : followings){
+            for (User tmpUser : following.getFollowings()){
+                if (suggestions.size() == size){
+                    break;
+                }
+                if (user!=tmpUser && !user.getFollowings().contains(tmpUser)){
+                    suggestions.add(tmpUser);
+                }
+            }
+        }
+        //get strange user
+        List<User> strangers = userRepository.findAll();
+        for (int i = 0; i<strangers.size(); i++){
+            User tmpUser = strangers.get(i);
+            if (suggestions.size() == size){
+                break;
+            }
+            if (user!=tmpUser && !user.getFollowings().contains(tmpUser)){
+                suggestions.add(tmpUser);
+            }
+        }
+        return userMapper.usersToUserSummaries(suggestions, user);
     }
 }
