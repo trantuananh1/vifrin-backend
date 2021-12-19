@@ -7,6 +7,7 @@ import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.AmazonS3ClientBuilder;
 import com.amazonaws.services.s3.model.*;
 import com.cloudinary.Cloudinary;
+import com.cloudinary.EagerTransformation;
 import com.cloudinary.utils.ObjectUtils;
 import com.vifrin.common.constant.StringPool;
 import com.vifrin.common.dto.MediaDto;
@@ -35,6 +36,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -212,7 +214,7 @@ public class CdnService {
         try {
             File fileUp = convertMultipartToFile(file);
             String fileName = Objects.requireNonNull(file.getOriginalFilename()).replace(StringPool.SPACE, StringPool.UNDERLINE);
-            String fileUrl = uploadFileToCloudinary(fileName, fileUp);
+            String fileUrl = uploadFileToCloudinary(fileName, fileUp, file.getContentType());
             float height = 0;
             float width = 0;
             if (FileSupport.IMAGE.getTypes().contains(file.getContentType())) {
@@ -244,13 +246,14 @@ public class CdnService {
         return String.format(AWS_S3_BUCKET_ADDRESS_FORMAT, AWS_S3_MEDIA_FOLDER, fileName);
     }
 
-    private String uploadFileToCloudinary(String fileName, File fileUp){
+    private String uploadFileToCloudinary(String fileName, File fileUp, String mime){
         Cloudinary cloudinary = new Cloudinary(ObjectUtils.asMap(
                 "cloud_name", "da4oquz0i",
                 "api_key", "771357719894783",
                 "api_secret", "jracl1IvI5vTcbBvOA5JwjuTeF4"));
         try {
-            Map response = cloudinary.uploader().upload(fileUp, ObjectUtils.emptyMap());
+            String type = mime.contains("video") ? "video" : "image";
+            Map response =  cloudinary.uploader().upload(fileUp, ObjectUtils.asMap("resource_type", type));
             JSONObject json = new JSONObject(response);
             return json.getString("url");
         }catch (Exception e){
