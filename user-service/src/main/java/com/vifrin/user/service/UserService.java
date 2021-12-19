@@ -48,6 +48,7 @@ public class UserService {
         }
         User user = new User(registerRequest.getUsername(), registerRequest.getPassword(), registerRequest.getEmail());
         user.setFullName(registerRequest.getFullName());
+        user.setAvatarUrl(registerRequest.getAvatarUrl());
         userRepository.save(user);
 
         Profile profile = new Profile(registerRequest.getEmail(), registerRequest.getFullName());
