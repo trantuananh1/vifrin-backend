@@ -32,6 +32,7 @@
         <module>feed-service</module>
         <module>comment-service</module>
         <module>like-service</module>
+        <module>destination-service</module>
     </modules>
     <packaging>pom</packaging>
     <dependencies>

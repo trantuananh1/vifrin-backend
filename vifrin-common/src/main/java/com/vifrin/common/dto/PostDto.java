@@ -23,5 +23,6 @@ public class PostDto {
     private int likesCount;
     private int commentsCount;
     private List<MediaDto> medias;
+    private DestinationDto destination;
     private UserSummary user;
 }
