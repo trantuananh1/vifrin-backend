@@ -1,6 +1,6 @@
 package com.vifrin.like;
 
-import com.vifrin.post.messaging.PostEventStream;
+import com.vifrin.like.messaging.PostEventStream;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
