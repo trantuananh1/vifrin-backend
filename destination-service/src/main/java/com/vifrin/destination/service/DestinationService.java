@@ -5,6 +5,7 @@ import com.vifrin.common.entity.Destination;
 import com.vifrin.common.repository.DestinationRepository;
 import com.vifrin.destination.mapper.DestinationMapper;
 import com.vifrin.destination.exception.ResourceNotFoundException;
+import com.vifrin.destination.messaging.CommentEventPayload;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -51,5 +52,15 @@ public class DestinationService {
     public List<DestinationDto> search(String key){
         List<Destination> destinations = destinationRepository.search(key);
         return destinationMapper.destinationsToDestinationDtos(destinations);
+    }
+
+    public void updateAverageScore(CommentEventPayload payload){
+        long destinationId = payload.getTargetId();
+        Destination destination = destinationRepository.findById(destinationId).get();
+        float currentScore = destination.getAverageScore();
+        long commentsCount = destination.getActivity().getCommentsCount();
+        float newScore = ((commentsCount - 1) *  currentScore + payload.getScore())/commentsCount;
+        destination.setAverageScore(newScore);
+        destinationRepository.save(destination);
     }
 }

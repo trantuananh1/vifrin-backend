@@ -1,12 +1,15 @@
 package com.vifrin.comment.service;
 
 import com.vifrin.comment.mapper.CommentMapper;
+import com.vifrin.comment.messaging.CommentEventSender;
 import com.vifrin.common.dto.CommentDto;
 import com.vifrin.common.dto.UserSummary;
 import com.vifrin.common.entity.Comment;
+import com.vifrin.common.entity.Destination;
 import com.vifrin.common.entity.Post;
 import com.vifrin.common.entity.User;
 import com.vifrin.common.repository.CommentRepository;
+import com.vifrin.common.repository.DestinationRepository;
 import com.vifrin.common.repository.PostRepository;
 import com.vifrin.common.repository.UserRepository;
 import com.vifrin.common.util.RedisUtil;
@@ -33,26 +36,34 @@ public class CommentService {
     @Autowired
     UserRepository userRepository;
     @Autowired
+    DestinationRepository destinationRepository;
+    @Autowired
     CommentRepository commentRepository;
     @Autowired
     CommentMapper commentMapper;
     @Autowired
-    UserFeignClient userFeignClient;
+    CommentEventSender commentEventSender;
 
     public CommentDto addComment(CommentDto commentDto, String username){
-        long postId = commentDto.getPostId();
-        Post post = postRepository.findById(postId)
-                .orElseThrow(() -> new ResourceNotFoundException(postId));
         User user = userRepository.findByUsername(username).get();
-        Comment comment = commentMapper.commentDtoToComment(commentDto, post, user);
+        Comment comment = null;
+        if (commentDto.getPostId() != null){
+            long postId = commentDto.getPostId();
+            Post post = postRepository.findById(postId)
+                    .orElseThrow(() -> new ResourceNotFoundException(postId));
+            comment = commentMapper.commentDtoToComment(commentDto, post, user);
+            post.getActivity().setCommentsCount(post.getComments().size());
+        } else {
+            long destinationId = commentDto.getDestinationId();
+            Destination destination = destinationRepository.findById(destinationId)
+                    .orElseThrow(() -> new ResourceNotFoundException(destinationId));
+            comment = commentMapper.commentDtoToComment(commentDto, destination, user);
+            destination.getActivity().setCommentsCount(destination.getComments().size());
+        }
         comment = commentRepository.save(comment);
-        post.getActivity().setCommentsCount(post.getComments().size());
+        commentEventSender.sendCommentCreated(comment);
         return commentMapper.commentToCommentDto(comment, RedisUtil.getInstance().getValue(username));
     }
-
-//    public boolean updateComment(){
-//
-//    }
 
     public CommentDto getComment(Long commentId, String username){
         Comment comment = commentRepository.findById(commentId)

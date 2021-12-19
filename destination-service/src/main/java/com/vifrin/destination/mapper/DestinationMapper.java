@@ -4,7 +4,7 @@ import com.vifrin.common.dto.CommentDto;
 import com.vifrin.common.dto.DestinationDto;
 import com.vifrin.common.entity.Comment;
 import com.vifrin.common.entity.Destination;
-import com.vifrin.common.entity.*;
+import com.vifrin.common.entity.Activity;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
@@ -36,7 +36,12 @@ public abstract class DestinationMapper {
     @Mapping(target = "latitude", source = "destinationDto.latitude")
     @Mapping(target = "createdAt",expression = "java(java.time.Instant.now())")
     @Mapping(target = "updatedAt", expression = "java(java.time.Instant.now())")
+    @Mapping(target = "activity", expression = "java(initActivity())")
     public abstract Destination destinationDtoToDestination(DestinationDto destinationDto);
 
     public abstract List<Destination> destinationDtosToDestination(List<DestinationDto> destinationDtos);
+
+    public Activity initActivity(){
+        return new Activity();
+    }
 }

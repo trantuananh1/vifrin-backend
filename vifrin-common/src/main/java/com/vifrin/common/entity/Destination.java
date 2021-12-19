@@ -20,6 +20,7 @@ import java.util.Set;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
+@SecondaryTable(name = "activities", pkJoinColumns = @PrimaryKeyJoinColumn(name = "id"))
 @Table(name = "destinations")
 public class Destination {
     @Id
@@ -61,6 +62,9 @@ public class Destination {
     @OneToMany(mappedBy = "post", fetch = FetchType.LAZY,
             cascade = CascadeType.ALL)
     private List<Media> medias;
+
+    @Embedded
+    private Activity activity;
 
     @Override
     public String toString() {
