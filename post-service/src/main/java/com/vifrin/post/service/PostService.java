@@ -43,18 +43,21 @@ public class PostService {
     @Autowired
     DestinationRepository destinationRepository;
 
-    public PostDto createPost(PostRequest postRequest, String username){
+    public PostDto createPost(PostRequest postRequest, String username) {
         log.info("creating post image urls {}", postRequest.getMediaIds());
         User user = userRepository.findByUsername(username)
                 .orElseThrow(() -> new RuntimeException(""));
         List<Long> mediaIds = postRequest.getMediaIds();
         List<Media> medias = mediaRepository.findAllById(mediaIds);
-        Destination destination = destinationRepository.findById(postRequest.getDestinationId()).get();
+        Destination destination = null;
+        if (postRequest.getDestinationId() != null || postRequest.getDestinationId() != 0) {
+            destination = destinationRepository.findById(postRequest.getDestinationId()).get();
+        }
         Post post = new Post(postRequest.getContent(), medias, postRequest.getConfig(), user, destination);
         post = postRepository.save(post);
 
         //update postId of media
-        for (Media media : medias){
+        for (Media media : medias) {
             media.setPost(post);
         }
         mediaRepository.saveAll(medias);
@@ -71,7 +74,7 @@ public class PostService {
         return postDto;
     }
 
-    public PostDto getPost(Long postId, String username){
+    public PostDto getPost(Long postId, String username) {
         Post post = postRepository
                 .findById(postId)
                 .orElseThrow(() -> {
@@ -81,18 +84,18 @@ public class PostService {
         return postMapper.postToPostDto(post, RedisUtil.getInstance().getValue(username));
     }
 
-    public PostDto updatePost(PostRequest postRequest, Long postId, String username){
+    public PostDto updatePost(PostRequest postRequest, Long postId, String username) {
         log.info("updating post {}", postId);
         postRepository
                 .findById(postId)
-                .map(post ->{
-                    if (!post.getUser().getUsername().equals(username)){
+                .map(post -> {
+                    if (!post.getUser().getUsername().equals(username)) {
                         throw new NotAllowedException(username, String.valueOf(postId), OperationConstant.UPDATE);
                     }
                     post.setContent(postRequest.getContent());
                     post.setConfig(postRequest.getConfig());
                     List<Media> oldMedias = post.getMedias();
-                    for (Media media : oldMedias){
+                    for (Media media : oldMedias) {
                         media.setPost(null);
                     }
                     mediaRepository.saveAll(oldMedias);
@@ -100,7 +103,7 @@ public class PostService {
                     List<Media> medias = mediaRepository.findAllById(mediaIds);
                     post.setMedias(medias);
                     postRepository.save(post);
-                    for (Media media : medias){
+                    for (Media media : medias) {
                         media.setPost(post);
                     }
                     mediaRepository.saveAll(medias);
@@ -119,7 +122,7 @@ public class PostService {
         postRepository
                 .findById(postId)
                 .map(post -> {
-                    if(!post.getUser().getUsername().equals(username)) {
+                    if (!post.getUser().getUsername().equals(username)) {
                         log.warn("user {} is not allowed to delete post id {}", username, postId);
                         throw new NotAllowedException(username, String.valueOf(postId), OperationConstant.DELETE);
                     }

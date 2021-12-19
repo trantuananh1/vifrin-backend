@@ -17,3 +17,22 @@ spring:
       ddl-auto: update
     show-sql: true
     database-platform: org.hibernate.dialect.PostgreSQLDialect
+
+  cloud:
+    stream:
+      kafka:
+        binder:
+          brokers: localhost:9092
+        bindings:
+          CommentChanged:
+            consumer:
+              startOffset: latest
+              autoCommitOffset: false
+      bindings:
+        CommentChanged:
+          destination: vifrin-comment-changed
+          contentType: application/json
+          group: graphService
+          consumer:
+            startOffset: latest
+            autoCommitOffset: false

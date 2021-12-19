@@ -29,6 +29,9 @@ public class Comment {
     @Column(name = "content")
     private String content;
 
+    @Column(name = "score")
+    private int score;
+
     @Column(name = "created_at")
     @CreatedDate
     private Instant createdAt;

@@ -4,6 +4,7 @@ import com.vifrin.common.dto.CommentDto;
 import com.vifrin.common.dto.PostDto;
 import com.vifrin.common.dto.UserSummary;
 import com.vifrin.common.entity.Comment;
+import com.vifrin.common.entity.Destination;
 import com.vifrin.common.entity.Post;
 import com.vifrin.common.entity.User;
 import com.vifrin.feign.client.UserFeignClient;
@@ -47,6 +48,16 @@ public abstract class CommentMapper {
     @Mapping(target = "post", source = "post")
     @Mapping(target = "activity", expression = "java(new Activity())")
     public abstract Comment commentDtoToComment(CommentDto commentDto, Post post, User user);
+
+    @Mapping(target = "id", ignore = true)
+    @Mapping(target = "content", source = "commentDto.content")
+    @Mapping(target = "createdAt",expression = "java(java.time.Instant.now())")
+    @Mapping(target = "updatedAt", expression = "java(java.time.Instant.now())")
+    @Mapping(target = "user", source = "user")
+    @Mapping(target = "destination", source = "destination")
+    @Mapping(target = "score", source = "commentDto.score")
+    @Mapping(target = "activity", expression = "java(new Activity())")
+    public abstract Comment commentDtoToComment(CommentDto commentDto, Destination destination, User user);
 
     public abstract List<Comment> commentDtosToComments(List<CommentDto> commentDtos);
 
