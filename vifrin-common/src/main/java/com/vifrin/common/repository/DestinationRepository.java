@@ -13,6 +13,5 @@ import java.util.List;
  **/
 
 public interface DestinationRepository extends JpaRepository<Destination, Long> {
-    @Query(value = "SELECT * FROM destinations d WHERE d.name LIKE %?1%", nativeQuery = true)
-    List<Destination> search(String key);
+    List<Destination> findByNameContainingIgnoreCase(String key);
 }

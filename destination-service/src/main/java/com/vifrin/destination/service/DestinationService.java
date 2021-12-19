@@ -49,8 +49,13 @@ public class DestinationService {
                 });
     }
 
+    public List<DestinationDto> getAllDestination(){
+        List<Destination> destinations = destinationRepository.findAll();
+        return destinationMapper.destinationsToDestinationDtos(destinations);
+    }
+
     public List<DestinationDto> search(String key){
-        List<Destination> destinations = destinationRepository.search(key);
+        List<Destination> destinations = destinationRepository.findByNameContainingIgnoreCase(key);
         return destinationMapper.destinationsToDestinationDtos(destinations);
     }
 

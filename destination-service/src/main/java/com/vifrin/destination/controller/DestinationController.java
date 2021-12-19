@@ -48,6 +48,13 @@ public class DestinationController {
                 .ok(new ResponseTemplate<DestinationDto>(ResponseType.SUCCESS, destinationDto));
     }
 
+    @GetMapping
+    public ResponseEntity<?> getAllDestination(){
+        List<DestinationDto> destinationDtos = destinationService.getAllDestination();
+        return ResponseEntity
+                .ok(new ResponseTemplate<>(ResponseType.SUCCESS, destinationDtos));
+    }
+
     @DeleteMapping("/{id}")
     public ResponseEntity<?> deleteDestination(@PathVariable Long id){
         destinationService.deleteDestination(id);
