@@ -6,6 +6,8 @@ import com.amazonaws.auth.BasicAWSCredentials;
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.AmazonS3ClientBuilder;
 import com.amazonaws.services.s3.model.*;
+import com.cloudinary.Cloudinary;
+import com.cloudinary.utils.ObjectUtils;
 import com.vifrin.common.constant.StringPool;
 import com.vifrin.common.dto.MediaDto;
 import com.vifrin.common.entity.Media;
@@ -17,6 +19,7 @@ import com.vifrin.media.dto.FileSupport;
 import com.vifrin.media.mapper.MediaMapper;
 import com.vifrin.media.utils.FileUploadHelper;
 import org.apache.commons.io.FilenameUtils;
+import org.cloudinary.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,6 +36,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 
 @Service
@@ -208,8 +212,7 @@ public class CdnService {
         try {
             File fileUp = convertMultipartToFile(file);
             String fileName = Objects.requireNonNull(file.getOriginalFilename()).replace(StringPool.SPACE, StringPool.UNDERLINE);
-            String fileUrl = String.format(AWS_S3_BUCKET_ADDRESS_FORMAT, AWS_S3_MEDIA_FOLDER, fileName);
-            uploadFileToS3Bucket(fileName, fileUp);
+            String fileUrl = uploadFileToCloudinary(fileName, fileUp);
             float height = 0;
             float width = 0;
             if (FileSupport.IMAGE.getTypes().contains(file.getContentType())) {
@@ -235,8 +238,24 @@ public class CdnService {
         return convFile;
     }
 
-    private void uploadFileToS3Bucket(String fileName, File file) {
+    private String uploadFileToS3Bucket(String fileName, File file) {
         s3Client.putObject(new PutObjectRequest(AWS_S3_BUCKET_NAME, AWS_S3_MEDIA_FOLDER + "/" + fileName, file)
                 .withCannedAcl(CannedAccessControlList.PublicRead));
+        return String.format(AWS_S3_BUCKET_ADDRESS_FORMAT, AWS_S3_MEDIA_FOLDER, fileName);
+    }
+
+    private String uploadFileToCloudinary(String fileName, File fileUp){
+        Cloudinary cloudinary = new Cloudinary(ObjectUtils.asMap(
+                "cloud_name", "da4oquz0i",
+                "api_key", "771357719894783",
+                "api_secret", "jracl1IvI5vTcbBvOA5JwjuTeF4"));
+        try {
+            Map response = cloudinary.uploader().upload(fileUp, ObjectUtils.emptyMap());
+            JSONObject json = new JSONObject(response);
+            return json.getString("url");
+        }catch (Exception e){
+            logger.error(e.getMessage());
+            return StringPool.BLANK;
+        }
     }
 }
