@@ -50,7 +50,7 @@ public class PostService {
         List<Long> mediaIds = postRequest.getMediaIds();
         List<Media> medias = mediaRepository.findAllById(mediaIds);
         Destination destination = null;
-        if (postRequest.getDestinationId() != null || postRequest.getDestinationId() != 0) {
+        if (postRequest.getDestinationId() != null && postRequest.getDestinationId() != 0) {
             destination = destinationRepository.findById(postRequest.getDestinationId()).get();
         }
         Post post = new Post(postRequest.getContent(), medias, postRequest.getConfig(), user, destination);
