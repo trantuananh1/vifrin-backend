@@ -61,16 +61,21 @@ public class Post implements Serializable {
             cascade = CascadeType.ALL)
     private List<Like> likes;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "destination_id")
+    private Destination destination;
+
     @Embedded
     private Activity activity;
 
-    public Post(String content, List<Media> medias, String config, User user){
+    public Post(String content, List<Media> medias, String config, User user, Destination destination){
         this.content = content;
         this.medias = medias;
         this.config = config;
         this.createdAt = Instant.now();
         this.updatedAt = Instant.now();
         this.user = user;
+        this.destination = destination;
         this.activity = new Activity();
     }
 

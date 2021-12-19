@@ -1,7 +1,9 @@
 package com.vifrin.post.mapper;
 
+import com.vifrin.common.dto.DestinationDto;
 import com.vifrin.common.dto.MediaDto;
 import com.vifrin.common.dto.UserSummary;
+import com.vifrin.common.entity.Destination;
 import com.vifrin.common.entity.Media;
 import com.vifrin.common.entity.Post;
 import com.vifrin.common.dto.PostDto;
@@ -24,6 +26,8 @@ public abstract class PostMapper {
     @Autowired
     MediaMapper mediaMapper;
     @Autowired
+    DestinationMapper destinationMapper;
+    @Autowired
     UserFeignClient userFeignClient;
 
     @Mapping(target = "content", source = "post.content")
@@ -34,6 +38,7 @@ public abstract class PostMapper {
     @Mapping(target = "likesCount", source = "post.activity.likesCount")
     @Mapping(target = "commentsCount", source = "post.activity.commentsCount")
     @Mapping(target = "medias", expression = "java(getMedias(post))")
+    @Mapping(target = "destination", expression = "java(getDestination(post))")
     @Mapping(target = "user", expression = "java(getUserSummary(post, token))")
     public abstract PostDto postToPostDto(Post post, String token);
 
@@ -46,6 +51,11 @@ public abstract class PostMapper {
     List<MediaDto> getMedias(Post post){
         List<Media> medias = post.getMedias();
         return mediaMapper.mediasToMediaDtos(medias);
+    }
+
+    DestinationDto getDestination(Post post){
+        Destination destination = post.getDestination();
+        return destinationMapper.destinationToDestinationDto(destination);
     }
 
     UserSummary getUserSummary(Post post, String token){

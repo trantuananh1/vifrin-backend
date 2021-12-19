@@ -16,5 +16,6 @@ import java.util.List;
 public class PostRequest {
     private String content;
     private List<Long> mediaIds;
+    private Long destinationId;
     private String config;
 }

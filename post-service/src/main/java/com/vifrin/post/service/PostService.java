@@ -1,11 +1,13 @@
 package com.vifrin.post.service;
 
 import com.vifrin.common.constant.OperationConstant;
+import com.vifrin.common.entity.Destination;
 import com.vifrin.common.entity.Media;
 import com.vifrin.common.entity.Post;
 import com.vifrin.common.entity.User;
 import com.vifrin.common.dto.PostDto;
 import com.vifrin.common.payload.PostRequest;
+import com.vifrin.common.repository.DestinationRepository;
 import com.vifrin.common.repository.MediaRepository;
 import com.vifrin.common.repository.PostRepository;
 import com.vifrin.common.repository.UserRepository;
@@ -38,6 +40,8 @@ public class PostService {
     UserRepository userRepository;
     @Autowired
     MediaRepository mediaRepository;
+    @Autowired
+    DestinationRepository destinationRepository;
 
     public PostDto createPost(PostRequest postRequest, String username){
         log.info("creating post image urls {}", postRequest.getMediaIds());
@@ -45,7 +49,8 @@ public class PostService {
                 .orElseThrow(() -> new RuntimeException(""));
         List<Long> mediaIds = postRequest.getMediaIds();
         List<Media> medias = mediaRepository.findAllById(mediaIds);
-        Post post = new Post(postRequest.getContent(), medias, postRequest.getConfig(), user);
+        Destination destination = destinationRepository.findById(postRequest.getDestinationId()).get();
+        Post post = new Post(postRequest.getContent(), medias, postRequest.getConfig(), user, destination);
         post = postRepository.save(post);
 
         //update postId of media

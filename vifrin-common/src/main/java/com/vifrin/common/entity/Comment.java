@@ -45,6 +45,10 @@ public class Comment {
     @JoinColumn(name = "user_id")
     private User user;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "destination")
+    private Destination destination;
+
     @Embedded
     private Activity activity;
 
@@ -54,6 +58,15 @@ public class Comment {
         this.updatedAt = Instant.now();
         this.user = user;
         this.post = post;
+        this.activity = new Activity();
+    }
+
+    public Comment(String content, User user, Destination destination) {
+        this.content = content;
+        this.createdAt = Instant.now();
+        this.updatedAt = Instant.now();
+        this.user = user;
+        this.destination = destination;
         this.activity = new Activity();
     }
 
