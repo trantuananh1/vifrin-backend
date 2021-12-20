@@ -151,10 +151,10 @@ public class UserController {
     }
 
     @GetMapping("/search")
-    public ResponseEntity<?> searchUser(@RequestParam String key, @AuthenticationPrincipal Principal principal){
+    public ResponseEntity<List<UserSummary>> searchUser(@RequestParam String key, @AuthenticationPrincipal Principal principal){
         List<UserSummary> userSummaries = userService.searchUser(key, principal.getName());
         return !userSummaries.isEmpty() ?
-                ResponseEntity.ok(new ResponseTemplate<List<UserSummary>>(ResponseType.SUCCESS, userSummaries)) :
+                ResponseEntity.ok(userSummaries) :
                 ResponseEntity.noContent().build();
     }
 }

@@ -26,6 +26,7 @@ public interface UserRepository extends JpaRepository<User, Long> {
         nativeQuery = true)
     List<Long> getFollowingsByUserId(Long userId, Pageable pageable);
 
-    @Query(value = "SELECT * FROM users u WHERE u.username LIKE %?1% OR u.full_name LIKE %?1%", nativeQuery = true)
-    List<User> searchByUsernameOrFullNameLike(String key);
+    List<User> findByUsernameContainingIgnoreCase(String key);
+
+    List<User> findByFullNameContainingIgnoreCase(String key);
 }
