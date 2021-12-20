@@ -21,6 +21,8 @@ cd ../comment-service
 cd ../like-service 
 ./run-backend.sh &
 cd ../destination-service 
-./run-backend.sh 
+./run-backend.sh &
+cd ../search-service
+./run-backend.sh
 
 

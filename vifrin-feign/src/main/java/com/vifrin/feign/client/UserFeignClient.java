@@ -44,4 +44,7 @@ public interface UserFeignClient {
 
     @GetMapping("/users/summary/{userId}")
     ResponseEntity<UserSummary> getUserSummary(@PathVariable Long userId, @RequestHeader("Authorization") String token);
+
+    @GetMapping("/users/search")
+    ResponseEntity<List<UserSummary>> search(@RequestParam String key, @RequestHeader("Authorization") String token);
 }

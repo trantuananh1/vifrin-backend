@@ -253,8 +253,10 @@ public class UserService {
 
     public List<UserSummary> searchUser(String key, String username){
         User user = userRepository.findByUsername(username).get();
-        List<User> matchedUsers = userRepository.searchByUsernameOrFullNameLike(key);
+        List<User> matchedUsers = userRepository.findByUsernameContainingIgnoreCase(key);
+        matchedUsers.addAll(userRepository.findByFullNameContainingIgnoreCase(key));
         matchedUsers.remove(user);
+        matchedUsers = matchedUsers.stream().distinct().collect(Collectors.toList());
         return userMapper.usersToUserSummaries(matchedUsers, user);
     }
 }

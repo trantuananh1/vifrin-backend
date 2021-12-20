@@ -62,9 +62,10 @@ public class DestinationController {
     }
 
     @GetMapping("/search")
-    public ResponseEntity<?> search(@RequestParam String key){
+    public ResponseEntity<List<DestinationDto>> search(@RequestParam String key){
         List<DestinationDto> destinationDtos = destinationService.search(key);
-        return ResponseEntity
-                .ok(new ResponseTemplate<>(ResponseType.SUCCESS, destinationDtos));
+        return !destinationDtos.isEmpty() ?
+                ResponseEntity.ok(destinationDtos) :
+                ResponseEntity.noContent().build();
     }
 }

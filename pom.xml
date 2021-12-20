@@ -33,6 +33,7 @@
         <module>comment-service</module>
         <module>like-service</module>
         <module>destination-service</module>
+        <module>search-service</module>
     </modules>
     <packaging>pom</packaging>
     <dependencies>
