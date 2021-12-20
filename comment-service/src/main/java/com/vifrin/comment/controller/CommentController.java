@@ -15,9 +15,11 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import javax.swing.text.html.Option;
 import java.net.URI;
 import java.security.Principal;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * @author: trantuananh1
@@ -67,7 +69,19 @@ public class CommentController {
     public ResponseEntity<?> getCommentsByPost(@PathVariable Long postId, @AuthenticationPrincipal Principal principal,
                                                @RequestParam(value = "page", defaultValue = BaseConstant.DEFAULT_PAGE_NUMBER) int page,
                                                @RequestParam(value = "size", defaultValue = BaseConstant.DEFAULT_PAGE_SIZE) int size){
-        List<CommentDto> commentDtos = commentService.getComments(postId, principal.getName(), page, size);
+        List<CommentDto> commentDtos = commentService.getCommentsByPost(postId, principal.getName(), page, size);
+        return commentDtos.isEmpty()?
+                ResponseEntity.noContent().build() :
+                ResponseEntity.ok(new ResponseTemplate<>(ResponseType.SUCCESS, commentDtos));
+    }
+
+    @GetMapping("/by-destination/{destinationId}")
+    public ResponseEntity<?> getCommentsByDestination(@PathVariable Long destinationId, @AuthenticationPrincipal Principal principal,
+                                                      @RequestParam(value = "page", defaultValue = BaseConstant.DEFAULT_PAGE_NUMBER) int page,
+                                                      @RequestParam(value = "size", defaultValue = BaseConstant.DEFAULT_PAGE_SIZE) int size,
+                                                      @RequestParam Optional<Integer> star){
+        List<CommentDto> commentDtos =
+                commentService.getCommentsByDestination(destinationId, principal.getName(), page, size, star);
         return commentDtos.isEmpty()?
                 ResponseEntity.noContent().build() :
                 ResponseEntity.ok(new ResponseTemplate<>(ResponseType.SUCCESS, commentDtos));

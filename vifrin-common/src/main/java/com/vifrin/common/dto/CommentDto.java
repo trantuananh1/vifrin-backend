@@ -24,6 +24,6 @@ public class CommentDto {
     private Instant createdAt;
     private Instant updatedAt;
     private int likesCount;
-    private int score;
+    private int star;
     private UserSummary user;
 }

@@ -13,7 +13,7 @@ public class CommentEventPayload {
     private Instant createdAt;
     private Instant updatedAt;
     private Long userId;
-    private int score;
+    private int star;
     private CommentEventType eventType;
 
 }

@@ -48,7 +48,7 @@ public class CommentEventSender {
                 .builder()
                 .eventType(eventType)
                 .targetId(comment.getDestination().getId())
-                .score(comment.getScore())
+                .score(comment.getStar())
                 .createdAt(comment.getCreatedAt())
                 .build();
     }

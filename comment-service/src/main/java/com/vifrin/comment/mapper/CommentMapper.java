@@ -29,8 +29,10 @@ public abstract class CommentMapper {
     @Mapping(target = "content", source = "comment.content")
     @Mapping(target = "createdAt", source = "comment.createdAt")
     @Mapping(target = "updatedAt", source = "comment.updatedAt")
-    @Mapping(target = "postId", source = "comment.user.id")
+    @Mapping(target = "postId", source = "comment.post.id")
+    @Mapping(target = "destinationId", source = "comment.destination.id")
     @Mapping(target = "likesCount", source = "comment.activity.likesCount")
+    @Mapping(target = "star", source = "comment.star")
     @Mapping(target = "user", expression = "java(getUserSummary(comment, token))")
     public abstract CommentDto commentToCommentDto(Comment comment, String token);
 
@@ -46,6 +48,7 @@ public abstract class CommentMapper {
     @Mapping(target = "updatedAt", expression = "java(java.time.Instant.now())")
     @Mapping(target = "user", source = "user")
     @Mapping(target = "post", source = "post")
+    @Mapping(target = "star", source = "commentDto.star")
     @Mapping(target = "activity", expression = "java(new Activity())")
     public abstract Comment commentDtoToComment(CommentDto commentDto, Post post, User user);
 
@@ -55,7 +58,7 @@ public abstract class CommentMapper {
     @Mapping(target = "updatedAt", expression = "java(java.time.Instant.now())")
     @Mapping(target = "user", source = "user")
     @Mapping(target = "destination", source = "destination")
-    @Mapping(target = "score", source = "commentDto.score")
+    @Mapping(target = "star", source = "commentDto.star")
     @Mapping(target = "activity", expression = "java(new Activity())")
     public abstract Comment commentDtoToComment(CommentDto commentDto, Destination destination, User user);
 

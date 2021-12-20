@@ -29,8 +29,8 @@ public class Comment {
     @Column(name = "content")
     private String content;
 
-    @Column(name = "score")
-    private int score;
+    @Column(name = "star")
+    private int star;
 
     @Column(name = "created_at")
     @CreatedDate
@@ -49,7 +49,7 @@ public class Comment {
     private User user;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "destination")
+    @JoinColumn(name = "destination_id")
     private Destination destination;
 
     @Embedded

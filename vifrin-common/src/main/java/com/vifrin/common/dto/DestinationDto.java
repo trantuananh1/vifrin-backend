@@ -23,5 +23,6 @@ public class DestinationDto {
     private float latitude;
     private Instant createdAt;
     private Instant updatedAt;
+    private int checkInsCount;
     private List<MediaDto> medias;
 }

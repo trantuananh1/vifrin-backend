@@ -51,6 +51,9 @@ public class Destination {
     @LastModifiedBy
     private Instant updatedAt;
 
+    @Column(name = "check_in_count", columnDefinition = "int default 0")
+    private int checkInsCount;
+
     @OneToMany(mappedBy = "destination", fetch = FetchType.LAZY,
             cascade = CascadeType.ALL)
     private List<Post> posts;
@@ -59,7 +62,7 @@ public class Destination {
             cascade = CascadeType.ALL)
     private List<Comment> comments;
 
-    @OneToMany(mappedBy = "post", fetch = FetchType.LAZY,
+    @OneToMany(mappedBy = "destination", fetch = FetchType.LAZY,
             cascade = CascadeType.ALL)
     private List<Media> medias;
 
@@ -77,6 +80,7 @@ public class Destination {
                 ", latitude=" + latitude +
                 ", createdAt=" + createdAt +
                 ", updatedAt=" + updatedAt +
+                ", checkInsCount=" + checkInsCount +
                 '}';
     }
 }

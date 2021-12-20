@@ -3,6 +3,7 @@ package com.vifrin.destination.controller;
 import com.vifrin.common.constant.BaseConstant;
 import com.vifrin.common.dto.CommentDto;
 import com.vifrin.common.dto.DestinationDto;
+import com.vifrin.common.payload.DestinationRequest;
 import com.vifrin.common.response.ResponseTemplate;
 import com.vifrin.common.response.ResponseType;
 import com.vifrin.destination.service.DestinationService;
@@ -31,14 +32,21 @@ public class DestinationController {
     DestinationService destinationService;
 
     @PostMapping
-    public ResponseEntity<?> createDestination(@RequestBody DestinationDto destinationDto){
-        DestinationDto destinationDto1 = destinationService.createDestination(destinationDto);
+    public ResponseEntity<?> createDestination(@RequestBody DestinationRequest destinationRequest){
+        DestinationDto destinationDto1 = destinationService.createDestination(destinationRequest);
         URI uri = ServletUriComponentsBuilder
                 .fromCurrentContextPath().path("/destinations/{destinationId}")
                 .buildAndExpand(destinationDto1.getId()).toUri();
         return ResponseEntity
                 .created(uri)
                 .body(new ResponseTemplate<DestinationDto>(ResponseType.SUCCESS, destinationDto1));
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<?> updateDestination(@PathVariable Long id, @RequestBody DestinationRequest destinationRequest){
+        DestinationDto destinationDto = destinationService.updateDestination(id, destinationRequest);
+        return ResponseEntity
+                .ok(new ResponseTemplate<DestinationDto>(ResponseType.SUCCESS, destinationDto));
     }
 
     @GetMapping("/{id}")

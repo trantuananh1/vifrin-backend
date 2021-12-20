@@ -69,6 +69,11 @@ public class PostService {
         user.getActivity().setPostsCount(user.getPosts().size());
         userRepository.save(user);
 
+        if (destination!=null) {
+            destination.setCheckInsCount(destination.getCheckInsCount() + 1);
+            destinationRepository.save(destination);
+        }
+
         PostDto postDto = postMapper.postToPostDto(post, RedisUtil.getInstance().getValue(username));
         postEventSender.sendPostCreated(postDto);
         return postDto;
