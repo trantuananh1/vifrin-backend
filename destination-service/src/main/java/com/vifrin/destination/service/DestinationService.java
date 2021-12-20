@@ -36,7 +36,13 @@ public class DestinationService {
 
     public DestinationDto createDestination(DestinationRequest destinationRequest){
         Destination destination = destinationMapper.destinationDtoToDestination(destinationRequest);
-        return destinationMapper.destinationToDestinationDto(destinationRepository.save(destination));
+        destination = destinationRepository.save(destination);
+        List<Media> medias = destination.getMedias();
+        for (Media media : medias){
+            media.setDestination(destination);
+        }
+        mediaRepository.saveAll(medias);
+        return destinationMapper.destinationToDestinationDto(destination);
     }
 
     public DestinationDto updateDestination(Long destinationId, DestinationRequest destinationRequest){
@@ -57,7 +63,12 @@ public class DestinationService {
         }
         List<Long> addedMediaIds = new ArrayList<>(newMediaIds);
         addedMediaIds.removeAll(oldMediaIds);
-        destination.getMedias().addAll(mediaRepository.findAllById(addedMediaIds));
+        List<Media> addedMedia = mediaRepository.findAllById(addedMediaIds);
+        destination.getMedias().addAll(addedMedia);
+        for (Media media : addedMedia){
+            media.setDestination(destination);
+        }
+        mediaRepository.saveAll(addedMedia);
         return destinationMapper.destinationToDestinationDto(destinationRepository.save(destination));
     }
 

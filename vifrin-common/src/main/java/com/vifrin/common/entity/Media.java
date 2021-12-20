@@ -60,7 +60,7 @@ public class Media {
     private User user;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "destination")
+    @JoinColumn(name = "destination_id")
     private Destination destination;
 
     public Media(String url, String name, String mime, float width, float height, float size, User user) {

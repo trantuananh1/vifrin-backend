@@ -21,6 +21,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Objects;
 
 /**
  * @author: trantuananh1
@@ -99,6 +100,7 @@ public class PostService {
                     }
                     post.setContent(postRequest.getContent());
                     post.setConfig(postRequest.getConfig());
+                    //update media
                     List<Media> oldMedias = post.getMedias();
                     for (Media media : oldMedias) {
                         media.setPost(null);
@@ -107,11 +109,19 @@ public class PostService {
                     List<Long> mediaIds = postRequest.getMediaIds();
                     List<Media> medias = mediaRepository.findAllById(mediaIds);
                     post.setMedias(medias);
-                    postRepository.save(post);
                     for (Media media : medias) {
                         media.setPost(post);
                     }
                     mediaRepository.saveAll(medias);
+                    //update destination
+                    if  (!Objects.equals(postRequest.getDestinationId(), post.getDestination().getId())){
+                        Destination destination = destinationRepository.findById(postRequest.getDestinationId())
+                                        .orElseThrow(() -> new ResourceNotFoundException(postRequest.getDestinationId()));
+                        post.setDestination(destination);
+                        destination.setCheckInsCount(destination.getCheckInsCount() + 1);
+                        destinationRepository.save(destination);
+                    }
+                    postRepository.save(post);
                     return post;
                 })
                 .orElseThrow(() -> {
