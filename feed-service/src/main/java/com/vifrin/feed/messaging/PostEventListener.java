@@ -37,6 +37,7 @@ public class PostEventListener {
                 feedGeneratorService.addToFeed(message.getPayload());
                 break;
             case DELETED:
+                feedGeneratorService.deleteInFeed(message.getPayload());
                 break;
         }
 

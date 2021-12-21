@@ -1,5 +1,6 @@
 package com.vifrin.feed.service;
 
+import com.vifrin.common.entity.Feed;
 import com.vifrin.common.entity.Post;
 import com.vifrin.common.dto.PostDto;
 import com.vifrin.common.repository.FeedRepository;
@@ -30,19 +31,19 @@ public class FeedService {
     PostMapper postMapper;
 
     public List<PostDto> getUserFeed(String username, int page, int size) {
+        List<Post> posts = new ArrayList<>();
 
         log.info("getting feed for user {} page {}", username, page);
         Pageable pageable = PageRequest.of(page, size);
         List<Long> postIds = feedRepository.getFeedByUsername(username, pageable);
 
-        if (postIds.isEmpty()) {
-            return null;
+        if (page == 0 && postIds.isEmpty()) {
+            posts = postRepository.getPostOrderByCommentsCountDesc(size);
+        } else {
+            for (Long postId : postIds){
+                posts.add(postRepository.getOne(postId));
+            }
         }
-
-        List<Post> posts = new ArrayList<>();
-        postIds.forEach(postId -> {
-            posts.add(postRepository.getOne(postId));
-        });
         return postMapper.postsToPostDtos(posts);
     }
 }

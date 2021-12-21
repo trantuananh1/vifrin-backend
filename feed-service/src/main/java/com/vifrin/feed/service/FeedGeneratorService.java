@@ -75,4 +75,9 @@ public class FeedGeneratorService {
             }
         }
     }
+
+    public void deleteInFeed(PostEventPayload postEventPayload){
+        List<Feed> feeds = feedRepository.findByPostId(postEventPayload.getPostId());
+        feedRepository.deleteAll(feeds);
+    }
 }

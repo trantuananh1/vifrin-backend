@@ -20,4 +20,6 @@ public interface FeedRepository extends JpaRepository<Feed, Long> {
 
     @Query(value = "SELECT COUNT(*) FROM feeds WHERE username=?1 AND post_id=?2", nativeQuery = true)
     Long getFeedCountByUsernameAndPostId(String username, Long postId);
+
+    List<Feed> findByPostId(Long postId);
 }

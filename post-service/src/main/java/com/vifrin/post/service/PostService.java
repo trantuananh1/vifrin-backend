@@ -75,9 +75,8 @@ public class PostService {
             destinationRepository.save(destination);
         }
 
-        PostDto postDto = postMapper.postToPostDto(post, RedisUtil.getInstance().getValue(username));
-        postEventSender.sendPostCreated(postDto);
-        return postDto;
+        postEventSender.sendPostCreated(post);
+        return postMapper.postToPostDto(post, RedisUtil.getInstance().getValue(username));
     }
 
     public PostDto getPost(Long postId, String username) {
@@ -142,7 +141,7 @@ public class PostService {
                         throw new NotAllowedException(username, String.valueOf(postId), OperationConstant.DELETE);
                     }
                     postRepository.delete(post);
-//                    postEventSender.sendPostDeleted(post);
+                    postEventSender.sendPostDeleted(post);
                     return post;
                 })
                 .orElseThrow(() -> {

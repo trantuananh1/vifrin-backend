@@ -31,9 +31,6 @@ public class FeedController {
         log.info("fetching feed for user {} page {}",
                 principal.getName(), page);
         List<PostDto> postDtos = feedService.getUserFeed(principal.getName(), page, size);
-        if (postDtos == null){
-            return ResponseEntity.noContent().build();
-        }
-        return ResponseEntity.ok(postDtos);
+        return !postDtos.isEmpty() ? ResponseEntity.noContent().build() : ResponseEntity.ok(postDtos);
     }
 }
