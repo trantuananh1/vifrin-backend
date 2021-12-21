@@ -88,7 +88,15 @@ spring:
               args:
                 name: DESTINATION-SERVICE
                 fallbackuri: forward:/likeServiceFallBack
-
+        - id: SEARCH-SERVICE
+          uri: lb://SEARCH-SERVICE
+          predicates:
+            - Path=/search/**
+          filters:
+            - name: CircuitBreaker
+              args:
+                name: SEARCH-SERVICE
+                fallbackuri: forward:/searchServiceFallBack
 hystrix:
   command:
     fallbackcmd:
