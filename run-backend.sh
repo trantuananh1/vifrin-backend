@@ -1,3 +1,4 @@
+mvn clean install package &
 cd ./service-registry
 sudo chmod -R 777 ./run-backend.sh
 ./run-backend.sh &
