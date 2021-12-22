@@ -75,6 +75,10 @@ public class User implements Serializable {
             cascade = CascadeType.ALL)
     private Set<Like> likes;
 
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY,
+            cascade = CascadeType.ALL)
+    private Set<Notification> notifications;
+
     @ManyToMany
     private Set<User> followers = new HashSet<>();
 
