@@ -4,10 +4,10 @@ package com.vifrin.notification.messaging;
 import org.springframework.cloud.stream.annotation.Input;
 import org.springframework.messaging.SubscribableChannel;
 
-public interface CommentEventStream {
+public interface PostEventStream {
 
-    String INPUT = "CommentChanged";
+    String INPUT = "PostChanged";
 
     @Input(INPUT)
-    SubscribableChannel commentChanged();
+    SubscribableChannel postChanged();
 }

@@ -24,4 +24,7 @@ public interface CommentRepository extends JpaRepository<Comment, Long> {
     List<Comment> findByDestinationId(Long destinationId, Pageable pageable);
 
     List<Comment> findByDestinationIdAndStar(Long destinationId, int star, Pageable pageable);
+
+    @Query(value = "SELECT post_id FROM comments WHERE id=?1", nativeQuery = true)
+    Long getPostIdByCommentId(Long commentId);
 }

@@ -27,21 +27,32 @@ public class Notification {
     @Column(name = "id")
     private Long id;
 
-    @Column(name = "is_read")
+    @Column(name = "is_read", columnDefinition = "boolean default false")
     private boolean isRead;
 
-    @Column(name = "is_deleted")
+    @Column(name = "is_deleted", columnDefinition = "boolean default false")
     private boolean isDeleted;
 
     @Column(name = "created_at")
     @CreatedDate
     private Instant createdAt;
 
+    @Column(name = "updated_at")
+    @CreatedDate
+    private Instant updatedAt;
+
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "notifier_id", nullable = false)
+    @JoinColumn(name = "user_id")
     private User user;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "notification_object_id", nullable = false)
     private NotificationObject notificationObject;
+
+    public Notification(NotificationObject notificationObject, User user){
+        this.notificationObject = notificationObject;
+        this.user = user;
+        this.createdAt = Instant.now();
+        this.updatedAt = Instant.now();
+    }
 }

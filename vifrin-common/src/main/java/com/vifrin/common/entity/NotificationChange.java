@@ -25,9 +25,6 @@ public class NotificationChange {
     @Column(name = "id")
     private Long id;
 
-    @Column(name = "actor_id")
-    private Long actorId;
-
     @Column(name = "created_at")
     @CreatedDate
     private Instant createdAt;
@@ -39,4 +36,9 @@ public class NotificationChange {
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "notification_object_id", nullable = false)
     private NotificationObject notificationObject;
+
+    public NotificationChange(User user, NotificationObject notificationObject){
+        this.user = user;
+        this.notificationObject = notificationObject;
+    }
 }

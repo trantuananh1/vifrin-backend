@@ -1,9 +1,9 @@
 server:
-  port: 9006
+  port: 9012
 
 spring:
   application:
-    name: COMMENT-SERVICE
+    name: NOTIFICATION-SERVICE
   zipkin:
     base-url: http://127.0.0.1:9411/
 
@@ -26,7 +26,30 @@ spring:
           configuration:
             key:
               serializer: org.apache.kafka.common.serialization.StringSerializer
+        bindings:
+          PostChanged:
+            consumer:
+              startOffset: latest
+              autoCommitOffset: false
+          CommentChanged:
+            consumer:
+              startOffset: latest
+              autoCommitOffset: false
       bindings:
         CommentChanged:
           destination: vifrin-comment-changed
+          contentType: application/json
+          group: graphService
+          consumer:
+            startOffset: latest
+            autoCommitOffset: false
+        PostChanged:
+          destination: vifrin-post-changed
+          contentType: application/json
+          group: graphService
+          consumer:
+            startOffset: latest
+            autoCommitOffset: false
+        UserChanged:
+          destination: vifrin-user-changed
           contentType: application/json

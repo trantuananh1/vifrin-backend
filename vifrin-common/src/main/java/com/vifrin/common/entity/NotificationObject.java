@@ -1,5 +1,6 @@
 package com.vifrin.common.entity;
 
+import com.sun.istack.NotNull;
 import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedBy;
@@ -38,4 +39,11 @@ public class NotificationObject {
     @Column(name = "updated_at")
     @LastModifiedBy
     private Instant updatedAt;
+
+    public NotificationObject(int type, Long entityId) {
+        this.type = type;
+        this.entityId = entityId;
+        this.createdAt = Instant.now();
+        this.updatedAt = Instant.now();
+    }
 }

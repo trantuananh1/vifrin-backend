@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * @Author: trantuananh1
@@ -28,16 +29,13 @@ public interface UserFeignClient {
     ResponseEntity<String> getCurrent();
 
     @GetMapping("/users/{userId}/followers")
-    ResponseEntity<List<FollowDto>> getFollowers(@PathVariable Long userId,
-                                                        @RequestParam int page,
-                                                        @RequestParam int size,
-                                                        @RequestHeader("Authorization") String token);
+    ResponseEntity<List<FollowDto>> getFollowers(@PathVariable Long userId, @RequestParam int page, @RequestParam int size, @RequestHeader("Authorization") String token);
+
+    @GetMapping("/users/{userId}/followers")
+    ResponseEntity<List<FollowDto>> getFollowers(@PathVariable Long userId, @RequestParam int page, @RequestParam int size);
 
     @GetMapping("/users/{userId}/followings")
-    ResponseEntity<List<FollowDto>> getFollowings(@PathVariable Long userId,
-                                                  @RequestParam int page,
-                                                  @RequestParam int size,
-                                                  @RequestHeader("Authorization") String token);
+    ResponseEntity<List<FollowDto>> getFollowings(@PathVariable Long userId, @RequestParam int page, @RequestParam int size, @RequestHeader("Authorization") String token);
 
     @GetMapping("/users/summary/in")
     ResponseEntity<List<UserSummary>> getUserSummaries(@RequestBody List<Long> ids, @RequestHeader("Authorization") String token);
@@ -46,5 +44,5 @@ public interface UserFeignClient {
     ResponseEntity<UserSummary> getUserSummary(@PathVariable Long userId, @RequestHeader("Authorization") String token);
 
     @GetMapping("/users/search")
-    ResponseEntity<List<UserSummary>> search(@RequestParam String key, @RequestHeader("Authorization") String token);
+    ResponseEntity<List<UserSummary>> search(@RequestParam String key, @RequestHeader("Authorization") Optional<String> token);
 }

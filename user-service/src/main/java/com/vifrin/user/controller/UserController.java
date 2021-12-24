@@ -1,6 +1,7 @@
 package com.vifrin.user.controller;
 
 import com.vifrin.common.constant.BaseConstant;
+import com.vifrin.common.constant.StringPool;
 import com.vifrin.common.dto.FollowDto;
 import com.vifrin.common.dto.ProfileDto;
 import com.vifrin.common.dto.UserSummary;
@@ -125,7 +126,8 @@ public class UserController {
     public ResponseEntity<List<FollowDto>> getFollowers(@PathVariable Long userId, @AuthenticationPrincipal Principal principal,
                                           @RequestParam(value = "page", defaultValue = BaseConstant.DEFAULT_PAGE_NUMBER) int page,
                                           @RequestParam(value = "size", defaultValue = BaseConstant.DEFAULT_PAGE_SIZE) int size) {
-        List<FollowDto> followDtos = userService.getFollowers(userId, principal.getName(), page, size);
+        String username = principal != null ? principal.getName() : StringPool.BLANK;
+        List<FollowDto> followDtos = userService.getFollowers(userId, username, page, size);
         return !followDtos.isEmpty() ?
                 ResponseEntity.ok(followDtos) :
                 ResponseEntity.noContent().build();
@@ -135,7 +137,8 @@ public class UserController {
     public ResponseEntity<List<FollowDto>> getFollowings(@PathVariable Long userId, @AuthenticationPrincipal Principal principal,
                                            @RequestParam(value = "page", defaultValue = BaseConstant.DEFAULT_PAGE_NUMBER) int page,
                                            @RequestParam(value = "size", defaultValue = BaseConstant.DEFAULT_PAGE_SIZE) int size) {
-        List<FollowDto> followDtos = userService.getFollowings(userId, principal.getName(), page, size);
+        String username = principal != null ? principal.getName() : StringPool.BLANK;
+        List<FollowDto> followDtos = userService.getFollowings(userId, username, page, size);
         return !followDtos.isEmpty() ?
                 ResponseEntity.ok(followDtos) :
                 ResponseEntity.noContent().build();

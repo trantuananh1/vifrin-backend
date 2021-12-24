@@ -1,6 +1,8 @@
 package com.vifrin.notification;
 
 import com.vifrin.notification.messaging.CommentEventStream;
+import com.vifrin.notification.messaging.PostEventStream;
+import com.vifrin.notification.messaging.UserEventStream;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -21,7 +23,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 @EnableFeignClients(basePackages = {"com.vifrin.feign"})
 @EnableJpaRepositories(basePackages = {"com.vifrin.common"})
 @EntityScan(basePackages = {"com.vifrin.common"})
-@EnableBinding(CommentEventStream.class)
+@EnableBinding({CommentEventStream.class, PostEventStream.class, UserEventStream.class})
 public class NotificationServiceApplication {
     public static void main(String[] args) {
         SpringApplication.run(NotificationServiceApplication.class, args);

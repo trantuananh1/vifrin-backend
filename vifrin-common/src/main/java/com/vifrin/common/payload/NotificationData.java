@@ -1,5 +1,6 @@
 package com.vifrin.common.payload;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 
 import java.util.List;
@@ -10,9 +11,10 @@ import java.util.List;
  **/
 
 @Data
+@AllArgsConstructor
 public class NotificationData {
     private int notificationType;
-    private int entityId;
-    private int actorId;
+    private Long entityId;
+    private Long actorId;
     private List<Long> notifierIds;
 }
