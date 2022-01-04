@@ -113,7 +113,7 @@ public class PostService {
                     }
                     mediaRepository.saveAll(medias);
                     //update destination
-                    if  (!Objects.equals(postRequest.getDestinationId(), post.getDestination().getId())){
+                    if  (postRequest.getDestinationId()!=null && !Objects.equals(postRequest.getDestinationId(), post.getDestination().getId())){
                         Destination destination = destinationRepository.findById(postRequest.getDestinationId())
                                         .orElseThrow(() -> new ResourceNotFoundException(postRequest.getDestinationId()));
                         post.setDestination(destination);
