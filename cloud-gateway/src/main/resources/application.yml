@@ -8,6 +8,9 @@ spring:
     gateway:
       default-filters:
         - DedupeResponseHeader=Access-Control-Allow-Credentials Access-Control-Allow-Origin
+      httpclient:
+        connect-timeout: 20000
+        response-timeout: 20s
       globalcors:
         corsConfigurations:
           '[/**]':
@@ -70,6 +73,15 @@ spring:
               args:
                 name: MEDIA-SERVICE
                 fallbackuri: forward:/mediaServiceFallBack
+        - id: NOTIFICATION-SERVICE
+          uri: lb://NOTIFICATION-SERVICE
+          predicates:
+            - Path=/notifications/**
+          filters:
+            - name: CircuitBreaker
+              args:
+                name: NOTIFICATION-SERVICE
+                fallbackuri: forward:/notifications-fallback
         - id: LIKE-SERVICE
           uri: lb://LIKE-SERVICE
           predicates:

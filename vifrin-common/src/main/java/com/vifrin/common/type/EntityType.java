@@ -11,14 +11,13 @@ import lombok.Getter;
 @Getter
 @AllArgsConstructor
 public enum EntityType {
-    USER(1, "User"),
-    POST(2, "Post"),
-    COMMENT(3, "Comment"),
-    TAG(4, "Tag"),
-    HASHTAG(5, "Hashtag"),
-    REACTION(6, "Reaction"),
-    PROFILE(7, "Profile"),
-    ATTACHMENT(8, "Attachment");
+    USER(1, "user"),
+    POST(2, "post"),
+    COMMENT(3, "comment"),
+    TAG(4, "tag"),
+    HASHTAG(5, "hashtag"),
+    PROFILE(7, "profile"),
+    MEDIA(8, "media");
 
     private final int value;
     private final String name;

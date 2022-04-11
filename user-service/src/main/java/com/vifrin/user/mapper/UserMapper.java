@@ -82,9 +82,15 @@ public abstract class UserMapper {
     }
 
     boolean isFollowing(User user, User me){
+        if (me == null){
+            return false;
+        }
         return me.getFollowings().contains(user);
     }
     boolean isFollower(User user, User me){
+        if (me == null){
+            return false;
+        }
         return me.getFollowers().contains(user);
     }
 }

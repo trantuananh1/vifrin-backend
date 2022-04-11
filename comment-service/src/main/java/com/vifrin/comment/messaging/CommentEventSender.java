@@ -47,8 +47,10 @@ public class CommentEventSender {
         return CommentEventPayload
                 .builder()
                 .eventType(eventType)
+                .commentId(comment.getId())
                 .targetId(comment.getDestination().getId())
-                .score(comment.getStar())
+                .userId(comment.getUser().getId())
+                .star(comment.getStar())
                 .createdAt(comment.getCreatedAt())
                 .build();
     }

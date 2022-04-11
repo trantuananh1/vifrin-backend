@@ -34,6 +34,7 @@
         <module>like-service</module>
         <module>destination-service</module>
         <module>search-service</module>
+        <module>notification-service</module>
     </modules>
     <packaging>pom</packaging>
     <dependencies>

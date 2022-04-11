@@ -53,4 +53,10 @@ public class FallBackMethodController {
         return "Like Service is taking longer than Expected." +
                 " Please try again later";
     }
+
+    @GetMapping("/notifications-fallback")
+    public String notificationsServiceFallBackMethod() {
+        return "Notification Service is taking longer than Expected." +
+                " Please try again later";
+    }
 }

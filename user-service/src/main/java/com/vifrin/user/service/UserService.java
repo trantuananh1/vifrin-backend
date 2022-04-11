@@ -13,6 +13,7 @@ import com.vifrin.common.entity.User;
 import com.vifrin.common.dto.UserDto;
 import com.vifrin.common.repository.*;
 import com.vifrin.common.payload.RegisterRequest;
+import com.vifrin.user.messaging.UserEventSender;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
@@ -37,6 +38,8 @@ public class UserService {
     UserMapper userMapper;
     @Autowired
     ProfileMapper profileMapper;
+    @Autowired
+    UserEventSender userEventSender;
 
     public UserDto createUser(RegisterRequest registerRequest) {
         log.info("Inside saveUser of UserService");
@@ -147,6 +150,7 @@ public class UserService {
             userRepository.save(target);
             userRepository.save(me);
 
+            userEventSender.sendEventFollow(me.getId(), targetId);
             return true;
         } catch (Exception e) {
             log.error(e.getMessage());
@@ -207,7 +211,8 @@ public class UserService {
     }
 
     public List<FollowDto> getFollowers(Long targetId, String username, int page, int size) {
-        User user = userRepository.findByUsername(username)
+        User user = username.isEmpty() ? null :
+                userRepository.findByUsername(username)
                 .orElseThrow(() -> new ResourceNotFoundException(username));
         List<Long> followerIds = userRepository.getFollowersByUserId(targetId, PageRequest.of(page, size));
         List<User> followers = userRepository.findAllById(followerIds);
@@ -215,7 +220,8 @@ public class UserService {
     }
 
     public List<FollowDto> getFollowings(Long targetId, String username, int page, int size) {
-        User user = userRepository.findByUsername(username)
+        User user = username.isEmpty() ? null :
+                userRepository.findByUsername(username)
                 .orElseThrow(() -> new ResourceNotFoundException(username));
         List<Long> followingIds = userRepository.getFollowingsByUserId(targetId, PageRequest.of(page, size));
         List<User> followings = userRepository.findAllById(followingIds);
