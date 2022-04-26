@@ -35,6 +35,7 @@
         <module>destination-service</module>
         <module>search-service</module>
         <module>notification-service</module>
+        <module>chat-service</module>
     </modules>
     <packaging>pom</packaging>
     <dependencies>

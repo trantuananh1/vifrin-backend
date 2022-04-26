@@ -28,7 +28,6 @@ services:
   redis:
     image: 'bitnami/redis:latest'
     container_name: "vifrin-redis"
-    restart: always
     ports:
       - 6379:6379
     environment:
