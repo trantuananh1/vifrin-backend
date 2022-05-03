@@ -1,6 +1,8 @@
 package com.snw.cloud.gateway;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -57,6 +59,13 @@ public class FallBackMethodController {
     @GetMapping("/notifications-fallback")
     public String notificationsServiceFallBackMethod() {
         return "Notification Service is taking longer than Expected." +
+                " Please try again later";
+    }
+
+    @GetMapping("/chatServiceFallBack")
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    public String chatServiceFallBackMethod() {
+        return "Chat Service is taking longer than Expected." +
                 " Please try again later";
     }
 }

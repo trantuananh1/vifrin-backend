@@ -1,18 +1,17 @@
-package com.vifrin.chat.entity;
+package com.vifrin.common.entity;
 
-import com.vifrin.common.entity.Destination;
-import com.vifrin.common.entity.Post;
-import com.vifrin.common.entity.User;
+import com.sun.istack.NotNull;
 import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedBy;
 
 import javax.persistence.*;
 import java.time.Instant;
+import java.util.Date;
 
 /**
  * @author: trantuananh1
- * @since: Mon, 25/04/2022
+ * @since: Tue, 03/05/2022
  **/
 
 @Entity
@@ -25,14 +24,18 @@ import java.time.Instant;
 public class Message {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id")
-    private Long id;
+    private long id;
 
-    @Column(name = "content", length = 500)
+    @NotNull
     private String content;
 
-    @Column(name = "username")
-    private String username;
+    @OneToOne
+    @JoinColumn(name = "authorId")
+    private User author;
+
+    @OneToOne
+    @JoinColumn(name = "threadId")
+    private Thread thread;
 
     @Column(name = "created_at")
     @CreatedDate
