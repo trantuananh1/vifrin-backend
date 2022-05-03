@@ -109,6 +109,15 @@ spring:
               args:
                 name: SEARCH-SERVICE
                 fallbackuri: forward:/searchServiceFallBack
+        - id: CHAT-SERVICE
+          uri: lb://CHAT-SERVICE
+          predicates:
+            - Path=/messages/**, /threads/**
+          filters:
+            - name: CircuitBreaker
+              args:
+                name: CHAT-SERVICE
+                fallbackuri: forward:/chatServiceFallBack
 hystrix:
   command:
     fallbackcmd:

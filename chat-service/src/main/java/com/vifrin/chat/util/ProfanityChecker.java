@@ -10,25 +10,25 @@ import java.util.stream.Collectors;
  */
 public class ProfanityChecker {
 
-	private Set<String> profanities = new HashSet<>();
+    private Set<String> profanities = new HashSet<>();
 
-	public long getMessageProfanity(String message) {
-		return Arrays.stream(message.split(" ")) //
-				.filter(word -> profanities.contains(word)) //
-				.count();
-	}
+    public long getMessageProfanity(String message) {
+        return Arrays.stream(message.split(" ")) //
+                .filter(word -> profanities.contains(word)) //
+                .count();
+    }
 
-	public String filter(String message) {
-		return Arrays.stream(message.split(" "))//
-				.filter(word -> !profanities.contains(word)) //
-				.collect(Collectors.joining(" "));
-	}
+    public String filter(String message) {
+        return Arrays.stream(message.split(" "))//
+                .filter(word -> !profanities.contains(word)) //
+                .collect(Collectors.joining(" "));
+    }
 
-	public Set<String> getProfanities() {
-		return profanities;
-	}
+    public Set<String> getProfanities() {
+        return profanities;
+    }
 
-	public void setProfanities(Set<String> profanities) {
-		this.profanities = profanities;
-	}
+    public void setProfanities(Set<String> profanities) {
+        this.profanities = profanities;
+    }
 }
