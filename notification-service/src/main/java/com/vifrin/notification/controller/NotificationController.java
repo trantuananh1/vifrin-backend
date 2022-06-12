@@ -1,6 +1,6 @@
 package com.vifrin.notification.controller;
 
-import com.vifrin.common.constant.BaseConstant;
+import com.vifrin.common.config.constant.BaseConstant;
 import com.vifrin.common.dto.NotificationDto;
 import com.vifrin.common.response.ResponseTemplate;
 import com.vifrin.common.response.ResponseType;

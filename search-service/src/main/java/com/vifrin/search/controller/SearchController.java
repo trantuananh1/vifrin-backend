@@ -1,8 +1,5 @@
 package com.vifrin.search.controller;
 
-import com.vifrin.common.constant.BaseConstant;
-import com.vifrin.common.response.ResponseTemplate;
-import com.vifrin.common.response.ResponseType;
 import com.vifrin.search.service.SearchService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;

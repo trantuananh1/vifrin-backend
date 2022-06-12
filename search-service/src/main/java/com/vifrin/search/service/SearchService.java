@@ -1,6 +1,6 @@
 package com.vifrin.search.service;
 
-import com.vifrin.common.constant.BaseConstant;
+import com.vifrin.common.config.constant.BaseConstant;
 import com.vifrin.common.dto.DestinationDto;
 import com.vifrin.common.dto.UserSummary;
 import com.vifrin.common.util.RedisUtil;

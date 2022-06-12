@@ -118,6 +118,15 @@ spring:
               args:
                 name: CHAT-SERVICE
                 fallbackuri: forward:/chatServiceFallBack
+        - id: HOTEL-SERVICE
+          uri: lb://HOTEL-SERVICE
+          predicates:
+            - Path=/hotel/**
+          filters:
+            - name: CircuitBreaker
+              args:
+                name: HOTEL-SERVICE
+                fallbackuri: forward:/hotelServiceFallBack
 hystrix:
   command:
     fallbackcmd:

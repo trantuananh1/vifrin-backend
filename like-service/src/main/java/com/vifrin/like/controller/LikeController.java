@@ -1,11 +1,7 @@
 package com.vifrin.like.controller;
 
-import com.vifrin.common.constant.BaseConstant;
+import com.vifrin.common.config.constant.BaseConstant;
 import com.vifrin.common.dto.LikeDto;
-import com.vifrin.common.entity.Post;
-import com.vifrin.common.repository.LikeRepository;
-import com.vifrin.common.repository.PostRepository;
-import com.vifrin.common.repository.UserRepository;
 import com.vifrin.common.response.ResponseTemplate;
 import com.vifrin.common.response.ResponseType;
 import com.vifrin.like.service.LikeService;

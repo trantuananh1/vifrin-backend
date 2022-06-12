@@ -1,22 +1,17 @@
 package com.vifrin.destination.controller;
 
-import com.vifrin.common.constant.BaseConstant;
-import com.vifrin.common.dto.CommentDto;
 import com.vifrin.common.dto.DestinationDto;
 import com.vifrin.common.payload.DestinationRequest;
 import com.vifrin.common.response.ResponseTemplate;
 import com.vifrin.common.response.ResponseType;
 import com.vifrin.destination.service.DestinationService;
 import lombok.extern.slf4j.Slf4j;
-import org.bouncycastle.jcajce.provider.symmetric.DES;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
-import java.security.Principal;
 import java.util.List;
 
 /**

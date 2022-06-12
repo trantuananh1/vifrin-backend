@@ -1,16 +1,14 @@
 package com.vifrin.notification.service;
 
-import com.vifrin.common.constant.StringPool;
+import com.vifrin.common.config.constant.StringPool;
 import com.vifrin.common.dto.FollowDto;
 import com.vifrin.common.dto.NotificationDto;
 import com.vifrin.common.entity.*;
 import com.vifrin.common.payload.NotificationData;
 import com.vifrin.common.repository.*;
-import com.vifrin.common.type.EntityType;
 import com.vifrin.common.type.NotificationType;
 import com.vifrin.feign.client.UserFeignClient;
 import com.vifrin.notification.mapper.NotificationMapper;
-import com.vifrin.notification.service.object.PostNotificationExecutor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;

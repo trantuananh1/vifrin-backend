@@ -66,6 +66,10 @@ public class Destination {
             cascade = CascadeType.ALL)
     private List<Media> medias;
 
+    @OneToMany(mappedBy = "destination", fetch = FetchType.LAZY,
+            cascade = CascadeType.ALL)
+    private List<Hotel> hotels;
+
     @Embedded
     private Activity activity;
 
@@ -81,6 +85,11 @@ public class Destination {
                 ", createdAt=" + createdAt +
                 ", updatedAt=" + updatedAt +
                 ", checkInsCount=" + checkInsCount +
+                ", posts=" + posts +
+                ", comments=" + comments +
+                ", medias=" + medias +
+                ", hotels=" + hotels +
+                ", activity=" + activity +
                 '}';
     }
 }

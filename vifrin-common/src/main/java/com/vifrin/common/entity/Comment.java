@@ -52,6 +52,10 @@ public class Comment {
     @JoinColumn(name = "destination_id")
     private Destination destination;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "hotel_id")
+    private Hotel hotel;
+
     @Embedded
     private Activity activity;
 
@@ -78,8 +82,14 @@ public class Comment {
         return "Comment{" +
                 "id=" + id +
                 ", content='" + content + '\'' +
+                ", star=" + star +
                 ", createdAt=" + createdAt +
                 ", updatedAt=" + updatedAt +
+                ", post=" + post +
+                ", user=" + user +
+                ", destination=" + destination +
+                ", hotel=" + hotel +
+                ", activity=" + activity +
                 '}';
     }
 }

@@ -1,6 +1,6 @@
 package com.vifrin.post.controller;
 
-import com.vifrin.common.constant.StringPool;
+import com.vifrin.common.config.constant.StringPool;
 import com.vifrin.common.dto.PostDto;
 import com.vifrin.common.payload.PostRequest;
 import com.vifrin.common.response.ResponseTemplate;

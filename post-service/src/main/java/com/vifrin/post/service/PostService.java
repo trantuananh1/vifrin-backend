@@ -1,6 +1,6 @@
 package com.vifrin.post.service;
 
-import com.vifrin.common.constant.OperationConstant;
+import com.vifrin.common.config.constant.OperationConstant;
 import com.vifrin.common.entity.Destination;
 import com.vifrin.common.entity.Media;
 import com.vifrin.common.entity.Post;

@@ -63,6 +63,10 @@ public class Media {
     @JoinColumn(name = "destination_id")
     private Destination destination;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "hotel_id")
+    private Hotel hotel;
+
     public Media(String url, String name, String mime, float width, float height, float size, User user) {
         this.url = url;
         this.mime = mime;
@@ -87,6 +91,10 @@ public class Media {
                 ", size=" + size +
                 ", createdAt=" + createdAt +
                 ", updatedAt=" + updatedAt +
+                ", post=" + post +
+                ", user=" + user +
+                ", destination=" + destination +
+                ", hotel=" + hotel +
                 '}';
     }
 }

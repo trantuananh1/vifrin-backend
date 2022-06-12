@@ -1,7 +1,7 @@
 package com.vifrin.comment.controller;
 
 import com.vifrin.comment.service.CommentService;
-import com.vifrin.common.constant.BaseConstant;
+import com.vifrin.common.config.constant.BaseConstant;
 import com.vifrin.common.dto.CommentDto;
 import com.vifrin.common.response.ResponseTemplate;
 import com.vifrin.common.response.ResponseType;
@@ -15,7 +15,6 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import javax.swing.text.html.Option;
 import java.net.URI;
 import java.security.Principal;
 import java.util.List;

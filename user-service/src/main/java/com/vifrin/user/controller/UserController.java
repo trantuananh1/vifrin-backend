@@ -1,11 +1,10 @@
 package com.vifrin.user.controller;
 
-import com.vifrin.common.constant.BaseConstant;
-import com.vifrin.common.constant.StringPool;
+import com.vifrin.common.config.constant.BaseConstant;
+import com.vifrin.common.config.constant.StringPool;
 import com.vifrin.common.dto.FollowDto;
 import com.vifrin.common.dto.ProfileDto;
 import com.vifrin.common.dto.UserSummary;
-import com.vifrin.common.entity.User;
 import com.vifrin.common.response.ResponseTemplate;
 import com.vifrin.common.response.ResponseType;
 import com.vifrin.user.service.UserService;
@@ -20,10 +19,8 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
 import java.security.Principal;
-import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 
 @RestController
 @RequestMapping("/users")

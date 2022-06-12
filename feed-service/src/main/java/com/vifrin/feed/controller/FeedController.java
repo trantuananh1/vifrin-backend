@@ -1,6 +1,6 @@
 package com.vifrin.feed.controller;
 
-import com.vifrin.common.constant.BaseConstant;
+import com.vifrin.common.config.constant.BaseConstant;
 import com.vifrin.common.dto.PostDto;
 import com.vifrin.feed.service.FeedService;
 import lombok.extern.slf4j.Slf4j;

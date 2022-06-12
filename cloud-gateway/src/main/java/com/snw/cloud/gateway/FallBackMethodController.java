@@ -68,4 +68,11 @@ public class FallBackMethodController {
         return "Chat Service is taking longer than Expected." +
                 " Please try again later";
     }
+
+    @GetMapping("/hotelServiceFallBack")
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    public String hotelServiceFallBackMethod() {
+        return "Hotel Service is taking longer than Expected." +
+                " Please try again later";
+    }
 }

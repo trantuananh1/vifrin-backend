@@ -36,9 +36,14 @@
         <module>search-service</module>
         <module>notification-service</module>
         <module>chat-service</module>
+        <module>hotel-service</module>
     </modules>
     <packaging>pom</packaging>
     <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+        </dependency>
     </dependencies>
     <build>
         <plugins>

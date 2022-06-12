@@ -1,6 +1,6 @@
 package com.vifrin.feed.service;
 
-import com.vifrin.common.constant.BaseConstant;
+import com.vifrin.common.config.constant.BaseConstant;
 import com.vifrin.common.dto.FollowDto;
 import com.vifrin.common.entity.Feed;
 import com.vifrin.common.entity.User;
