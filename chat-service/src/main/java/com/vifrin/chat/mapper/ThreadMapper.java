@@ -7,7 +7,7 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
 /**
- * @author: trantuananh1
+ * @author: tranmanhhung
  * @since: Tue, 03/05/2022
  **/
 @Mapper(componentModel = "spring")

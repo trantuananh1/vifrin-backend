@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 import java.io.Serializable;
 
 /**
- * @Author: trantuananh1
+ * @Author: tranmanhhung
  * @Created: Thu, 02/09/2021 3:20 PM
  **/
 

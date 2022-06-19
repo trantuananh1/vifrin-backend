@@ -10,7 +10,7 @@ import org.mapstruct.Mapping;
 import java.util.List;
 
 /**
- * @author: trantuananh1
+ * @author: tranmanhhung
  * @since: Tue, 26/04/2022
  **/
 @Mapper(componentModel = "spring")

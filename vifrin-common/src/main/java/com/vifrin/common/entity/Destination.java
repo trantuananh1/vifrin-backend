@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Set;
 
 /**
- * @author: trantuananh1
+ * @author: tranmanhhung
  * @since: Thu, 16/12/2021
  **/
 
@@ -88,7 +88,7 @@ public class Destination {
                 ", posts=" + posts +
                 ", comments=" + comments +
                 ", medias=" + medias +
-                ", hotels=" + hotels +
+//                ", hotels=" + hotels +
                 ", activity=" + activity +
                 '}';
     }

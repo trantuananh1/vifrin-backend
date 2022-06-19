@@ -1,5 +1,6 @@
 package com.vifrin.destination.controller;
 
+import com.vifrin.common.config.constant.BaseConstant;
 import com.vifrin.common.dto.DestinationDto;
 import com.vifrin.common.payload.DestinationRequest;
 import com.vifrin.common.response.ResponseTemplate;
@@ -15,7 +16,7 @@ import java.net.URI;
 import java.util.List;
 
 /**
- * @author: trantuananh1
+ * @author: tranmanhhung
  * @since: Sun, 12/12/2021
  **/
 
@@ -49,6 +50,16 @@ public class DestinationController {
         DestinationDto destinationDto = destinationService.getDestination(id);
         return ResponseEntity
                 .ok(new ResponseTemplate<DestinationDto>(ResponseType.SUCCESS, destinationDto));
+    }
+
+    @GetMapping("/top-ranking")
+    public ResponseEntity<?> getTopDestination(
+            @RequestParam(defaultValue = BaseConstant.DEFAULT_PAGE_NUMBER) int page,
+            @RequestParam(defaultValue = BaseConstant.DEFAULT_PAGE_SIZE) int size
+    ){
+        List<DestinationDto> destinationDtos = destinationService.getTopDestinations(page, size);
+        return ResponseEntity
+                .ok(new ResponseTemplate<>(ResponseType.SUCCESS, destinationDtos));
     }
 
     @GetMapping

@@ -5,7 +5,7 @@ import lombok.Data;
 import lombok.Getter;
 
 /**
- * @author: trantuananh1
+ * @author: tranmanhhung
  * @since: Thu, 23/12/2021
  **/
 

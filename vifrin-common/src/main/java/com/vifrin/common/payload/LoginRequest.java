@@ -3,7 +3,7 @@ package com.vifrin.common.payload;
 import lombok.Data;
 
 /**
- * @Author: trantuananh1
+ * @Author: tranmanhhung
  * @Created: Thu, 09/09/2021 12:16 PM
  **/
 

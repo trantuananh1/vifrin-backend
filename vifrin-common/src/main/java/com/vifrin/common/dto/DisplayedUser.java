@@ -3,7 +3,7 @@ package com.vifrin.common.dto;
 import lombok.Data;
 
 /**
- * @author: trantuananh1
+ * @author: tranmanhhung
  * @since: Thu, 23/12/2021
  **/
 

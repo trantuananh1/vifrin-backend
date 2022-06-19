@@ -7,7 +7,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
 /**
- * @author: trantuananh1
+ * @author: tranmanhhung
  * @since: Thu, 09/12/2021
  **/
 

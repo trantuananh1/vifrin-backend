@@ -6,7 +6,7 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
 /**
- * @author: trantuananh1
+ * @author: tranmanhhung
  * @since: Wed, 08/12/2021
  **/
 

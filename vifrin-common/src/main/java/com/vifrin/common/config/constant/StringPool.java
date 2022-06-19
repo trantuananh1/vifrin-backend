@@ -1,7 +1,7 @@
 package com.vifrin.common.config.constant;
 
 /**
- * @author: trantuananh1
+ * @author: tranmanhhung
  * @since: Tue, 07/12/2021
  **/
 

@@ -4,7 +4,7 @@ import com.vifrin.common.entity.Media;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
- * @author: trantuananh1
+ * @author: tranmanhhung
  * @since: Sun, 12/12/2021
  **/
 

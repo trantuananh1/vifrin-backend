@@ -7,7 +7,7 @@ import java.time.Instant;
 import java.util.List;
 
 /**
- * @author: trantuananh1
+ * @author: tranmanhhung
  * @since: Thu, 16/12/2021
  **/
 
@@ -24,6 +24,5 @@ public class HotelDto {
     private Instant createdAt;
     private Instant updatedAt;
     private List<MediaDto> medias;
-    private List<CommentDto> comments;
-    private Destination destination;
+    private long destinationId;
 }

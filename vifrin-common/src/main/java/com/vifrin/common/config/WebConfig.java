@@ -3,7 +3,7 @@ package com.vifrin.common.config;
 import org.springframework.context.annotation.Configuration;
 
 /**
- * @Author: trantuananh1
+ * @Author: tranmanhhung
  * @Created: Tue, 21/09/2021 4:15 AM
  **/
 

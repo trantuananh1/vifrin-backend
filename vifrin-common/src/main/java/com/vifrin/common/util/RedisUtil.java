@@ -3,7 +3,7 @@ package com.vifrin.common.util;
 import redis.clients.jedis.Jedis;
 
 /**
- * @author: trantuananh1
+ * @author: tranmanhhung
  * @since: Fri, 10/12/2021
  **/
 

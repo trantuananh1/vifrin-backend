@@ -1,7 +1,7 @@
 package com.vifrin.chat.exception;
 
 /**
- * @author: trantuananh1
+ * @author: tranmanhhung
  * @since: Tue, 03/05/2022
  **/
 

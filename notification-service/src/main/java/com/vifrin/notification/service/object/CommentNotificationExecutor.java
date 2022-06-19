@@ -1,7 +1,7 @@
 package com.vifrin.notification.service.object;
 
 /**
- * @author: trantuananh1
+ * @author: tranmanhhung
  * @since: Thu, 23/12/2021
  **/
 

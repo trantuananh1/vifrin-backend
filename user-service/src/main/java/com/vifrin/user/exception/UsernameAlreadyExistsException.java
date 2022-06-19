@@ -1,7 +1,7 @@
 package com.vifrin.user.exception;
 
 /**
- * @author: trantuananh1
+ * @author: tranmanhhung
  * @since: Sun, 31/10/2021
  **/
 

@@ -3,7 +3,7 @@ package com.vifrin.feign.client;
 import org.springframework.cloud.openfeign.FeignClient;
 
 /**
- * @author: trantuananh1
+ * @author: tranmanhhung
  * @since: Sun, 12/12/2021
  **/
 

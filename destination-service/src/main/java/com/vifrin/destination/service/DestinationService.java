@@ -11,6 +11,8 @@ import com.vifrin.destination.exception.ResourceNotFoundException;
 import com.vifrin.destination.messaging.CommentEventPayload;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.time.Instant;
@@ -20,7 +22,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 /**
- * @author: trantuananh1
+ * @author: tranmanhhung
  * @since: Thu, 16/12/2021
  **/
 
@@ -78,6 +80,7 @@ public class DestinationService {
         return destinationMapper.destinationToDestinationDto(destinationRepository.save(destination));
     }
 
+
     public void deleteDestination(Long destinationId){
         destinationRepository
                 .findById(destinationId)
@@ -94,6 +97,12 @@ public class DestinationService {
     public List<DestinationDto> getAllDestination(){
         List<Destination> destinations = destinationRepository.findAll();
         return destinationMapper.destinationsToDestinationDtos(destinations);
+    }
+
+    public List<DestinationDto> getTopDestinations(int page, int size){
+        Pageable pageable = PageRequest.of(page, size);
+        List<Destination> destinations = destinationRepository.getTopDestinations(pageable);
+        return destinationMapper.destinationsToDestinationDtos(destinations.stream().filter(destination -> !destination.getMedias().isEmpty()).collect(Collectors.toList()));
     }
 
     public List<DestinationDto> search(String key){

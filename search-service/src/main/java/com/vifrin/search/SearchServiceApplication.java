@@ -8,7 +8,7 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 /**
- * @author: trantuananh1
+ * @author: tranmanhhung
  * @since: Sun, 05/12/2021
  **/
 

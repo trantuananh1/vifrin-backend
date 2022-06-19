@@ -4,7 +4,7 @@ import org.springframework.cloud.stream.annotation.Input;
 import org.springframework.messaging.SubscribableChannel;
 
 /**
- * @author: trantuananh1
+ * @author: tranmanhhung
  * @since: Fri, 24/12/2021
  **/
 

@@ -244,9 +244,9 @@ public class CdnService {
 
     private String uploadFileToCloudinary(String fileName, File fileUp, String mime){
         Cloudinary cloudinary = new Cloudinary(ObjectUtils.asMap(
-                "cloud_name", "da4oquz0i",
-                "api_key", "771357719894783",
-                "api_secret", "jracl1IvI5vTcbBvOA5JwjuTeF4"));
+                "cloud_name", "dzhowprbg",
+                "api_key", "678878459731679",
+                "api_secret", "1zl9VPue_eYt4DthOS-Etew9m6o"));
         try {
             String type = mime.contains("video") ? "video" : "image";
             Map response =  cloudinary.uploader().upload(fileUp, ObjectUtils.asMap("resource_type", type));

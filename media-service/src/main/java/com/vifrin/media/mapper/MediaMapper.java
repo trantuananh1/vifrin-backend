@@ -10,7 +10,7 @@ import org.mapstruct.Mapping;
 import java.util.List;
 
 /**
- * @author: trantuananh1
+ * @author: tranmanhhung
  * @since: Sun, 12/12/2021
  **/
 

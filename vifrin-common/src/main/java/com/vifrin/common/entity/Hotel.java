@@ -9,7 +9,7 @@ import java.time.Instant;
 import java.util.List;
 
 /**
- * @author: trantuananh1
+ * @author: tranmanhhung
  * @since: Thu, 16/12/2021
  **/
 
@@ -19,7 +19,6 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@SecondaryTable(name = "activities", pkJoinColumns = @PrimaryKeyJoinColumn(name = "id"))
 @Table(name = "hotel")
 public class Hotel {
     @Id
@@ -44,6 +43,9 @@ public class Hotel {
 
     @Column(name = "price")
     private float price;
+
+    @Column(name = "sales_price")
+    private float salePrice;
 
     @Column(name = "phone")
     private String phone;
@@ -81,9 +83,6 @@ public class Hotel {
                 ", phone='" + phone + '\'' +
                 ", createdAt=" + createdAt +
                 ", updatedAt=" + updatedAt +
-                ", comments=" + comments +
-                ", medias=" + medias +
-                ", destination=" + destination +
                 '}';
     }
 }

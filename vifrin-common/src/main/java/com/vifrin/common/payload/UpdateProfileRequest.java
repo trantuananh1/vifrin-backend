@@ -4,7 +4,7 @@ import com.vifrin.common.entity.Gender;
 import lombok.Data;
 
 /**
- * @Author: trantuananh1
+ * @Author: tranmanhhung
  * @Created: Sun, 12/09/2021 10:29 PM
  **/
 

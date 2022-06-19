@@ -17,7 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import java.util.List;
 
 /**
- * @author: trantuananh1
+ * @author: tranmanhhung
  * @since: Thu, 16/12/2021
  **/
 
@@ -25,14 +25,8 @@ import java.util.List;
 public abstract class HotelMapper {
     @Autowired
     MediaRepository mediaRepository;
-
-    @Autowired
-    DestinationRepository destinationRepository;
     @Autowired
     MediaMapper mediaMapper;
-
-    @Autowired
-    DestinationMapper destinationMapper;
 
     @Mapping(target = "id", source = "hotel.id")
     @Mapping(target = "name", source = "hotel.name")
@@ -44,8 +38,8 @@ public abstract class HotelMapper {
     @Mapping(target = "phone", source = "hotel.phone")
     @Mapping(target = "createdAt", source = "hotel.createdAt")
     @Mapping(target = "updatedAt", source = "hotel.updatedAt")
-    @Mapping(target = "destination", source = "hotel.destination")
     @Mapping(target = "medias", expression = "java(getMediaDto(hotel))")
+    @Mapping(target = "destinationId", source = "hotel.destination.id")
     public abstract HotelDto hotelToHotelDto(Hotel hotel);
 
     public abstract List<HotelDto> hotelsToHotelsDto(List<Hotel> hotels);
@@ -59,7 +53,6 @@ public abstract class HotelMapper {
     @Mapping(target = "phone", source = "hotelRequest.phone")
     @Mapping(target = "createdAt",expression = "java(java.time.Instant.now())")
     @Mapping(target = "updatedAt", expression = "java(java.time.Instant.now())")
-    @Mapping(target = "destination", expression = "java(getDestination(hotelRequest))")
     @Mapping(target = "medias", expression = "java(getMedias(hotelRequest))")
     public abstract Hotel hotelDtoToHotel(HotelRequest hotelRequest);
 
@@ -73,9 +66,5 @@ public abstract class HotelMapper {
     List<MediaDto> getMediaDto(Hotel hotel){
         List<Media> medias = hotel.getMedias();
         return mediaMapper.mediasToMediaDtos(medias);
-    }
-
-    public Destination getDestination(HotelRequest hotelRequest){
-        return destinationRepository.findById(hotelRequest.getDestinationId()).orElseThrow(() -> new ResourceNotFoundException(hotelRequest.getDestinationId()));
     }
 }

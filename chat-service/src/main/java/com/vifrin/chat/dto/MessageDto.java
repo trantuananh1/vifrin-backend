@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 import java.time.Instant;
 
 /**
- * @author: trantuananh1
+ * @author: tranmanhhung
  * @since: Tue, 26/04/2022
  **/
 @Data

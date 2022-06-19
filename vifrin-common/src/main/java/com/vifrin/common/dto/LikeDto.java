@@ -5,7 +5,7 @@ import lombok.Data;
 import java.time.Instant;
 
 /**
- * @author: trantuananh1
+ * @author: tranmanhhung
  * @since: Mon, 13/12/2021
  **/
 

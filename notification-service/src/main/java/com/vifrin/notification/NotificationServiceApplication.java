@@ -13,7 +13,7 @@ import org.springframework.cloud.stream.annotation.EnableBinding;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 /**
- * @author: trantuananh1
+ * @author: tranmanhhung
  * @since: Sun, 05/12/2021
  **/
 

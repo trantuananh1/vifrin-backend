@@ -9,7 +9,7 @@ import javax.persistence.*;
 import java.time.Instant;
 
 /**
- * @author: trantuananh1
+ * @author: tranmanhhung
  * @since: Sun, 05/12/2021
  **/
 

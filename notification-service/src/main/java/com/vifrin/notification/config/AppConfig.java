@@ -7,7 +7,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.web.client.RestTemplate;
 
 /**
- * @Author: trantuananh1
+ * @Author: tranmanhhung
  * @Created: Sun, 26/09/2021 9:08 AM
  **/
 

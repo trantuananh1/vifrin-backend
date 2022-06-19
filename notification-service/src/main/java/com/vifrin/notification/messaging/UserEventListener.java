@@ -11,7 +11,7 @@ import org.springframework.messaging.Message;
 import org.springframework.stereotype.Component;
 
 /**
- * @author: trantuananh1
+ * @author: tranmanhhung
  * @since: Fri, 24/12/2021
  **/
 
