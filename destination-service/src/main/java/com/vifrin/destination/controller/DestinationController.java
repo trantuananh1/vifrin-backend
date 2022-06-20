@@ -62,13 +62,13 @@ public class DestinationController {
                 .ok(new ResponseTemplate<>(ResponseType.SUCCESS, destinationDtos));
     }
 
-    @GetMapping("/comment-statistic")
-    public ResponseEntity<?> getCommentStatistic(
-    ){
-        List<DestinationDto> destinationDtos = destinationService.getTopDestinations();
-        return ResponseEntity
-                .ok(new ResponseTemplate<>(ResponseType.SUCCESS, destinationDtos));
-    }
+//    @GetMapping("/comment-statistic")
+//    public ResponseEntity<?> getCommentStatistic(
+//    ){
+//        List<DestinationDto> destinationDtos = destinationService.getTopDestinations();
+//        return ResponseEntity
+//                .ok(new ResponseTemplate<>(ResponseType.SUCCESS, destinationDtos));
+//    }
 
     @GetMapping
     public ResponseEntity<?> getAllDestination(){
