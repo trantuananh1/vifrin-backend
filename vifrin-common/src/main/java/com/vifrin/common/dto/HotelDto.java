@@ -20,6 +20,7 @@ public class HotelDto {
     private float longitude;
     private float latitude;
     private float price;
+    private float salesPrice;
     private String phone;
     private Instant createdAt;
     private Instant updatedAt;

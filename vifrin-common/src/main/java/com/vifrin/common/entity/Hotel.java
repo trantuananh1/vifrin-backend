@@ -45,7 +45,7 @@ public class Hotel {
     private float price;
 
     @Column(name = "sales_price")
-    private float salePrice;
+    private float salesPrice;
 
     @Column(name = "phone")
     private String phone;

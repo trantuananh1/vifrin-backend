@@ -16,6 +16,7 @@ public class HotelRequest {
     private float longitude;
     private float latitude;
     private float price;
+    private float salesPrice;
     private String phone;
     private long destinationId;
     private List<Long> mediaIds;

@@ -16,6 +16,8 @@ import com.vifrin.hotel.mapper.HotelMapper;
 import com.vifrin.hotel.messaging.CommentEventPayload;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.time.Instant;
@@ -76,8 +78,9 @@ public class HotelService {
         return hotelMapper.hotelsToHotelsDto(hotels);
     }
 
-    public List<HotelDto> findByDestinationId(Long id){
-        List<Hotel> hotels = hotelRepository.findByDestinationId(id);
+    public List<HotelDto> findByDestinationId(Long id, int page, int size){
+        Pageable pageable = PageRequest.of(page, size);
+        List<Hotel> hotels = hotelRepository.findByDestinationId(id, pageable);
         return hotelMapper.hotelsToHotelsDto(hotels);
     }
 }
