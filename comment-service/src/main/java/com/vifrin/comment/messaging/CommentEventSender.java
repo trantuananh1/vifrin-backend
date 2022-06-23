@@ -48,7 +48,7 @@ public class CommentEventSender {
                 .builder()
                 .eventType(eventType)
                 .commentId(comment.getId())
-                .targetId(comment.getDestination().getId())
+                .targetId(comment.getDestination() != null ? comment.getDestination().getId() : comment.getHotel().getId())
                 .userId(comment.getUser().getId())
                 .star(comment.getStar())
                 .createdAt(comment.getCreatedAt())

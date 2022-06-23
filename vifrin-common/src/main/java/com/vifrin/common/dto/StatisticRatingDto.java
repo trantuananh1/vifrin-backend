@@ -12,9 +12,9 @@ import java.util.List;
 
 @Data
 public class StatisticRatingDto {
-    private int oneStar;
-    private int twoStar;
-    private int threeStar;
-    private int fourStar;
-    private int fiveStar;
+    private int oneStar = 0;
+    private int twoStar = 0;
+    private int threeStar = 0;
+    private int fourStar = 0;
+    private int fiveStar=0;
 }

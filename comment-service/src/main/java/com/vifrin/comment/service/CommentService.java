@@ -3,17 +3,10 @@ package com.vifrin.comment.service;
 import com.vifrin.comment.mapper.CommentMapper;
 import com.vifrin.comment.messaging.CommentEventSender;
 import com.vifrin.common.dto.CommentDto;
-import com.vifrin.common.dto.UserSummary;
-import com.vifrin.common.entity.Comment;
-import com.vifrin.common.entity.Destination;
-import com.vifrin.common.entity.Post;
-import com.vifrin.common.entity.User;
-import com.vifrin.common.repository.CommentRepository;
-import com.vifrin.common.repository.DestinationRepository;
-import com.vifrin.common.repository.PostRepository;
-import com.vifrin.common.repository.UserRepository;
+import com.vifrin.common.dto.StatisticRatingDto;
+import com.vifrin.common.entity.*;
+import com.vifrin.common.repository.*;
 import com.vifrin.common.util.RedisUtil;
-import com.vifrin.feign.client.UserFeignClient;
 import com.vifrin.post.exception.ResourceNotFoundException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,6 +32,8 @@ public class CommentService {
     @Autowired
     DestinationRepository destinationRepository;
     @Autowired
+    HotelRepository hotelRepository;
+    @Autowired
     CommentRepository commentRepository;
     @Autowired
     CommentMapper commentMapper;
@@ -55,13 +50,20 @@ public class CommentService {
             comment = commentMapper.commentDtoToComment(commentDto, post, user);
             post.getActivity().setCommentsCount(post.getActivity().getCommentsCount() + 1);
             postRepository.save(post);
-        } else {
+        } else if (commentDto.getDestinationId() != null) {
             long destinationId = commentDto.getDestinationId();
             Destination destination = destinationRepository.findById(destinationId)
                     .orElseThrow(() -> new ResourceNotFoundException(destinationId));
             comment = commentMapper.commentDtoToComment(commentDto, destination, user);
             destination.getActivity().setCommentsCount(destination.getActivity().getCommentsCount() + 1);
             destinationRepository.save(destination);
+        } else {
+            long hotelId = commentDto.getHotelId();
+            Hotel hotel = hotelRepository.findById(hotelId)
+                    .orElseThrow(() -> new ResourceNotFoundException(hotelId));
+            comment = commentMapper.commentDtoToComment(commentDto, hotel, user);
+            hotel.getActivity().setCommentsCount(hotel.getActivity().getCommentsCount() + 1);
+            hotelRepository.save(hotel);
         }
         comment = commentRepository.save(comment);
         commentEventSender.sendCommentCreated(comment);
@@ -86,6 +88,24 @@ public class CommentService {
                 commentRepository.findByDestinationIdAndStar(destinationId, star.get(), pageable) :
                 commentRepository.findByDestinationId(destinationId, pageable);
         return commentMapper.commentsToCommentDtos(comments, RedisUtil.getInstance().getValue(username));
+    }
+
+    public List<CommentDto> getCommentsByHotel(Long hotelId, String username, int page, int size, Optional<Integer> star) {
+        Pageable pageable = PageRequest.of(page, size);
+        List<Comment> comments = star.isPresent() ?
+                commentRepository.findByHotelIdAndStar(hotelId, star.get(), pageable) :
+                commentRepository.findByHotelId(hotelId, pageable);
+        return commentMapper.commentsToCommentDtos(comments, RedisUtil.getInstance().getValue(username));
+    }
+
+    public StatisticRatingDto getStatRating(long hotelId) {
+        StatisticRatingDto statisticRatingDto = new StatisticRatingDto();
+        statisticRatingDto.setOneStar(commentRepository.findByHotelIdAndStar(hotelId, 1, null).size());
+        statisticRatingDto.setTwoStar(commentRepository.findByHotelIdAndStar(hotelId, 2, null).size());
+        statisticRatingDto.setThreeStar(commentRepository.findByHotelIdAndStar(hotelId, 3, null).size());
+        statisticRatingDto.setFourStar(commentRepository.findByHotelIdAndStar(hotelId, 4, null).size());
+        statisticRatingDto.setFiveStar(commentRepository.findByHotelIdAndStar(hotelId, 5, null).size());
+        return statisticRatingDto;
     }
 
     public void deleteComment(Long commentId) {

@@ -19,6 +19,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
+@SecondaryTable(name = "activities", pkJoinColumns = @PrimaryKeyJoinColumn(name = "id"))
 @Table(name = "hotel")
 public class Hotel {
     @Id
@@ -69,6 +70,9 @@ public class Hotel {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "destination_id")
     private Destination destination;
+
+    @Embedded
+    private Activity activity;
 
     @Override
     public String toString() {

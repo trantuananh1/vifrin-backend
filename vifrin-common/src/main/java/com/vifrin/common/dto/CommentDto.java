@@ -20,6 +20,7 @@ public class CommentDto {
     private Long id;
     private Long postId;
     private Long destinationId;
+    private Long hotelId;
     private String content;
     private Instant createdAt;
     private Instant updatedAt;

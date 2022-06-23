@@ -27,4 +27,10 @@ public interface CommentRepository extends JpaRepository<Comment, Long> {
 
     @Query(value = "SELECT post_id FROM comments WHERE id=?1", nativeQuery = true)
     Long getPostIdByCommentId(Long commentId);
+
+    List<Comment> findByHotelId(Long hotelId, Pageable pageable);
+
+    List<Comment> findByHotelIdAndStar(Long hotelId, int star, Pageable pageable);
+
+
 }

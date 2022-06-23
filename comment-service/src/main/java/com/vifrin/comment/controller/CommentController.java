@@ -3,6 +3,7 @@ package com.vifrin.comment.controller;
 import com.vifrin.comment.service.CommentService;
 import com.vifrin.common.config.constant.BaseConstant;
 import com.vifrin.common.dto.CommentDto;
+import com.vifrin.common.dto.StatisticRatingDto;
 import com.vifrin.common.response.ResponseTemplate;
 import com.vifrin.common.response.ResponseType;
 import lombok.extern.slf4j.Slf4j;
@@ -85,6 +86,27 @@ public class CommentController {
         return commentDtos.isEmpty()?
                 ResponseEntity.noContent().build() :
                 ResponseEntity.ok(new ResponseTemplate<>(ResponseType.SUCCESS, commentDtos));
+    }
+
+    @GetMapping("/by-hotel/{hotelId}")
+    public ResponseEntity<?> getCommentsByHotel(@PathVariable Long hotelId, @AuthenticationPrincipal Principal principal,
+                                                      @RequestParam(value = "page", defaultValue = BaseConstant.DEFAULT_PAGE_NUMBER) int page,
+                                                      @RequestParam(value = "size", defaultValue = BaseConstant.DEFAULT_PAGE_SIZE) int size,
+                                                      @RequestParam Optional<Integer> star){
+        List<CommentDto> commentDtos =
+                commentService.getCommentsByHotel(hotelId, principal.getName(), page, size, star);
+        return commentDtos.isEmpty()?
+                ResponseEntity.noContent().build() :
+                ResponseEntity.ok(new ResponseTemplate<>(ResponseType.SUCCESS, commentDtos));
+    }
+
+    @GetMapping("stats-by-hotel/{hotelId}")
+    public ResponseEntity<?> getStatsRating(@PathVariable Long hotelId){
+        StatisticRatingDto ratingDto =
+                commentService.getStatRating(hotelId);
+        return ratingDto == null?
+                ResponseEntity.noContent().build() :
+                ResponseEntity.ok(new ResponseTemplate<>(ResponseType.SUCCESS, ratingDto));
     }
 
     @MessageMapping("/comment.delete")

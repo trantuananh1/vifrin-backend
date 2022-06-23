@@ -3,10 +3,7 @@ package com.vifrin.comment.mapper;
 import com.vifrin.common.dto.CommentDto;
 import com.vifrin.common.dto.PostDto;
 import com.vifrin.common.dto.UserSummary;
-import com.vifrin.common.entity.Comment;
-import com.vifrin.common.entity.Destination;
-import com.vifrin.common.entity.Post;
-import com.vifrin.common.entity.User;
+import com.vifrin.common.entity.*;
 import com.vifrin.feign.client.UserFeignClient;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
@@ -62,9 +59,20 @@ public abstract class CommentMapper {
     @Mapping(target = "activity", expression = "java(new Activity())")
     public abstract Comment commentDtoToComment(CommentDto commentDto, Destination destination, User user);
 
+    @Mapping(target = "id", ignore = true)
+    @Mapping(target = "content", source = "commentDto.content")
+    @Mapping(target = "createdAt",expression = "java(java.time.Instant.now())")
+    @Mapping(target = "updatedAt", expression = "java(java.time.Instant.now())")
+    @Mapping(target = "user", source = "user")
+    @Mapping(target = "hotel", source = "hotel")
+    @Mapping(target = "star", source = "commentDto.star")
+    @Mapping(target = "activity", expression = "java(new Activity())")
+    public abstract Comment commentDtoToComment(CommentDto commentDto, Hotel hotel, User user);
+
     public abstract List<Comment> commentDtosToComments(List<CommentDto> commentDtos);
 
     UserSummary getUserSummary(Comment comment, String token){
-        return userFeignClient.getUserSummary(comment.getUser().getId(), token).getBody();
+//        return userFeignClient.getUserSummary(comment.getUser().getId(), token).getBody();
+        return new UserSummary();
     }
 }

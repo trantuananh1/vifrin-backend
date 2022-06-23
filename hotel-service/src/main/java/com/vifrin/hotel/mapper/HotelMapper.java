@@ -56,6 +56,7 @@ public abstract class HotelMapper {
     @Mapping(target = "createdAt",expression = "java(java.time.Instant.now())")
     @Mapping(target = "updatedAt", expression = "java(java.time.Instant.now())")
     @Mapping(target = "medias", expression = "java(getMedias(hotelRequest))")
+    @Mapping(target = "activity", expression = "java(initActivity())")
     public abstract Hotel hotelDtoToHotel(HotelRequest hotelRequest);
 
     public abstract List<Hotel> hotelsDtoToHotel(List<HotelDto> hotelsDto);
@@ -68,5 +69,9 @@ public abstract class HotelMapper {
     List<MediaDto> getMediaDto(Hotel hotel){
         List<Media> medias = hotel.getMedias();
         return mediaMapper.mediasToMediaDtos(medias);
+    }
+
+    public Activity initActivity(){
+        return new Activity();
     }
 }
