@@ -44,6 +44,12 @@ public class HotelController {
                 .body(new ResponseTemplate<HotelDto>(ResponseType.SUCCESS, hotelDto));
     }
 
+    @GetMapping("/{hotelId}")
+    public ResponseEntity<?> getHotel(@PathVariable Long hotelId) {
+        return ResponseEntity
+                .ok(new ResponseTemplate<>(ResponseType.SUCCESS, hotelService.getHotel(hotelId)));
+    }
+
     @GetMapping("/get-by-destination")
     public ResponseEntity<?> getByDestination(@RequestParam Long destinationId,
                                               @RequestParam(defaultValue = BaseConstant.DEFAULT_PAGE_NUMBER) int page,

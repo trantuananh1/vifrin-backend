@@ -42,7 +42,7 @@ public class CommentService {
 
     public CommentDto addComment(CommentDto commentDto, String username) {
         User user = userRepository.findByUsername(username).get();
-        Comment comment = null;
+        Comment comment;
         if (commentDto.getPostId() != null) {
             long postId = commentDto.getPostId();
             Post post = postRepository.findById(postId)

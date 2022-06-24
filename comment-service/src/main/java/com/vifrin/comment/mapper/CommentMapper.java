@@ -28,6 +28,7 @@ public abstract class CommentMapper {
     @Mapping(target = "updatedAt", source = "comment.updatedAt")
     @Mapping(target = "postId", source = "comment.post.id")
     @Mapping(target = "destinationId", source = "comment.destination.id")
+    @Mapping(target = "hotelId", source = "comment.hotel.id")
     @Mapping(target = "likesCount", source = "comment.activity.likesCount")
     @Mapping(target = "star", source = "comment.star")
     @Mapping(target = "user", expression = "java(getUserSummary(comment, token))")

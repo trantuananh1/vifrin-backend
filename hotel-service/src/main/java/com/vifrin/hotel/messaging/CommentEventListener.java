@@ -32,7 +32,7 @@ public class CommentEventListener {
 
         switch (eventType) {
             case CREATED:
-//                hotelService.updateAverageScore(message.getPayload());
+                hotelService.updateAverageScore(message.getPayload());
                 break;
             case DELETED:
                 break;

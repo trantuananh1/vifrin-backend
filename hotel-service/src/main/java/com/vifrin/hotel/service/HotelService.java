@@ -51,6 +51,10 @@ public class HotelService {
         return hotelMapper.hotelToHotelDto(hotel);
     }
 
+    public HotelDto getHotel(long hotelId){
+        return hotelMapper.hotelToHotelDto(hotelRepository.getOne(hotelId));
+    }
+
     public List<HotelDto> getAllHotel(){
         List<Hotel> hotels = hotelRepository.findAll();
         return hotelMapper.hotelsToHotelsDto(hotels);
@@ -82,5 +86,16 @@ public class HotelService {
         Pageable pageable = PageRequest.of(page, size);
         List<Hotel> hotels = hotelRepository.findByDestinationId(id, pageable);
         return hotelMapper.hotelsToHotelsDto(hotels);
+    }
+
+    public void updateAverageScore(CommentEventPayload payload) {
+        long destinationId = payload.getTargetId();
+        Hotel hotel = hotelRepository.findById(destinationId).get();
+        float currentScore = hotel.getAverageScore();
+        long commentsCount = hotel.getActivity().getCommentsCount();
+        float newScore = ((commentsCount - 1) *  currentScore + payload.getStar())/commentsCount;
+        newScore = (float) (Math.ceil(newScore * 10) / 10);
+        hotel.setAverageScore(newScore);
+        hotelRepository.save(hotel);
     }
 }
