@@ -15,6 +15,6 @@ import java.util.List;
 
 public interface DestinationRepository extends JpaRepository<Destination, Long> {
     List<Destination> findByNameContainingIgnoreCase(String key);
-    @Query(value = "SELECT * FROM destinations ORDER BY average_score ASC", nativeQuery = true)
+    @Query(value = "SELECT * FROM destinations ORDER BY average_score DESC", nativeQuery = true)
     List<Destination> getTopDestinations(Pageable pageable);
 }

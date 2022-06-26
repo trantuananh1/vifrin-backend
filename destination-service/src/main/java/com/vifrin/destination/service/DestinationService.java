@@ -19,6 +19,7 @@ import java.time.Instant;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Random;
 import java.util.stream.Collectors;
 
 /**
@@ -105,6 +106,12 @@ public class DestinationService {
         return destinationMapper.destinationsToDestinationDtos(destinations.stream().filter(destination -> !destination.getMedias().isEmpty()).collect(Collectors.toList()));
     }
 
+    public DestinationDto getRandomDestinations(int page, int size){
+        List<DestinationDto> destinationDtos = getTopDestinations(page, size);
+        int index = Integer.parseInt(String.valueOf(Math.floor(Math.random()*destinationDtos.size())));
+        return destinationDtos.get(index);
+    }
+
     public List<DestinationDto> search(String key){
         List<Destination> destinations = destinationRepository.findByNameContainingIgnoreCase(key);
         return destinationMapper.destinationsToDestinationDtos(destinations);
@@ -119,5 +126,23 @@ public class DestinationService {
         newScore = (float) (Math.ceil(newScore * 10) / 10);
         destination.setAverageScore(newScore);
         destinationRepository.save(destination);
+    }
+
+    public void removeWrongDestination() {
+        List<Destination> destinations = destinationRepository.findAll();
+        List<Destination> deletedDestinations = new ArrayList<>();
+        for (Destination destination : destinations){
+            try {
+                Double number = Double.valueOf(destination.getAverageScore());
+                if (number.isInfinite() || number.isNaN()){
+                    deletedDestinations.add(destination);
+                }
+            }catch (Exception e){
+                deletedDestinations.add(destination);
+            }
+        }
+        for (Destination destination : deletedDestinations){
+            this.deleteDestination(destination.getId());
+        }
     }
 }

@@ -90,4 +90,16 @@ public class DestinationController {
                 ResponseEntity.ok(destinationDtos) :
                 ResponseEntity.noContent().build();
     }
+
+    @GetMapping("random_destination")
+    public ResponseEntity getRandomDestination( @RequestParam(value = "page", defaultValue = BaseConstant.DEFAULT_PAGE_NUMBER) int page,
+                                                @RequestParam(value = "size", defaultValue = BaseConstant.DEFAULT_PAGE_SIZE) int size){
+        return ResponseEntity.ok(destinationService.getRandomDestinations(page, size));
+    }
+
+    @DeleteMapping("wrong_destination")
+    public ResponseEntity removeWrongDestinations(){
+        destinationService.removeWrongDestination();
+        return ResponseEntity.ok().build();
+    }
 }

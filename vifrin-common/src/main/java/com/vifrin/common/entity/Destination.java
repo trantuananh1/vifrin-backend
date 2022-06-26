@@ -70,6 +70,7 @@ public class Destination {
             cascade = CascadeType.ALL)
     private List<Hotel> hotels;
 
+
     @Embedded
     private Activity activity;
 
