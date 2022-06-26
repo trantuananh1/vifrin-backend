@@ -60,6 +60,9 @@ public class PostService {
         //update postId of media
         for (Media media : medias) {
             media.setPost(post);
+            if (destination != null){
+                media.setDestination(destination);
+            }
         }
         mediaRepository.saveAll(medias);
 
