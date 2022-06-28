@@ -18,6 +18,14 @@ public class HotelRequest {
     private float price;
     private float salesPrice;
     private String phone;
+    private boolean hasSwimmingPool;
+    private boolean hasParking;
+    private boolean hasWifi;
+    private boolean hasAirConditioner;
+    private boolean hasElevator;
+    private boolean hasRestaurant;
+    private boolean hasBathroom;
+    private String address;
     private long destinationId;
     private List<Long> mediaIds;
 }

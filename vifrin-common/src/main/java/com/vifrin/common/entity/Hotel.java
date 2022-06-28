@@ -51,6 +51,30 @@ public class Hotel {
     @Column(name = "phone")
     private String phone;
 
+    @Column(name = "has_swimming_pool")
+    private boolean hasSwimmingPool;
+
+    @Column(name = "has_parking")
+    private boolean hasParking;
+
+    @Column(name = "has_wifi")
+    private boolean hasWifi;
+
+    @Column(name = "has_air_conditioner")
+    private boolean hasAirConditioner;
+
+    @Column(name = "has_elevator")
+    private boolean hasElevator;
+
+    @Column(name = "has_restaurant")
+    private boolean hasRestaurant;
+
+    @Column(name = "has_bathroom")
+    private boolean hasBathroom;
+
+    @Column(name = "address")
+    private String address;
+
     @Column(name = "created_at")
     @CreatedDate
     private Instant createdAt;

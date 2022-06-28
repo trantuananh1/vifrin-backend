@@ -1,6 +1,5 @@
 package com.vifrin.common.dto;
 
-import com.vifrin.common.entity.Destination;
 import lombok.Data;
 
 import java.time.Instant;
@@ -22,6 +21,14 @@ public class HotelDto {
     private float price;
     private float salesPrice;
     private String phone;
+    private boolean hasSwimmingPool;
+    private boolean hasParking;
+    private boolean hasWifi;
+    private boolean hasAirConditioner;
+    private boolean hasElevator;
+    private boolean hasRestaurant;
+    private boolean hasBathroom;
+    private String address;
     private Instant createdAt;
     private Instant updatedAt;
     private List<MediaDto> medias;
