@@ -38,6 +38,8 @@ public class CommentService {
     @Autowired
     CommentMapper commentMapper;
     @Autowired
+    MediaRepository mediaRepository;
+    @Autowired
     CommentEventSender commentEventSender;
 
     public CommentDto addComment(CommentDto commentDto, String username) {
@@ -66,6 +68,14 @@ public class CommentService {
             hotelRepository.save(hotel);
         }
         comment = commentRepository.save(comment);
+        List<Long> mediaIds = commentDto.getMediaIds();
+        List<Media> medias = mediaRepository.findAllById(mediaIds);
+        for (Media media : medias) {
+            media.setComment(comment);
+        }
+        mediaRepository.saveAll(medias);
+        comment.setMedias(medias);
+        commentRepository.save(comment);
         commentEventSender.sendCommentCreated(comment);
         return commentMapper.commentToCommentDto(comment, RedisUtil.getInstance().getValue(username));
     }

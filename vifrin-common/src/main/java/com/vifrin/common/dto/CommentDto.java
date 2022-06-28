@@ -1,5 +1,6 @@
 package com.vifrin.common.dto;
 
+import com.vifrin.common.entity.Media;
 import lombok.Data;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedBy;
@@ -9,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import java.time.Instant;
+import java.util.List;
 
 /**
  * @author: tranmanhhung
@@ -26,5 +28,7 @@ public class CommentDto {
     private Instant updatedAt;
     private int likesCount;
     private int star;
+    List<Long> mediaIds;
+    List<MediaDto> medias;
     private UserSummary user;
 }

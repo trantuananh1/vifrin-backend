@@ -1,6 +1,7 @@
 package com.vifrin.comment.mapper;
 
 import com.vifrin.common.dto.CommentDto;
+import com.vifrin.common.dto.MediaDto;
 import com.vifrin.common.dto.PostDto;
 import com.vifrin.common.dto.UserSummary;
 import com.vifrin.common.entity.*;
@@ -21,6 +22,8 @@ import java.util.stream.Collectors;
 public abstract class CommentMapper {
     @Autowired
     UserFeignClient userFeignClient;
+    @Autowired
+    MediaMapper mediaMapper;
 
     @Mapping(target = "id", source = "comment.id")
     @Mapping(target = "content", source = "comment.content")
@@ -32,6 +35,7 @@ public abstract class CommentMapper {
     @Mapping(target = "likesCount", source = "comment.activity.likesCount")
     @Mapping(target = "star", source = "comment.star")
     @Mapping(target = "user", expression = "java(getUserSummary(comment, token))")
+    @Mapping(target = "medias", expression = "java(getMedias(comment))")
     public abstract CommentDto commentToCommentDto(Comment comment, String token);
 
     public List<CommentDto> commentsToCommentDtos(List<Comment> comments, String token){
@@ -48,6 +52,7 @@ public abstract class CommentMapper {
     @Mapping(target = "post", source = "post")
     @Mapping(target = "star", source = "commentDto.star")
     @Mapping(target = "activity", expression = "java(new Activity())")
+    @Mapping(target = "medias", ignore = true)
     public abstract Comment commentDtoToComment(CommentDto commentDto, Post post, User user);
 
     @Mapping(target = "id", ignore = true)
@@ -58,6 +63,7 @@ public abstract class CommentMapper {
     @Mapping(target = "destination", source = "destination")
     @Mapping(target = "star", source = "commentDto.star")
     @Mapping(target = "activity", expression = "java(new Activity())")
+    @Mapping(target = "medias", ignore = true)
     public abstract Comment commentDtoToComment(CommentDto commentDto, Destination destination, User user);
 
     @Mapping(target = "id", ignore = true)
@@ -68,6 +74,7 @@ public abstract class CommentMapper {
     @Mapping(target = "hotel", source = "hotel")
     @Mapping(target = "star", source = "commentDto.star")
     @Mapping(target = "activity", expression = "java(new Activity())")
+    @Mapping(target = "medias", ignore = true)
     public abstract Comment commentDtoToComment(CommentDto commentDto, Hotel hotel, User user);
 
     public abstract List<Comment> commentDtosToComments(List<CommentDto> commentDtos);
@@ -75,5 +82,10 @@ public abstract class CommentMapper {
     UserSummary getUserSummary(Comment comment, String token){
 //        return userFeignClient.getUserSummary(comment.getUser().getId(), token).getBody();
         return new UserSummary();
+    }
+
+    List<MediaDto> getMedias(Comment comment){
+        List<Media> medias = comment.getMedias();
+        return mediaMapper.mediasToMediaDtos(medias);
     }
 }

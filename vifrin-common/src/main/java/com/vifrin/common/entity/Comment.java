@@ -6,6 +6,7 @@ import org.springframework.data.annotation.LastModifiedBy;
 
 import javax.persistence.*;
 import java.time.Instant;
+import java.util.List;
 
 /**
  * @author: tranmanhhung
@@ -55,6 +56,10 @@ public class Comment {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "hotel_id")
     private Hotel hotel;
+
+    @OneToMany(mappedBy = "comment", fetch = FetchType.LAZY,
+            cascade = CascadeType.ALL)
+    private List<Media> medias;
 
     @Embedded
     private Activity activity;
