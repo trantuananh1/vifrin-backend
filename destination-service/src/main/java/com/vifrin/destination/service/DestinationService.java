@@ -106,10 +106,10 @@ public class DestinationService {
         return destinationMapper.destinationsToDestinationDtos(destinations.stream().filter(destination -> !destination.getMedias().isEmpty()).collect(Collectors.toList()));
     }
 
-    public DestinationDto getRandomDestinations(int page, int size){
+    public List<DestinationDto> getRandomDestinations(int page, int size){
         List<DestinationDto> destinationDtos = getTopDestinations(page, size);
-        int index = Integer.parseInt(String.valueOf(Math.floor(Math.random()*destinationDtos.size())));
-        return destinationDtos.get(index);
+        Collections.shuffle(destinationDtos, new Random((long)(Math.random() * destinationDtos.size())));
+        return destinationDtos;
     }
 
     public List<DestinationDto> search(String key){
