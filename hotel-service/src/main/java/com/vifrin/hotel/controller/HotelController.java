@@ -12,10 +12,12 @@ import com.vifrin.hotel.service.HotelService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -83,7 +85,7 @@ public class HotelController {
     }
 
     @GetMapping("/search")
-    public ResponseEntity<List<HotelDto>> search(@RequestParam String key) {
+    public ResponseEntity<List<HotelDto>> search(@RequestParam String key, @AuthenticationPrincipal Principal principal) {
         List<HotelDto> hotelsDto = hotelService.search(key);
         return ResponseEntity.ok(hotelsDto);
 //        return !hotelsDto.isEmpty() ?
@@ -102,4 +104,9 @@ public class HotelController {
         hotelService.deleteAllHotels();
         return ResponseEntity.ok(new ResponseTemplate<>(ResponseType.SUCCESS));
     }
+
+//    @PostMapping("sync")
+//    public ResponseEntity sync(){
+//
+//    }
 }

@@ -12,4 +12,5 @@ public class BaseConstant {
     public static final String USERS = "users";
     public static final String DESTINATIONS = "destinations";
     public static final String COMMENTS = "comments";
+    public static final String HOTELS = "hotels";
 }

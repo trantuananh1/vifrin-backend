@@ -2,9 +2,11 @@ package com.vifrin.search.service;
 
 import com.vifrin.common.config.constant.BaseConstant;
 import com.vifrin.common.dto.DestinationDto;
+import com.vifrin.common.dto.HotelDto;
 import com.vifrin.common.dto.UserSummary;
 import com.vifrin.common.util.RedisUtil;
 import com.vifrin.feign.client.DestinationFeignClient;
+import com.vifrin.feign.client.HotelFeignClient;
 import com.vifrin.feign.client.UserFeignClient;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +28,8 @@ public class SearchService {
     UserFeignClient userFeignClient;
     @Autowired
     DestinationFeignClient destinationFeignClient;
+    @Autowired
+    HotelFeignClient hotelFeignClient;
 
     public Map<String, Object> search(String key, String username){
         Map<String, Object> result = new HashMap<>();
@@ -39,6 +43,11 @@ public class SearchService {
         List<DestinationDto> destinationDtos = destinationFeignClient.search(key).getBody();
         if (destinationDtos!= null && !destinationDtos.isEmpty()){
             result.put(BaseConstant.DESTINATIONS, destinationDtos);
+        }
+        //search hotel
+        List<HotelDto> hotelDtos = hotelFeignClient.search(key).getBody();
+        if (hotelDtos!= null && !hotelDtos.isEmpty()){
+            result.put(BaseConstant.HOTELS, hotelDtos);
         }
         return result;
     }

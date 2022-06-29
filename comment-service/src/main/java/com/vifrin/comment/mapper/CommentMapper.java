@@ -80,8 +80,7 @@ public abstract class CommentMapper {
     public abstract List<Comment> commentDtosToComments(List<CommentDto> commentDtos);
 
     UserSummary getUserSummary(Comment comment, String token){
-//        return userFeignClient.getUserSummary(comment.getUser().getId(), token).getBody();
-        return new UserSummary();
+        return userFeignClient.getUserSummary(comment.getUser().getId(), token).getBody();
     }
 
     List<MediaDto> getMedias(Comment comment){

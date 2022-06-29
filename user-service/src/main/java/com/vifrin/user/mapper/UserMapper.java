@@ -52,6 +52,7 @@ public abstract class UserMapper {
     @Mapping(target = "fullName", source = "user.profile.fullName")
     @Mapping(target = "following", expression = "java(isFollowing(user, me))")
     @Mapping(target = "follower", expression = "java(isFollower(user, me))")
+    @Mapping(target = "followersCount", source = "user.activity.followersCount")
     public abstract UserSummary userToUserSummary(User user, User me);
 
     public List<UserSummary> usersToUserSummaries(List<User> users, User me){

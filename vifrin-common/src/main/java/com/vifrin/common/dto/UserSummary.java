@@ -15,4 +15,5 @@ public class UserSummary {
     private String avatarUrl;
     private boolean isFollowing;
     private boolean isFollower;
+    private int followersCount;
 }
