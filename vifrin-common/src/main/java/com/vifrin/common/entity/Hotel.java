@@ -87,6 +87,35 @@ public class Hotel {
             cascade = CascadeType.ALL)
     private List<Comment> comments;
 
+    @Override
+    public String toString() {
+        return "Hotel{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", averageScore=" + averageScore +
+                ", longitude=" + longitude +
+                ", latitude=" + latitude +
+                ", price=" + price +
+                ", salesPrice=" + salesPrice +
+                ", phone='" + phone + '\'' +
+                ", hasSwimmingPool=" + hasSwimmingPool +
+                ", hasParking=" + hasParking +
+                ", hasWifi=" + hasWifi +
+                ", hasAirConditioner=" + hasAirConditioner +
+                ", hasElevator=" + hasElevator +
+                ", hasRestaurant=" + hasRestaurant +
+                ", hasBathroom=" + hasBathroom +
+                ", address='" + address + '\'' +
+                ", createdAt=" + createdAt +
+                ", updatedAt=" + updatedAt +
+                ", comments=" + comments +
+                ", medias=" + medias +
+                ", destination=" + destination +
+                ", activity=" + activity +
+                '}';
+    }
+
     @OneToMany(mappedBy = "hotel", fetch = FetchType.LAZY,
             cascade = CascadeType.ALL)
     private List<Media> medias;
@@ -98,19 +127,4 @@ public class Hotel {
     @Embedded
     private Activity activity;
 
-    @Override
-    public String toString() {
-        return "Hotel{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", description='" + description + '\'' +
-                ", averageScore=" + averageScore +
-                ", longitude=" + longitude +
-                ", latitude=" + latitude +
-                ", price=" + price +
-                ", phone='" + phone + '\'' +
-                ", createdAt=" + createdAt +
-                ", updatedAt=" + updatedAt +
-                '}';
-    }
 }

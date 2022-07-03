@@ -89,7 +89,7 @@ public class Destination {
                 ", posts=" + posts +
                 ", comments=" + comments +
                 ", medias=" + medias +
-//                ", hotels=" + hotels +
+                ", hotels=" + hotels +
                 ", activity=" + activity +
                 '}';
     }
