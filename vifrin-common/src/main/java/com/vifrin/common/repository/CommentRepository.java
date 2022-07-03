@@ -32,5 +32,4 @@ public interface CommentRepository extends JpaRepository<Comment, Long> {
 
     List<Comment> findByHotelIdAndStar(Long hotelId, int star, Pageable pageable);
 
-
 }

@@ -120,6 +120,17 @@ public class CommentService {
         return statisticRatingDto;
     }
 
+
+    public StatisticRatingDto getStatRatingByDestination(long hotelId) {
+        StatisticRatingDto statisticRatingDto = new StatisticRatingDto();
+        statisticRatingDto.setOneStar(commentRepository.findByDestinationIdAndStar(hotelId, 1, null).size());
+        statisticRatingDto.setTwoStar(commentRepository.findByDestinationIdAndStar(hotelId, 2, null).size());
+        statisticRatingDto.setThreeStar(commentRepository.findByDestinationIdAndStar(hotelId, 3, null).size());
+        statisticRatingDto.setFourStar(commentRepository.findByDestinationIdAndStar(hotelId, 4, null).size());
+        statisticRatingDto.setFiveStar(commentRepository.findByDestinationIdAndStar(hotelId, 5, null).size());
+        return statisticRatingDto;
+    }
+
     public void deleteComment(Long commentId) {
         commentRepository
                 .findById(commentId)

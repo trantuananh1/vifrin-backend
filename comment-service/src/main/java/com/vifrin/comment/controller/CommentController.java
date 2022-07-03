@@ -109,6 +109,15 @@ public class CommentController {
                 ResponseEntity.ok(new ResponseTemplate<>(ResponseType.SUCCESS, ratingDto));
     }
 
+    @GetMapping("stats-by-destination/{destinationId}")
+    public ResponseEntity<?> getStatsRatingByDestinations(@PathVariable Long destinationId){
+        StatisticRatingDto ratingDto =
+                commentService.getStatRatingByDestination(destinationId);
+        return ratingDto == null?
+                ResponseEntity.noContent().build() :
+                ResponseEntity.ok(new ResponseTemplate<>(ResponseType.SUCCESS, ratingDto));
+    }
+
     @MessageMapping("/comment.delete")
     @SendTo("/topic/comment/{postId}")
     @DeleteMapping("/{id}")
